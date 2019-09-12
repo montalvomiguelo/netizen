@@ -70,6 +70,21 @@
       "variable": "pattern_color",
       "label": "Pattern color",
       "default": "#000000"
+    },
+    {
+      "variable": "primary_gradient_color",
+      "label": "Primary gradient color",
+      "default": "#d1fbff"
+    },
+    {
+      "variable": "secondary_gradient_color",
+      "label": "Secondary gradient color",
+      "default": "#ffa5e8"
+    },
+    {
+      "variable": "border_color",
+      "label": "Border color",
+      "default": "#000000"
     }
   ],
   "options": [

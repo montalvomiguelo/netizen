@@ -30,9 +30,7 @@ ul
     padding: 0
 
 input, select
-  -moz-appearance: none
-  -webkit-appearance: none
-  appearance: none
+  +appearance(none)
   background-color: $alt-background-color
   border-radius: 0
   border: $border
@@ -42,7 +40,7 @@ input, select
   text-indent: 10px
   width: 100%
 
-  &:focus
+  &:hover, &:focus
     background-color: $alt-accent-color
     outline: $border
 
@@ -93,17 +91,11 @@ input, select
   text-align: center
   text-decoration: none
 
-  &:hover
+  &:hover, &:focus
     +all-transitions
     background-color: $text-color
     color: $alt-background-color
     text-decoration: none
-
-  &:focus
-    background-color: $text-color
-    color: $alt-background-color
-    text-decoration: none
-    clear: both
 
 body
   background: $background-color
