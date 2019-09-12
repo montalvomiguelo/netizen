@@ -1,5 +1,12 @@
-//= require_directory ./stylesheets/vendor
-//= require stylesheets/layout
-//= require stylesheets/products
-//= require stylesheets/product
-//= require stylesheets/cart
+/*
+ *= require_directory ./stylesheets/vendor
+ *= require stylesheets/layout
+ *= require stylesheets/products
+ *= require stylesheets/product
+ *= require stylesheets/cart
+ *
+ */
+
+/*============================================================
+  Custom Styles - add and override styles below.
+============================================================*/

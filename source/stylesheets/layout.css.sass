@@ -3,111 +3,446 @@
 body
   background: #{"{{ theme.background_color }}"}
   color: #{"{{ theme.text_color }}"}
-  font: 14px/1.4 normal #{"{{ theme.text_font | font_family }}"}
-  margin: 100px
+  font-family: $default-font
+  font-size: 16px
+  font-weight: normal
+  line-height: 1.5em
+  margin: 0
+  position: relative
 
-a
-  color: #72C29B
-  text-decoration: none
+div.wrapper
+  margin: 0 auto
+  max-width: 1450px
+  position: relative
+  width: 100%
+  padding: 0 $marginSize
 
-  &:hover
-    color: #60AA85
+  @media screen and (max-width: $break-large)
+    padding: 0
 
-ul
-  list-style-type: disc
+  header.store-name
+    display: inline-block
+    height: 213px
+    margin: 0 auto
+    padding: 0
+    position: fixed
+    top: 0
+    width: 213px
+    z-index: 98
 
-ol
-  list-style-type: decimal
+    a.logo
+      background-color: #{"{{ theme.alt_background_color }}"}
+      border: $border
+      display: block
+      float: left
+      height: 193px
+      left: 20px
+      margin: 0
+      padding: 0
+      position: absolute
+      top: 20px
+      width: 193px
 
-ul, ol
-  margin-left: $marginSize
+      &:before
+        background: $gradient
+        border: $border
+        box-sizing: border-box
+        content: ' '
+        display: block
+        font-size: 0
+        height: 193px
+        left: -12px
+        margin: 0
+        padding: 0
+        position: absolute
+        top: -12px
+        width: 193px
+        z-index: -1
 
-ul.unstyled,
-ol.unstyled
-  list-style-type: none
-  margin-left: 0
+      &:after
+        background: $gradient
+        border: $border
+        box-sizing: border-box
+        content: ' '
+        display: block
+        font-size: 0
+        height: 193px
+        left: -22px
+        margin: 0
+        padding: 0
+        position: absolute
+        top: -22px
+        width: 193px
+        z-index: -2
+
+      img
+        +vertical-align
+        width: 100%
+
+  aside.checkout
+    display: block
+    font-size: 22px
+    overflow: hidden
+    position: absolute
+    right: $marginSize*2
+    top: 0
+    z-index: 99
+
+    @media screen and (max-width: $break-large)
+      right: $marginSize
+
+    .checkout-container
+      height: 100%
+      max-width: $marginSize
+      position: fixed
+
+      a.cart
+        max-width: $marginSize
+        position: fixed
+        text-decoration: none
+
+        .button
+          height: $marginSize
+          line-height: 44px
+          padding: 0
+          text-decoration: none
+          width: $marginSize
+
+        div.cart-subtotal
+          +rotated
+          min-width: 450px
+          position: absolute
+          right: -200px
+          top: 290px
+          width: 100%
+
+          div.total
+            display: inline-block
+            margin-right: $marginSize/2
+
+          div.line
+            background: #{"{{ theme.text_color }}"}
+            content: ' '
+            display: inline-block
+            font-size: 0
+            height: 2px
+            margin: 0
+            min-width: 450px
+            padding: 0
+            position: absolute
+            top: 11px
+            width: 100%
+
+  .content-body
+    +clearfix
+
+    section.slideshow
+      border: $border
+      display: block
+      grid-column: 1 / span 4
+      margin: 0 auto $marginSize
+      overflow: hidden
+      position: relative
+
+      @media screen and (max-width: $break-medium)
+        margin-bottom: $marginSize/2
+
+      .slideshow-images
+        img
+          display: block
+          margin: 0
+          max-height: 850px
+          object-fit: cover
+          padding: 0
+          width: 100%
+
+          @media screen and (max-width: $break-large)
+            max-height: 650px
+
+          @media screen and (max-width: $break-medium)
+            min-height: 450px
+
+    .pattern
+      height: 100%
+      left: 0
+      overflow: hidden
+      position: absolute
+      top: 0
+      width: 100%
+      z-index: 1
+
+      &.diagonal-lines
+        background-image: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='#{"{{ theme.pattern_color | replace: '#', '%23' }}"}' fill-opacity='0.7' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E")
+
+      &.bank-note
+        background-image: url("data:image/svg+xml,%3Csvg width='50' height='10' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21.184 20c.357-.13.72-.264 1.088-.402l1.768-.661C33.64 15.347 39.647 14 50 14c10.271 0 15.362 1.222 24.629 4.928.955.383 1.869.74 2.75 1.072h6.225c-2.51-.73-5.139-1.691-8.233-2.928C65.888 13.278 60.562 12 50 12c-10.626 0-16.855 1.397-26.66 5.063l-1.767.662c-2.475.923-4.66 1.674-6.724 2.275h6.335zm0-20C13.258 2.892 8.077 4 0 4V2c5.744 0 9.951-.574 14.85-2h6.334zM77.38 0C85.239 2.966 90.502 4 100 4V2c-6.842 0-11.386-.542-16.396-2h-6.225zM0 14c8.44 0 13.718-1.21 22.272-4.402l1.768-.661C33.64 5.347 39.647 4 50 4c10.271 0 15.362 1.222 24.629 4.928C84.112 12.722 89.438 14 100 14v-2c-10.271 0-15.362-1.222-24.629-4.928C65.888 3.278 60.562 2 50 2 39.374 2 33.145 3.397 23.34 7.063l-1.767.662C13.223 10.84 8.163 12 0 12v2z' fill='#{"{{ theme.pattern_color | replace: '#', '%23' }}"}' fill-opacity='0.7' fill-rule='evenodd'/%3E%3C/svg%3E")
+
+    .welcome
+      +centered
+      color: #{"{{ theme.background_color }}"}
+      text-align: center
+      z-index: 2
+
+      p
+        margin: 0 0 $marginSize/2 0
+
+      h2
+        color: #{"{{ theme.background_color }}"}
+        margin: 0 0 $marginSize/2 0
+
+      .button
+        font-size: 16px
+        height: 55px
+        line-height: 55px
+        width: 255px
+
+    .content
+      display: grid
+      grid-template-columns: 225px repeat(2, 1fr) 50px
+      grid-gap: 0 $marginSize
+      padding: 0
+      position: relative
+
+      @media screen and (max-width: $break-large)
+        grid-gap: 0 $marginSize/2
+
+      @media screen and (max-width: $break-small)
+        grid-template-columns: 1fr
+
+      .main-content
+        display: contents
+
+        h1.title
+          grid-column: 2 / span 2
+          margin: $marginSize 0
+
+          @media screen and (max-width: $break-small)
+            margin: $marginSize/2
+
+        .page-content
+          grid-column: 2 / span 2
+
+          ul, p, div, span,
+            font-size: 14px
+            line-height: 1.5em
+
+      .navigation
+        display: block
+        grid-row: 2 / span 4
+        max-width: 225px
+
+        &.sticky
+          position: fixed
+          top: 263px
+
+        @media screen and (max-width: $break-large)
+          padding-left: $marginSize/2
+
+        @media screen and (max-width: $break-small)
+          display: none
+          margin-right: $marginSize/2
+
+        ul
+          font-size: 14px
+          line-height: 3em
+
+        .shop-menu
+          background: #{"{{ theme.accent_color }}"} url(#{'{{ "arrow-down-regular.svg" | theme_image_url }}'}) no-repeat
+          background-position: center right 16px
+          background-size: 16px
+          font-size: 16px
+          height: 55px
+          margin-bottom: 10px
+          text-align: left
+          text-indent: 16px
+          width: 100%
+
+          &:hover
+            background-color: #{"{{ theme.alt_accent_color }}"}
+            color: #{"{{ theme.text_color }}"}
+            text-decoration: none
+
+          &:focus
+            background-color: #{"{{ theme.alt_accent_color }}"}
+            color: #{"{{ theme.text_color }}"}
+            text-decoration: none
+
+          a:hover
+            text-decoration: none
+
+        .search_form
+          margin-bottom: $marginSize/2
+
+          .search_input
+            background: url(#{'{{ "search-regular.svg" | theme_image_url }}'}) no-repeat
+            background-size: 16px
+            background-position: center right 16px
+
+            &:focus
+              background-color: #{"{{ theme.alt_accent_color }}"}
+              color: #{"{{ theme.text_color }}"}
+
+      .featured
+        background: $gradient
+        border: $border
+        display: grid
+        grid-column: 2 / span 2
+        grid-template-columns: repeat(2, 1fr)
+        margin: 0
+        padding: 0
+
+        @media screen and (max-width: $break-medium)
+          margin-bottom: $marginSize/2
+
+        .featured-details
+          display: block
+          text-align: center
+          padding: 0 $marginSize/2
+
+          .tag
+            background-color: #{"{{ theme.text_color }}"}
+            color: #{"{{ theme.background_color }}"}
+            display: inline-block
+            font-size: 12px
+            height: 33px
+            line-height: 33px
+            padding: 0 $marginSize/2
+
+          .feature-text
+
+            h2
+              margin: $marginSize
+              line-height: 1.5em
+
+            .button
+              font-size: 16px
+              width: 255px
+              margin-bottom: $marginSize
+
+        .featured-img
+          display: block
+          position: relative
+          padding: 0 $marginSize/2
+
+          @media screen and (max-width: $break-medium)
+            padding-top: 50px
+
+          ul
+            display: block
+            height: 308px
+            margin: 0 auto
+            position: relative
+            width: 308px
+
+            @media screen and (max-width: $break-medium)
+              width: 208px
+
+            li
+              display: block
+              width: 308px
+              height: 308px
+              outline: $border
+              overflow: hidden
+              box-sizing: border-box
+
+              @media screen and (max-width: $break-medium)
+                width: 208px
+                height: 208px
+
+              &:nth-child(1)
+                position: absolute
+                top: -20px
+                left: -20px
+                z-index: 99
+
+              &:nth-child(2)
+                position: absolute
+                top: 0
+                left: 0
+                z-index: 2
+
+              &:nth-child(3)
+                position: absolute
+                top: 20px
+                left: 20px
+                z-index: 1
+
+              img
+                display: block
+                margin: 0
+                max-height: 308px
+                object-fit: cover
+                padding: 0
+                width: 100%
+
+
+footer
+  background-color: #{"{{ theme.alt_accent_color }}"}
+  border: $border
+  display: grid
+  grid-template-columns: 30% 1fr 20%
+  min-height: $marginSize*3
+  margin-top: $marginSize
   padding: 0
-
-header
-  border-bottom: $border
-  font-family: #{"{{ theme.header_font | font_family }}"}
-  margin-bottom: $marginSize
-  padding-bottom: $marginSize
-  text-align: center
-
-  a
-    color: #666
-    font-size: 2.5em
-
-    &:hover
-      color: #333
-
-h1, h2, h3, h4, h5
-  font-family: #{"{{ theme.header_font | font_family }}"}
-
-div.wrap
-  display: table
+  position: relative
   width: 100%
 
-aside
-  border-right: $border
-  display: table-cell
-  padding-right: $marginSize
-  width: 20%
+  @media screen and (max-width: $break-medium)
+    grid-template-columns: 1fr
 
-  section
-    margin-bottom: 1.5em
+  .footer-cite
+    border-right: $border
+    text-align: center
+    line-height: 146px
+    min-height: $marginSize*3
 
-  ul
-    margin-bottom: 1.5em
-    margin-top: 0
+    @media screen and (max-width: $break-medium)
+      border-right: none
+      border-bottom: $border
 
-    li
-      margin-bottom: .3em
+    cite
+      font-style: normal
+      height: $marginSize
 
-      a
-        color: #999
-        font-size: .9em
+  .footer-nav
+    text-align: center
+    min-height: $marginSize*3
 
-        &:hover
-          color: #333
+    ul.footer-links
+      +vertical-align
+      display: grid
+      grid-auto-flow: column
+      grid-template-rows: repeat(3, 1fr)
+      margin: 0 $marginSize
 
-  cite a
-    background: url(#{"{{ 'badge.png' | theme_image_url }}"}) no-repeat
-    border: none
-    display: block
-    height: 23px
-    overflow: hidden
-    text-indent: 100%
-    width: 79px
-    white-space: nowrap
+      li
+        text-align: right
+        padding: 0 10px
 
-section.content
-  display: table-cell
-  padding-left: $marginSize
-  width: 80%
+  .footer-social
+    background-color: #{"{{ theme.text_color }}"}
+    color: #{"{{ theme.background_color }}"}
+    text-align: center
+    min-height: $marginSize*3
 
-form
-  li
-    margin-bottom: 1.2em
+    .social-icons
+      +vertical-align
 
-  label
-    display: block
-    margin-bottom: .2em
+      li
+        display: inline-block
+        margin: 0 5px
 
-  input,
-  textarea
-    border: 1px solid #ddd
-    padding: 5px
-    width: 350px
+        a
+          color: #{"{{ theme.background_color }}"}
+          display: block
 
+          svg
+            display: inline-block
+            fill: #{"{{ theme.background_color }}"}
+            height: 28px
+            position: relative
+            top: 3px
+            width: 28px
 
-.errors
-  border-top: 1px soldi #A65A5A
-  margin-bottom: 3em
-
-  li
-    background: #D97576
-    border-bottom: 1px soldi #A65A5A
-    color: #fff
-    padding: 3px 10px
+          &:hover svg
+            opacity: 1

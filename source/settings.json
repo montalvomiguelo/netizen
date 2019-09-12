@@ -29,24 +29,44 @@
     {
       "variable": "header_font",
       "label": "Header Font",
-      "default": "Inconsolata"
+      "default": "LexendExa-Regular"
     },
     {
       "variable": "text_font",
       "label": "Text Font",
-      "default": "Helvetica"
+      "default": "LexendExa-Regular"
     }
   ],
   "colors": [
     {
       "variable": "background_color",
       "label": "Background",
-      "default": "#FAFAFA"
+      "default": "#F8F8F9"
+    },
+    {
+      "variable": "alt_background_color",
+      "label": "Alternate Background",
+      "default": "#ffffff"
     },
     {
       "variable": "text_color",
       "label": "Text Color",
-      "default": "#222222"
+      "default": "#000000"
+    },
+    {
+      "variable": "accent_color",
+      "label": "Accent Color",
+      "default": "#EEFF8A"
+    },
+    {
+      "variable": "alt_accent_color",
+      "label": "Alternate Accent Color",
+      "default": "#FBFFE2"
+    },
+    {
+      "variable": "pattern_color",
+      "label": "Pattern color",
+      "default": "#000000"
     }
   ],
   "options": [
@@ -54,30 +74,49 @@
       "variable": "show_search",
       "label": "Show search",
       "type": "boolean",
-      "default": false,
+      "default": true,
       "description": "Shows a search field"
-    },
-    {
-      "variable": "product_image_size",
-      "label": "Product image size",
-      "type": "select",
-      "options": [["Small", "thumb"], ["Medium", "medium"], ["Large", "large"], ["Huge", ""]],
-      "default": "large",
-      "description": "The size of your product images"
     },
     {
       "variable": "products_per_page",
       "label": "Products per page",
       "type": "select",
       "options": "1..100",
-      "default": 9,
+      "default": 30,
       "description": "The number of products shown per page"
     },
     {
-      "variable": "twitter_username",
-      "label": "Twitter username",
+      "variable": "twitter_url",
+      "label": "Twitter URL",
       "type": "text",
-      "description": "Ex: @bigcartel"
+      "default": "bigcartel",
+      "description": "Ex: http://twitter.com/bigcartel"
+    },
+    {
+      "variable": "facebook_url",
+      "label": "Facebook URL",
+      "type": "text",
+      "default": "bigcartel",
+      "description": "Ex: http://facebook.com/bigcartel"
+    },
+    {
+      "variable": "tumblr_url",
+      "label": "Tumblr URL",
+      "type": "text",
+      "description": "Ex: http://bigcartel.tumblr.com"
+    },
+    {
+      "variable": "instagram_url",
+      "label": "Instagram URL",
+      "type": "text",
+      "default": "bigcartel",
+      "description": "Ex: http://instagram.com/bigcartel"
+    },
+    {
+      "variable": "pinterest_url",
+      "label": "Pinterest URL",
+      "type": "text",
+      "description": "Ex: http://pinterest.com/bigcartel"
     }
   ]
 }
