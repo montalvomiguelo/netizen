@@ -19,27 +19,27 @@
   </section>
 {% endif %}
 
-    <div class="featured">
-      <div class="featured-details">
-        <div class="tag">Featured</div>
-        <div class="feature-text">
-          <h2 class="subheader">Shop summer jewelry collection</h2>
-          <a href="" class="button">Shop now</a>
-        </div>
-      </div>
-      <div class="featured-img">
-        <ul>
-          <li><img src="https://assets.bigcartel.com/product_images/232183991/belt+bag_+crop-07.jpg?auto=format&fit=max&w=1200"></li>
-          <li><img src="https://assets.bigcartel.com/product_images/232183991/belt+bag_+crop-07.jpg?auto=format&fit=max&w=1200"></li>
-          <li><img src="https://assets.bigcartel.com/product_images/232183991/belt+bag_+crop-07.jpg?auto=format&fit=max&w=1200"></li>
-        </ul>
-      </div>
+<div class="featured">
+  <div class="featured-details">
+    <div class="tag">Featured</div>
+    <div class="feature-text">
+      <h2 class="subheader">Shop summer jewelry collection</h2>
+      <a href="" class="button">Shop now</a>
     </div>
+  </div>
+  <div class="featured-img">
+    <ul>
+      <li><img src="https://assets.bigcartel.com/product_images/232183991/belt+bag_+crop-07.jpg?auto=format&fit=max&w=1200"></li>
+      <li><img src="https://assets.bigcartel.com/product_images/232183991/belt+bag_+crop-07.jpg?auto=format&fit=max&w=1200"></li>
+      <li><img src="https://assets.bigcartel.com/product_images/232183991/belt+bag_+crop-07.jpg?auto=format&fit=max&w=1200"></li>
+    </ul>
+  </div>
+</div>
 
-    <section class="main-content">
-      <h1 class="title">Shop all</h1>
-      {% paginate products from products.current by theme.products_per_page %}
-
+<section class="main-content">
+  <h1 class="title">Shop all</h1>
+  {% if theme.featured_items > 0 %}
+    {% get products from products.all limit:theme.featured_items order:theme.featured_order %}
       {% if products != blank %}
         <ul class="products-list">
           {% for product in products %}
@@ -57,12 +57,7 @@
           </li>
           {% endfor %}
         </ul>
-
-      {{ paginate | default_pagination }}
-
-      {% else %}
-        <p>No products found.</p>
       {% endif %}
-
-      {% endpaginate %}
-    </section>
+    {% endget %}
+  {% endif %}
+</section>
