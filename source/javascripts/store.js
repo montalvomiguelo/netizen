@@ -1,3 +1,44 @@
+if (themeOptions.pageCategory == 'custom') {
+  $('.main-content').waypoint(function(direction) {
+    if (direction === 'down') {
+      $('.navigation').addClass('sticky');
+      $('.navigation').addClass('sticky');
+    }
+    else {
+      $('.navigation').removeClass('sticky')
+    }
+  }, {
+    offset: '263'
+  });
+}
+if (themeOptions.pagePermalink == 'home') {
+  $('.featured').waypoint(function(direction) {
+    if (direction === 'down') {
+      $('.navigation').addClass('sticky');
+      $('.navigation').addClass('sticky');
+    }
+    else {
+      $('.navigation').removeClass('sticky')
+    }
+  }, {
+    offset: '263'
+  });
+}
+if ($('.products-list').length) {
+  $('.products-list').waypoint(function(direction) {
+    if (direction === 'down') {
+      $('.navigation').addClass('sticky');
+      $('.navigation').addClass('sticky');
+    }
+    else {
+      $('.navigation').removeClass('sticky')
+    }
+  }, {
+    offset: '263'
+  });
+}
+
+
 var inPreview = (/\/admin\/design/.test(top.location.pathname));
 
 function hexToRGB(h) {

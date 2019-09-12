@@ -128,51 +128,28 @@
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="{{ 'api' | theme_js_url }}"></script>
+  <script>
+    var themeOptions = {
+      pageCategory: '{{ page.category }}',
+      pagePermalink: '{{ page.permalink }}',
+      primaryGradientColor: '{{ theme.primary_gradient_color }}',
+      secondaryGradientColor: '{{ theme.secondary_gradient_color }}'
+    };
+  </script>
   <script src="{{ theme | theme_js_url }}"></script>
-
-{% if page.category == 'custom' %}
-  <script>
-  $('.main-content').waypoint(function(direction) {
-    if (direction === 'down') {
-      $('.navigation').addClass('sticky');
-      $('.navigation').addClass('sticky');
-    }
-    else {
-      $('.navigation').removeClass('sticky')
-    }
-    }, {
-      offset: '263'
-    });
+  <script type="text/javascript">
+    var formatMoney = Format.money;
+    Format.money = function(number) {
+      {% case theme.money_format %}
+      {% when 'sign' %}
+        return formatMoney(number, true, true, false);
+      {% when 'code' %}
+        return formatMoney(number, true, false, true);
+      {% when 'sign_and_code' %}
+        return formatMoney(number, true, true, true);
+      {% endcase %}
+    };
   </script>
-  {% elsif page.permalink == 'home' %}
-  <script>
-  $('.featured').waypoint(function(direction) {
-    if (direction === 'down') {
-      $('.navigation').addClass('sticky');
-      $('.navigation').addClass('sticky');
-    }
-    else {
-      $('.navigation').removeClass('sticky')
-    }
-    }, {
-      offset: '263'
-    });
-  </script>
-  {% else %}
-  <script>
-  $('.products-list').waypoint(function(direction) {
-    if (direction === 'down') {
-      $('.navigation').addClass('sticky');
-      $('.navigation').addClass('sticky');
-    }
-    else {
-      $('.navigation').removeClass('sticky')
-    }
-    }, {
-      offset: '263'
-    });
-  </script>
-  {% endif %}
 
   {% if page.full_url contains '/product/' %}
     <script>
