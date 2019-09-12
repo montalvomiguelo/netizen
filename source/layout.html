@@ -1,20 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{ store.name }} &mdash; {{ page.name }}</title>
-
+    <title>{{ page.name }} | {{ store.name }}</title>
     <meta charset="utf-8">
-    <meta name="description" content="{{ page.meta_description }}">
-    <meta name="keywords" content="{{ page.meta_keywords }}">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="{{ theme | theme_css_url }}" media="screen" rel="stylesheet" type="text/css">
-
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
-    <script src="{{ theme | theme_js_url }}" type="text/javascript"></script>
-
+    <link href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap" rel="stylesheet">
     {{ head_content }}
   </head>
-
   <body id="{{ page.permalink }}" class="{{ page.category }}">
   <div class="wrapper">
     <header class="store-name">
@@ -132,7 +125,12 @@
       </div>
     </footer>
   </div>
-  {% if page.category == 'custom' %}
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="{{ 'api' | theme_js_url }}"></script>
+  <script src="{{ theme | theme_js_url }}"></script>
+
+{% if page.category == 'custom' %}
   <script>
   $('.main-content').waypoint(function(direction) {
     if (direction === 'down') {
@@ -174,6 +172,13 @@
       offset: '263'
     });
   </script>
+  {% endif %}
+
+  {% if page.full_url contains '/product/' %}
+    <script>
+      var show_sold_out_product_options = '{{ theme.show_sold_out_product_options }}';
+      Product.find('{{ product.permalink }}', processProduct)
+    </script>
   {% endif %}
   </body>
 </html>
