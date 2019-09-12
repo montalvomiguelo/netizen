@@ -110,6 +110,18 @@
       "default": "Shop now"
     },
     {
+      "variable": "slideshow_overlay",
+      "label": "Slideshow overlay",
+      "type": "select",
+      "options": [
+        ["None", ""],
+        ["Pattern color", "pattern_color"],
+        ["Cool dots", "cool_dots"]
+      ],
+      "default": "cool_dots",
+      "description": "Style of the overlay that sits on top of your slideshow images"
+    },
+    {
       "variable": "show_search",
       "label": "Show search",
       "type": "boolean",
