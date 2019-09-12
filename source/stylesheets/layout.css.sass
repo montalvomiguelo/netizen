@@ -1,9 +1,114 @@
 @import 'config'
 
+*
+  box-sizing: border-box
+
+html
+  min-height: 100%
+  position: relative
+
+a
+  text-decoration: none
+  color: #{"{{ theme.text_color }}"}
+
+  &:hover
+    text-decoration: underline
+
+h1, h2, h3, h4
+  color: #{"{{ theme.text_color }}"}
+  margin: 0
+  padding: 0
+
+ul
+  list-style: none
+  margin: 0
+  padding: 0
+
+  li
+    list-style: none
+    margin: 0
+    padding: 0
+
+input, select
+  -moz-appearance: none
+  -webkit-appearance: none
+  appearance: none
+  background-color: #{"{{ theme.alt_background_color }}"}
+  border-radius: 0
+  border: $border
+  color: #{"{{ theme.text_color }}"}
+  font-size: 16px
+  height: 55px
+  text-indent: 10px
+  width: 100%
+
+  &:focus
+    background-color: #{"{{ theme.alt_accent_color }}"}
+    outline: $border
+
+.grid-container
+  display: grid
+  grid-gap: 50px
+
+.headline
+  font-size: 48px
+  line-height: 48px
+  margin: 0
+  padding: 0
+
+.title
+  font-size: 28px
+  line-height: 28px
+  margin: 0
+  padding: 0
+
+.subheader
+  font-size: 22px
+  line-height: 22px
+  margin: 0
+  padding: 0
+
+.sm-label
+  font-size: 12px
+  line-height: 12px
+  margin: 0
+  padding: 0
+
+.label
+  font-size: 16px
+  line-height: 16px
+  margin: 0
+  padding: 0
+
+.button
+  +all-transitions
+  background-color: #{"{{ theme.accent_color }}"}
+  border-radius: 0
+  border: $border
+  color: #{"{{ theme.text_color }}"}
+  display: block
+  height: 55px
+  line-height: 55px
+  margin: 0 auto
+  text-align: center
+  text-decoration: none
+
+  &:hover
+    +all-transitions
+    background-color: #{"{{ theme.text_color }}"}
+    color: #{"{{ theme.alt_background_color }}"}
+    text-decoration: none
+
+  &:focus
+    background-color: #{"{{ theme.text_color }}"}
+    color: #{"{{ theme.alt_background_color }}"}
+    text-decoration: none
+    clear: both
+
 body
   background: #{"{{ theme.background_color }}"}
   color: #{"{{ theme.text_color }}"}
-  font-family: $default-font
+  font-family: $text-font
   font-size: 16px
   font-weight: normal
   line-height: 1.5em
