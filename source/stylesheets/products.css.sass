@@ -58,9 +58,9 @@ body#home, body#products
           width: 100%
 
         .product-details
-          background-color: #{"{{ theme.alt_background_color }}"}
+          background-color: $alt-background-color
           border-top: $border
-          color: #{"{{ theme.text_color }}"}
+          color: $text-color
           display: grid
           font-size: 22px
           grid-template-columns: 1fr 40%
@@ -73,8 +73,8 @@ body#home, body#products
 
           &.overlay
             +all-transitions
-            background-color: #{"{{ theme.text_color }}"}
-            color: #{"{{ theme.alt_background_color }}"}
+            background-color: $text-color
+            color: $alt-background-color
             position: absolute
             bottom: 0
             opacity: 0
@@ -119,13 +119,13 @@ body#home, body#products
 
       &:hover
         +all-transitions
-        background-color: #{"{{ theme.text_color }}"}
+        background-color: $text-color
 
         svg
-          fill: #{"{{ theme.background_color }}"}
+          fill: $background-color
 
     .previous
-      background-color: #{"{{ theme.accent_color }}"}
+      background-color: $accent-color
       background-image: url(#{'{{ "arrow-left-regular.svg" | theme_image_url }}'})
       background-size: 22px
       background-position: center
@@ -136,7 +136,7 @@ body#home, body#products
     .next
       margin-right: 0
       margin-left: $marginSize/2
-      background-color: #{"{{ theme.accent_color }}"}
+      background-color: $accent-color
       background-image: url(#{'{{ "arrow-right-regular.svg" | theme_image_url }}'})
       background-size: 22px
       background-position: center

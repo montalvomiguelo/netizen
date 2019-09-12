@@ -9,13 +9,13 @@ html
 
 a
   text-decoration: none
-  color: #{"{{ theme.text_color }}"}
+  color: $text-color
 
   &:hover
     text-decoration: underline
 
 h1, h2, h3, h4
-  color: #{"{{ theme.text_color }}"}
+  color: $text-color
   margin: 0
   padding: 0
 
@@ -33,17 +33,17 @@ input, select
   -moz-appearance: none
   -webkit-appearance: none
   appearance: none
-  background-color: #{"{{ theme.alt_background_color }}"}
+  background-color: $alt-background-color
   border-radius: 0
   border: $border
-  color: #{"{{ theme.text_color }}"}
+  color: $text-color
   font-size: 16px
   height: 55px
   text-indent: 10px
   width: 100%
 
   &:focus
-    background-color: #{"{{ theme.alt_accent_color }}"}
+    background-color: $alt-accent-color
     outline: $border
 
 .grid-container
@@ -82,10 +82,10 @@ input, select
 
 .button
   +all-transitions
-  background-color: #{"{{ theme.accent_color }}"}
+  background-color: $accent-color
   border-radius: 0
   border: $border
-  color: #{"{{ theme.text_color }}"}
+  color: $text-color
   display: block
   height: 55px
   line-height: 55px
@@ -95,19 +95,19 @@ input, select
 
   &:hover
     +all-transitions
-    background-color: #{"{{ theme.text_color }}"}
-    color: #{"{{ theme.alt_background_color }}"}
+    background-color: $text-color
+    color: $alt-background-color
     text-decoration: none
 
   &:focus
-    background-color: #{"{{ theme.text_color }}"}
-    color: #{"{{ theme.alt_background_color }}"}
+    background-color: $text-color
+    color: $alt-background-color
     text-decoration: none
     clear: both
 
 body
-  background: #{"{{ theme.background_color }}"}
-  color: #{"{{ theme.text_color }}"}
+  background: $background-color
+  color: $text-color
   font-family: $text-font
   font-size: 16px
   font-weight: normal
@@ -136,7 +136,7 @@ div.wrapper
     z-index: 98
 
     a.logo
-      background-color: #{"{{ theme.alt_background_color }}"}
+      background-color: $alt-background-color
       border: $border
       display: block
       float: left
@@ -226,7 +226,7 @@ div.wrapper
             margin-right: $marginSize/2
 
           div.line
-            background: #{"{{ theme.text_color }}"}
+            background: $text-color
             content: ' '
             display: inline-block
             font-size: 0
@@ -284,7 +284,7 @@ div.wrapper
 
     .welcome
       +centered
-      color: #{"{{ theme.background_color }}"}
+      color: $background-color
       text-align: center
       z-index: 2
 
@@ -292,7 +292,7 @@ div.wrapper
         margin: 0 0 $marginSize/2 0
 
       h2
-        color: #{"{{ theme.background_color }}"}
+        color: $background-color
         margin: 0 0 $marginSize/2 0
 
       .button
@@ -352,7 +352,7 @@ div.wrapper
           line-height: 3em
 
         .shop-menu
-          background: #{"{{ theme.accent_color }}"} url(#{'{{ "arrow-down-regular.svg" | theme_image_url }}'}) no-repeat
+          background: $accent-color url(#{'{{ "arrow-down-regular.svg" | theme_image_url }}'}) no-repeat
           background-position: center right 16px
           background-size: 16px
           font-size: 16px
@@ -363,13 +363,13 @@ div.wrapper
           width: 100%
 
           &:hover
-            background-color: #{"{{ theme.alt_accent_color }}"}
-            color: #{"{{ theme.text_color }}"}
+            background-color: $alt-accent-color
+            color: $text-color
             text-decoration: none
 
           &:focus
-            background-color: #{"{{ theme.alt_accent_color }}"}
-            color: #{"{{ theme.text_color }}"}
+            background-color: $alt-accent-color
+            color: $text-color
             text-decoration: none
 
           a:hover
@@ -384,8 +384,8 @@ div.wrapper
             background-position: center right 16px
 
             &:focus
-              background-color: #{"{{ theme.alt_accent_color }}"}
-              color: #{"{{ theme.text_color }}"}
+              background-color: $alt-accent-color
+              color: $text-color
 
       .featured
         background: $gradient
@@ -405,8 +405,8 @@ div.wrapper
           padding: 0 $marginSize/2
 
           .tag
-            background-color: #{"{{ theme.text_color }}"}
-            color: #{"{{ theme.background_color }}"}
+            background-color: $text-color
+            color: $background-color
             display: inline-block
             font-size: 12px
             height: 33px
@@ -482,7 +482,7 @@ div.wrapper
 
 
 footer
-  background-color: #{"{{ theme.alt_accent_color }}"}
+  background-color: $alt-accent-color
   border: $border
   display: grid
   grid-template-columns: 30% 1fr 20%
@@ -525,8 +525,8 @@ footer
         padding: 0 10px
 
   .footer-social
-    background-color: #{"{{ theme.text_color }}"}
-    color: #{"{{ theme.background_color }}"}
+    background-color: $text-color
+    color: $background-color
     text-align: center
     min-height: $marginSize*3
 
@@ -538,12 +538,12 @@ footer
         margin: 0 5px
 
         a
-          color: #{"{{ theme.background_color }}"}
+          color: $background-color
           display: block
 
           svg
             display: inline-block
-            fill: #{"{{ theme.background_color }}"}
+            fill: $background-color
             height: 28px
             position: relative
             top: 3px
