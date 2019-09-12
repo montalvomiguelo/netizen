@@ -1,14 +1,23 @@
-    <section class="slideshow">
-      <div class="welcome">
-        <p class="subheader">matter matters</p>
-        <h2 class="headline">what you do matters</h2>
-        <a href="/products" class="button">Shop now</a>
-      </div>
-      <span class="pattern diagonal-lines"></span>
+{% if theme.image_sets.slideshow_images.size > 0 or theme.welcome_header != blank or theme.welcome_subheader != blank %}
+  <section class="slideshow">
+    <div class="welcome">
+      {% if theme.welcome_subheader %}<p class="subheader">{{ theme.welcome_subheader }}</p>{% endif %}
+      {% if theme.welcome_header %}<h2 class="headline">{{ theme.welcome_header }}</h2>{% endif %}
+      {% if theme.welcome_button_text %}<a href="/products" class="button">{{ theme.welcome_button_text }}</a>{% endif %}
+    </div>
+    <span class="pattern diagonal-lines"></span>
+    {% if theme.image_sets.slideshow.size > 0 %}
       <div class="slideshow-images">
-        <img src="https://assets.bigcartel.com/theme_images/47816174/AW19-09g.jpg?auto=format&fit=max&w=1800">
+        {% for image in theme.image_sets.slideshow %}
+          <img src="https://assets.bigcartel.com/theme_images/47816174/AW19-09g.jpg?auto=format&fit=max&w=1800">
+        {% endfor %}
       </div>
-    </section>
+    {% endif %}
+    <div class="slideshow-images">
+      <img src="https://assets.bigcartel.com/theme_images/47816174/AW19-09g.jpg?auto=format&fit=max&w=1800">
+    </div>
+  </section>
+{% endif %}
 
     <div class="featured">
       <div class="featured-details">
