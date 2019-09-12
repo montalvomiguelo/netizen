@@ -17,7 +17,10 @@
     {
       "variable": "slideshow_images",
       "label": "Slideshow",
-      "description": "This is a slideshow"
+      "description": "Adds a slideshow to the Home page",
+      "defaults": [
+        "slide-1.jpg"
+      ]
     },
     {
       "variable": "lookbook_images",
@@ -29,12 +32,12 @@
     {
       "variable": "header_font",
       "label": "Header Font",
-      "default": "LexendExa-Regular"
+      "default": "Lexend Deca"
     },
     {
       "variable": "text_font",
       "label": "Text Font",
-      "default": "LexendExa-Regular"
+      "default": "Lexend Deca"
     }
   ],
   "colors": [
@@ -70,12 +73,49 @@
     }
   ],
   "options": [
+      {
+      "variable": "welcome_header",
+      "label": "Welcome header",
+      "type": "text",
+      "description": "Welcome header for homepage",
+      "default": "Welcome header for homepage"
+    },
+    {
+      "variable": "welcome_subheader",
+      "label": "Welcome subheader",
+      "type": "text",
+      "description": "Welcome subheader for homepage",
+      "default": "Welcome subheader for homepage"
+    },
+    {
+      "variable": "welcome_button_text",
+      "label": "Welcome button",
+      "type": "text",
+      "description": "Welcome button text on Home page that links to the Products page",
+      "default": "Shop now"
+    },
     {
       "variable": "show_search",
       "label": "Show search",
       "type": "boolean",
       "default": true,
       "description": "Shows a search field"
+    },
+    {
+      "variable": "featured_items",
+      "label": "Featured products",
+      "type": "select",
+      "options": "0..100",
+      "default": 12,
+      "description": "The number of products featured on the Home page"
+    },
+    {
+      "variable": "featured_order",
+      "label": "Featured products order",
+      "type": "select",
+      "options": "product_orders",
+      "default": "position",
+      "description": "The order of products on the Home page"
     },
     {
       "variable": "products_per_page",
@@ -86,37 +126,69 @@
       "description": "The number of products shown per page"
     },
     {
+      "variable": "show_overlay",
+      "label": "Product list info",
+      "type": "select",
+      "options": [
+        ["On rollover", "rollover"],
+        ["Under image", "under_image"]
+      ],
+      "default": "rollover",
+      "description": "Shows a product's name & price on hover, or under the image"
+    },
+    {
+      "variable": "money_format",
+      "label": "Price display",
+      "type": "select",
+      "options": [
+        ["Currency sign", "sign"],
+        ["Currency code with sign", "sign_and_code"]
+      ],
+      "default": "sign",
+      "description": "Sets the display of prices in your shop"
+    },
+    {
+      "variable": "show_sold_out_product_options",
+      "label": "Show sold out product options",
+      "type": "boolean",
+      "default": true,
+      "description": "Shows sold out product options in the Product page dropdowns",
+      "requires": "inventory"
+    },
+    {
       "variable": "twitter_url",
       "label": "Twitter URL",
       "type": "text",
-      "default": "bigcartel",
-      "description": "Ex: http://twitter.com/bigcartel"
+      "description": "Ex: http://twitter.com/bigcartel",
+      "default": "http://pinterest.com/bigcartel"
     },
     {
       "variable": "facebook_url",
       "label": "Facebook URL",
       "type": "text",
-      "default": "bigcartel",
-      "description": "Ex: http://facebook.com/bigcartel"
+      "description": "Ex: http://facebook.com/bigcartel",
+      "default": "http://pinterest.com/bigcartel"
     },
     {
       "variable": "tumblr_url",
       "label": "Tumblr URL",
       "type": "text",
-      "description": "Ex: http://bigcartel.tumblr.com"
+      "description": "Ex: http://bigcartel.tumblr.com",
+      "default": "http://pinterest.com/bigcartel"
     },
     {
       "variable": "instagram_url",
       "label": "Instagram URL",
       "type": "text",
-      "default": "bigcartel",
-      "description": "Ex: http://instagram.com/bigcartel"
+      "description": "Ex: http://instagram.com/bigcartel",
+      "default": "http://pinterest.com/bigcartel"
     },
     {
       "variable": "pinterest_url",
       "label": "Pinterest URL",
       "type": "text",
-      "description": "Ex: http://pinterest.com/bigcartel"
+      "description": "Ex: http://pinterest.com/bigcartel",
+      "default": "http://pinterest.com/bigcartel"
     }
   ]
 }
