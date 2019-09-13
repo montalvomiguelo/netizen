@@ -176,7 +176,7 @@ div.wrapper
         +vertical-align
         width: 100%
 
-  aside.checkout
+  div.checkout
     display: block
     font-size: 22px
     overflow: hidden
@@ -380,7 +380,6 @@ div.wrapper
               color: $text-color
 
       .featured
-        background: $gradient
         border: $border
         display: grid
         grid-column: 2 / span 2
@@ -487,19 +486,19 @@ footer
   @media screen and (max-width: $break-medium)
     grid-template-columns: 1fr
 
-  .footer-cite
+  .footer-store-name
+    +flexbox
+    +justify-content(center)
+    +align-items(center)
     border-right: $border
+    font-size: 22px
+    line-height: 22px
     text-align: center
-    line-height: 146px
     min-height: $marginSize*3
 
     @media screen and (max-width: $break-medium)
       border-right: none
       border-bottom: $border
-
-    cite
-      font-style: normal
-      height: $marginSize
 
   .footer-nav
     text-align: center

@@ -38,6 +38,21 @@ if ($('.products-list').length) {
   });
 }
 
+(function( $ ) {
+  $.fn.drawGradient = function() {
+    this.filter( ".gradient" ).each(function() {
+      var element = $(this);
+      var primaryGradient = themeOptions.primaryGradientColor;
+      var secondaryGradient = themeOptions.secondaryGradientColor;
+      var gradientStyle = "linear-gradient(140deg,"+primaryGradient+" 20%, "+secondaryGradient+" 70%)";
+      element.css("background",gradientStyle);
+    });
+    return this;
+  };
+}( jQuery ));
+
+$('.gradient').drawGradient();
+
 
 var inPreview = (/\/admin\/design/.test(top.location.pathname));
 

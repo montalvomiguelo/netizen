@@ -21,17 +21,17 @@
         {% endif %}
       </a>
     </header>
-    <aside class="checkout">
+    <div class="checkout">
       <div class="checkout-container">
-        <a href="" class="cart">
-          <div class="button">0</div>
+        <a href="/cart" class="cart">
+          <div class="button">{{ cart.item_count }}</div>
           <div class="cart-subtotal">
             <div class="total">{{ cart.total | money_with_sign }}</div>
             <div class="line"></div>
           </div>
         </a>
       </div>
-    </aside>
+    </div>
     <section class="content-body">
       <div class="content">
           <aside class="navigation">
@@ -87,8 +87,8 @@
       </div>
     </section>
     <footer>
-      <div class="footer-cite">
-        <cite class="subheader">{{ store.name }}</cite>
+      <div class="footer-store-name">
+        {{ store.name }}
       </div>
       <div class="footer-nav">
         <ul class="footer-links">
