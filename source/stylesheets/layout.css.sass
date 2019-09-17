@@ -4,7 +4,7 @@
   box-sizing: border-box
 
 html
-  min-height: 100%
+  height: 100%
   position: relative
 
 a
@@ -103,11 +103,13 @@ body
   font-family: $text-font
   font-size: 16px
   font-weight: normal
+  height: 100%
   line-height: 1.5em
   margin: 0
   position: relative
 
 div.wrapper
+  min-height: 100vh
   margin: 0 auto
   max-width: 1450px
   position: relative
@@ -117,66 +119,7 @@ div.wrapper
   @media screen and (max-width: $break-large)
     padding: 0
 
-  header.store-name
-    display: inline-block
-    height: 213px
-    margin: 0 auto
-    padding: 0
-    position: fixed
-    top: 0
-    width: 213px
-    z-index: 98
-
-    a.logo
-      background-color: $alt-background-color
-      border: $border
-      display: block
-      float: left
-      height: 193px
-      left: 20px
-      margin: 0
-      padding: 0
-      position: absolute
-      top: 20px
-      width: 193px
-
-      &:before
-        background: $gradient
-        border: $border
-        box-sizing: border-box
-        content: ' '
-        display: block
-        font-size: 0
-        height: 193px
-        left: -12px
-        margin: 0
-        padding: 0
-        position: absolute
-        top: -12px
-        width: 193px
-        z-index: -1
-
-      &:after
-        background: $gradient
-        border: $border
-        box-sizing: border-box
-        content: ' '
-        display: block
-        font-size: 0
-        height: 193px
-        left: -22px
-        margin: 0
-        padding: 0
-        position: absolute
-        top: -22px
-        width: 193px
-        z-index: -2
-
-      img
-        +vertical-align
-        width: 100%
-
-  div.checkout
+  aside.checkout
     display: block
     font-size: 22px
     overflow: hidden
@@ -187,6 +130,10 @@ div.wrapper
 
     @media screen and (max-width: $break-large)
       right: $marginSize
+
+    @media screen and (max-width: $break-small)
+      right: 70px
+      top: -70px
 
     .checkout-container
       height: 100%
@@ -213,6 +160,9 @@ div.wrapper
           top: 290px
           width: 100%
 
+          @media screen and (max-width: $break-small)
+            display: none
+
           div.total
             display: inline-block
             margin-right: $marginSize/2
@@ -230,8 +180,84 @@ div.wrapper
             top: 11px
             width: 100%
 
+  header.store-name
+    display: inline-block
+    height: 213px
+    margin: 0 auto
+    padding: 0
+    position: fixed
+    top: 0
+    width: 213px
+    z-index: 98
+
+    @media screen and (max-width: $break-small)
+      +clearfix
+      background-color: $alt-background-color
+      border: $border
+      display: block
+      height: 86px
+      width: 100%
+
+    a.logo
+      background-color: $alt-background-color
+      border: $border
+      display: block
+      height: 193px
+      left: 20px
+      margin: 0
+      padding: 0
+      position: relative
+      top: 20px
+      width: 193px
+
+      @media screen and (max-width: $break-small)
+        margin: 0 auto
+        left: 0
+        top: 8px
+        width: 90px
+        height: 90px
+
+      &:before
+        background: $gradient
+        border: $border
+        box-sizing: border-box
+        content: ' '
+        display: block
+        font-size: 0
+        height: 100%
+        left: -12px
+        margin: 0
+        padding: 0
+        position: absolute
+        top: -12px
+        width: 100%
+        z-index: -1
+
+      &:after
+        background: $gradient
+        border: $border
+        box-sizing: border-box
+        content: ' '
+        display: block
+        font-size: 0
+        height: 100%
+        left: -22px
+        margin: 0
+        padding: 0
+        position: absolute
+        top: -22px
+        width: 100%
+        z-index: -2
+
+      img
+        +vertical-align
+        width: 100%
+
   .content-body
-    +clearfix
+    margin-bottom: $marginSize
+
+    @media screen and (max-width: $break-small)
+      margin-top: 88px
 
     section.slideshow
       border: $border
@@ -243,6 +269,10 @@ div.wrapper
 
       @media screen and (max-width: $break-medium)
         margin-bottom: $marginSize/2
+
+      @media screen and (max-width: $break-small)
+        border-top: 0
+        margin-bottom: 0
 
       .slideshow-images
         img
@@ -294,17 +324,20 @@ div.wrapper
         width: 255px
 
     .content
+      +clearfix
       display: grid
-      grid-template-columns: 225px repeat(2, 1fr) 50px
       grid-gap: 0 $marginSize
+      grid-template-columns: 225px repeat(2, 1fr) 50px
       padding: 0
       position: relative
+      height: 100%
 
       @media screen and (max-width: $break-large)
         grid-gap: 0 $marginSize/2
 
       @media screen and (max-width: $break-small)
-        grid-template-columns: 1fr
+        grid-template-columns: repeat(2, 1fr)
+        grid-gap: 0 0
 
       .main-content
         display: contents
@@ -315,9 +348,15 @@ div.wrapper
 
           @media screen and (max-width: $break-small)
             margin: $marginSize/2
+            grid-column: 1 / span 2
 
         .page-content
           grid-column: 2 / span 2
+          max-width: 600px
+
+          @media screen and (max-width: $break-small)
+            grid-column: 1 / span 2
+            padding: 0 $marginSize/2
 
           ul, p, div, span,
             font-size: 14px
@@ -332,12 +371,23 @@ div.wrapper
           position: fixed
           top: 263px
 
+          @media screen and (max-width: $break-small)
+            top: 85px
+
         @media screen and (max-width: $break-large)
           padding-left: $marginSize/2
 
         @media screen and (max-width: $break-small)
+          background: $background-color
           display: none
-          margin-right: $marginSize/2
+          height: 100%
+          margin: 0 auto
+          max-width: 100%
+          padding: 25px
+          position: fixed
+          top: 85px
+          width: 100%
+          z-index: 95
 
         ul
           font-size: 14px
@@ -371,7 +421,7 @@ div.wrapper
           margin-bottom: $marginSize/2
 
           .search_input
-            background: url(#{'{{ "search-regular.svg" | theme_image_url }}'}) no-repeat
+            background: $alt-background-color url(#{'{{ "search-regular.svg" | theme_image_url }}'}) no-repeat
             background-size: 16px
             background-position: center right 16px
 
@@ -389,6 +439,10 @@ div.wrapper
 
         @media screen and (max-width: $break-medium)
           margin-bottom: $marginSize/2
+
+        @media screen and (max-width: $break-small)
+          grid-column: 1 / span 2
+          border-top: 0
 
         .featured-details
           display: block
@@ -421,7 +475,7 @@ div.wrapper
           padding: 0 $marginSize/2
 
           @media screen and (max-width: $break-medium)
-            padding-top: 50px
+            top: 50px
 
           ul
             display: block
@@ -449,19 +503,19 @@ div.wrapper
                 position: absolute
                 top: -20px
                 left: -20px
-                z-index: 99
+                z-index: 89
 
               &:nth-child(2)
                 position: absolute
                 top: 0
                 left: 0
-                z-index: 2
+                z-index: 88
 
               &:nth-child(3)
                 position: absolute
                 top: 20px
                 left: 20px
-                z-index: 1
+                z-index: 87
 
               img
                 display: block
@@ -478,7 +532,6 @@ footer
   display: grid
   grid-template-columns: 30% 1fr 20%
   min-height: $marginSize*3
-  margin-top: $marginSize
   padding: 0
   position: relative
   width: 100%

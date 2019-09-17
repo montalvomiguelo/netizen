@@ -10,6 +10,17 @@
   </head>
   <body id="{{ page.permalink }}" class="{{ page.category }}">
   <div class="wrapper">
+    <aside class="checkout">
+      <div class="checkout-container">
+        <a href="/cart" class="cart">
+          <div class="button">{{ cart.item_count }}</div>
+          <div class="cart-subtotal">
+            <div class="total">{{ cart.total | money_with_sign }}</div>
+            <div class="line"></div>
+          </div>
+        </a>
+      </div>
+    </aside>
     <header class="store-name">
       <a href="/" title="{{ store.name | escape }}" class="logo">
         {% if theme.logo != blank %}
@@ -21,17 +32,6 @@
         {% endif %}
       </a>
     </header>
-    <div class="checkout">
-      <div class="checkout-container">
-        <a href="/cart" class="cart">
-          <div class="button">{{ cart.item_count }}</div>
-          <div class="cart-subtotal">
-            <div class="total">{{ cart.total | money_with_sign }}</div>
-            <div class="line"></div>
-          </div>
-        </a>
-      </div>
-    </div>
     <section class="content-body">
       <div class="content">
           <aside class="navigation">

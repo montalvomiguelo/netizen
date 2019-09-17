@@ -16,9 +16,11 @@ body#home, body#products
 
     @media screen and (max-width: $break-small)
       margin: 0 $marginSize/2
+      grid-column: 1 / span 2
 
     @media screen and (max-width: $break-extra-small)
       grid-template-columns: 1fr
+      grid-column: 1 / span 2
 
     li
       display: block
