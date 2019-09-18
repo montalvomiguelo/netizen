@@ -1,0 +1,62 @@
+@import 'config'
+
+.contact-form
+  margin: 0 auto
+  max-width: 600px
+
+.contact-form-group
+  display: block
+  margin: 0 auto
+  margin-bottom: $marginSize/2
+  max-width: 600px
+  position: relative
+  width: 100%
+
+  input, select
+    padding-top: 16px
+
+  textarea
+    padding-top: $marginSize/2
+
+  &.contact-captcha
+    margin-bottom: 40px
+
+  .contact-form-label
+    +all-transitions
+    background-color: transparent
+    color: $text-color
+    cursor: text
+    font-size: 16px
+    left: 12px
+    position: absolute
+    top: 16px
+    opacity: .6
+
+  &.contact-send
+    margin-top: $marginSize
+
+.focused .contact-form-label
+  transform: translateY(-55%)
+  font-size: 10px
+  opacity: 1
+
+#captcha_image
+  border: $border
+  height: 55px
+  position: absolute
+  right: 0
+  top: 0
+
+.captcha-instructions
+  margin-top: $marginSize/2
+
+.send-message-button
+  display: block
+  line-height: $marginSize
+
+h1
+  margin: $marginSize 0
+
+.button
+  width: 290px
+  margin: 0

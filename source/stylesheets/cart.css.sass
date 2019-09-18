@@ -1,46 +1,179 @@
-body#cart
+@import 'config'
+
+#cart .content-body
+  @media screen and (max-width: $break-small)
+    background: $gradient
+    margin: 0
+    padding: 86px 0 $marginSize 0
+
+    .main-content
+      grid-column: 1 / span 2
+      grid-row: 3
+
+
+#cart .page-content
+  max-width: 100%
+
+.cart-container
+  background: $gradient
+  border: $border
+  box-sizing: border-box
+  display: block
+  height: 100%
+  margin: 0 0 0 $marginSize/2
+  padding: 0
+  position: relative
+  width: 100%
+
+  @media screen and (max-width: $break-small)
+    margin: 0
+    background: none
+    border: none
+
   form
+    position: relative
+
     ul
-      border-bottom: dashed 1px #ddd
-      margin-bottom: 2em
+      margin-left: -$marginSize/2
+      margin-right: $marginSize/2
+      position: relative
 
-    ul + p
-      float: left
+      @media screen and (max-width: $break-small)
+        margin: 0
 
-    button
-      float: right
-      margin: 1.2em 0
+      li.cart-item
+        align-items: center
+        background: $alt-background-color
+        border: $border
+        box-sizing: border-box
+        display: grid
+        grid-template-columns: 150px 1fr 200px 25%
+        justify-items: center
+        margin: $marginSize/2 0
+        min-height: 150px
+        position: relative
 
-    li
-      overflow: hidden
+        @media screen and (max-width: $break-medium)
+          grid-template-columns: 150px 1fr 25%
 
-      img
-        display: block
-        float: left
-        margin-right: 30px
+        .cart-item-image
+          background-size: cover
+          border: $border
+          display: block
+          height: $marginSize*2
+          width: $marginSize*2
 
-      h2
-        float: left
-        width: 60%
+          @media screen and (max-width: $break-medium)
+            grid-row: 1 / span 2
 
-      p
-        float: left
-        padding-top: 7px
+        .cart-item-details
+          justify-self: left
+          padding: $marginSize/2 0
 
-        input
-          margin-right: 10px
+          @media screen and (max-width: $break-medium)
+            grid-column: 2 / span 2
+            grid-row: 1 / span 1
+
+          .cart-item-details-option
+            font-size: 14px
+            margin-top: 5px
+
+        .cart-item-quantity-holder
+          display: block
+
+          @media screen and (max-width: $break-medium)
+            grid-column: 2 / span 2
+            grid-row: 2 / span 1
+            justify-self: start
+
+          button
+            +appearance(none)
+            box-sizing: border-box
+            position: relative
+            top: 7px
+
+            svg
+              fill: $text-color
+
+          input
+            background-color: $alt-accent-color
+            height: 40px
+            margin: 0 5px
+            text-align: center
+            text-indent: 0
+            width: 40px
+
+        .cart-item-details-price
+          background-color: $text-color
+          color: $alt-background-color
+          display: block
+          font-size: 22px
+          height: 100%
           text-align: center
-          width: 15px
+          width: 100%
 
-      a.remove
-        display: inline-block
-        background: #ddd + 20
-        border-radius: 20px
-        height: 20px
-        line-height: 18px
-        margin-left: 20px
+          @media screen and (max-width: $break-medium)
+            grid-column: 3 / span 1
+            grid-row: 1 / span 2
+
+          &:before
+            content: ' '
+            display: inline-block
+            height: 100%
+            vertical-align: middle
+
+        .cart-item-remove
+          +all-transitions
+          cursor: pointer
+          height: 25px
+          overflow: hidden
+          position: absolute
+          right: 10px
+          top: 10px
+          width: 25px
+          z-index: 99
+
+          svg
+            fill: $accent-color
+
+          &:hover
+            transform: rotate(360deg)
+
+    .cart-footer
+      margin: $marginSize/2
+      position: relative
+      text-align: right
+      min-height: 150px
+
+      @media screen and (max-width: $break-medium)
         text-align: center
-        width: 20px
 
-        &:hover
-          background: #ddd
+      .cart-subtotal
+        background-color: $alt-accent-color
+        border: $border
+        display: inline-block
+        font-size: 12px
+        height: 40px
+        margin-bottom: $marginSize/2
+        padding: 0 $marginSize
+        text-align: center
+        line-height: 36px
+
+      .cart-buttons
+        display: block
+
+      .button
+        float: right
+        margin-left: $marginSize/2
+
+        @media screen and (max-width: $break-medium)
+          float: none
+          margin: 0 auto
+
+      .continue-shopping
+        float: left
+        height: 55px
+        line-height: 55px
+
+        @media screen and (max-width: $break-medium)
+          float: none
