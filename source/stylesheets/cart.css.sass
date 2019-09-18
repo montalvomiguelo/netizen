@@ -20,7 +20,10 @@
   +justify-content(flex-start)
   border: $border
   background: $background-color
-  margin-bottom: 25px
+  margin-bottom: $marginSize/2
+
+  > *
+    margin: $marginSize/2 0
 
   &:last-child
     margin-bottom: 0
@@ -29,18 +32,19 @@
   background-size: cover
   border: $border
   display: block
+  margin-left: 25px
+  margin-right: 25px
   height: $marginSize*2
   width: $marginSize*2
 
 .cart-item-details
-  +flexbox
-  +align-items(flex-start)
+  +align-self(flex-start)
 
   .cart-item-details-name
     text-transform: uppercase
 
   .cart-item-details-option
-    color: red
+    font-size: 13px
 
 .cart-item-quantity-holder
   +flexbox
@@ -48,7 +52,8 @@
   padding: 0 50px
 
   .option-quantity
-    width: 50px
+    text-align: center
+    width: 55px
 
 .cart-item-details-price
   +flexbox
@@ -56,8 +61,7 @@
   +align-items(center)
   background: $text-color
   color: $background-color
-  height: 169px
-  width: 187px
+  padding: 0
 
 button.qty-button
   background: none
@@ -65,3 +69,8 @@ button.qty-button
   line-height: normal
   padding: 0
   margin: 0 12px
+
+.cart-footer
+  +flexbox
+  +flex-direction(column)
+  +align-items(flex-end)
