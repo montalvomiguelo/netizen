@@ -1,13 +1,29 @@
 @import 'config'
 
+#product .page-content
+  padding-top: 0
+
 .product-heading
   +flexbox
+  +justify-content(center)
+  +align-items(center)
   position: sticky
   top: 0
 
 .product-form
   margin-left: auto
   width: 290px
+
+  .select
+    border-bottom: 0
+    line-height: 53px
+
+    &:last-child
+      border-bottom: $border
+      margin-bottom: 10px
+
+  .add-to-cart-button
+    width: 100%
 
 .product-body
   padding-top: 50px

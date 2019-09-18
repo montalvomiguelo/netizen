@@ -29,6 +29,9 @@ h1, h2, h3, h4
   margin: 0
   padding: 0
 
+h1
+  margin-bottom: $marginSize/2
+
 input, textarea
   +appearance(none)
   background-color: $alt-background-color
@@ -133,6 +136,9 @@ button, .button
     text-decoration: none
 
 .wrapper
+  +flexbox
+  +flex-direction(column)
+  height: 100vh
   margin: 0 auto
   max-width: 1450px
   padding: 0 50px
@@ -241,6 +247,7 @@ button, .button
       margin: 0 0 0 20px
 
 .side-nav
+  margin-top: 250px
   position: sticky
   top: 250px
   width: 100%
@@ -252,20 +259,41 @@ button, .button
   background: $accent-color
   border: $border
   cursor: pointer
-  padding: 12px 25px
+  line-height: normal
+  text-align: left
+  padding: 12px
   position: relative
+  width: 100%
 
   .down-arrow
     +transform(translateY(-50%))
     fill: $text-color
     height: 16px
     position: absolute
-    right: 25px
+    right: 12px
     top: 50%
     width: 16px
 
 .category-nav-items
   display: none
+  border: $border
+  border-top: none
+
+  li
+    border-bottom: $border
+
+    a
+      background: $alt-accent-color
+      display: block
+      padding: 12px
+
+      &:hover, &:focus
+        background: $accent-color
+        text-decoration: none
+
+    &:last-child
+      border-bottom: none
+
 
 .side-search
   border: $border
@@ -277,6 +305,7 @@ button, .button
 
 .main
   +flexbox
+  +flex-grow(1)
 
   .sidebar
     padding-right: 50px
@@ -284,6 +313,7 @@ button, .button
 
   .page-content
     max-width: 970px
+    padding: 50px 0
     position: relative
     width: calc(100% - 280px)
     z-index: 101
