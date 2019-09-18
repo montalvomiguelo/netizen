@@ -1,7 +1,8 @@
-{% if cart.items != blank %}
+
 <section class="main-content">
   <h1 class="title">{{ page.name }}</h1>
   <div class="page-content">
+    {% if cart.items != blank %}
     <aside class="cart-container">
       <form method="post" action="/cart" id="cart-form" class="cart-form">
         <ul class="cart-items">
