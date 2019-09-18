@@ -2,7 +2,7 @@
 <h1 class="page-title">{{ page.name }}</h1>
 {% paginate products from products.current by theme.products_per_page %}
   {% if products != blank %}
-    <ul class="products-list">
+    <ul class="product-list">
       {% for product in products %}
       <li class="{{ product.css_class }}">
         <a href="{{ product.url }}" class="product-link" title="View {{ product.name | escape }}">
