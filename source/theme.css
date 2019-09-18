@@ -4,6 +4,7 @@
  *= require stylesheets/products
  *= require stylesheets/product
  *= require stylesheets/contact
+ *= require stylesheets/home
  *= require stylesheets/cart
  *
  */

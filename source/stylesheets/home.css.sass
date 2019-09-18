@@ -1,0 +1,107 @@
+@import 'config'
+
+.slideshow
+  border: $border
+  max-height: 850px
+  overflow: hidden
+  position: relative
+
+  img
+    display: block
+    width: 100%
+
+.featured
+  border: $border
+  display: grid
+  grid-column: 2 / span 2
+  grid-template-columns: repeat(2, 1fr)
+  margin: 0
+  padding: 0
+
+  @media screen and (max-width: $break-medium)
+    margin-bottom: $marginSize/2
+
+  @media screen and (max-width: $break-small)
+    grid-column: 1 / span 2
+    border-top: 0
+
+  .featured-details
+    display: block
+    text-align: center
+    padding: 0 $marginSize/2
+
+    .tag
+      background-color: $text-color
+      color: $background-color
+      display: inline-block
+      font-size: 12px
+      height: 33px
+      line-height: 33px
+      padding: 0 $marginSize/2
+
+    .feature-text
+
+      h2
+        margin: $marginSize
+        line-height: 1.5em
+
+      .button
+        font-size: 16px
+        width: 255px
+        margin-bottom: $marginSize
+
+  .featured-img
+    display: block
+    position: relative
+    padding: 0 $marginSize/2
+
+    @media screen and (max-width: $break-medium)
+      top: 50px
+
+    ul
+      display: block
+      height: 308px
+      margin: 0 auto
+      position: relative
+      width: 308px
+
+      @media screen and (max-width: $break-medium)
+        width: 208px
+
+      li
+        display: block
+        width: 308px
+        height: 308px
+        outline: $border
+        overflow: hidden
+        box-sizing: border-box
+
+        @media screen and (max-width: $break-medium)
+          width: 208px
+          height: 208px
+
+        &:nth-child(1)
+          position: absolute
+          top: -20px
+          left: -20px
+          z-index: 89
+
+        &:nth-child(2)
+          position: absolute
+          top: 0
+          left: 0
+          z-index: 88
+
+        &:nth-child(3)
+          position: absolute
+          top: 20px
+          left: 20px
+          z-index: 87
+
+        img
+          display: block
+          margin: 0
+          max-height: 308px
+          object-fit: cover
+          padding: 0
+          width: 100%
