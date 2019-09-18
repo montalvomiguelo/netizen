@@ -18,6 +18,9 @@ body
   margin: 0
   position: relative
 
+  @media screen and (max-width: $break-small)
+    padding-top: 75px
+
 a
   text-decoration: none
   color: $text-color
@@ -141,17 +144,27 @@ button, .button
   height: 100vh
   margin: 0 auto
   max-width: 1450px
-  padding: 0 50px
+  padding: 0 $marginSize
   position: relative
   width: 100%
+
+  @media screen and (max-width: $break-small)
+    padding: 0 $marginSize/2
 
 .header
   position: fixed
   top: 0
   max-width: 1350px
   padding: 0
-  width: 100%
+  width: calc(100% - 50px)
   z-index: 100
+
+  @media screen and (max-width: $break-small)
+    background: $background-color
+    border-bottom: $border
+    height: 65px
+    left: 0
+    width: 100%
 
 .header-store-link
   +flexbox
@@ -166,6 +179,12 @@ button, .button
   position: relative
   text-decoration: none
   width: 213px
+
+  @media screen and (max-width: $break-small)
+    height: 60px
+    margin: 0 auto
+    width: 60px
+
 
   &:before
     background: $gradient
@@ -236,6 +255,9 @@ button, .button
     margin-top: 150px
     font-size: .950em
     width: 300px
+
+    @media screen and (max-width: $break-small)
+      display: none
 
     &:after
       +flex(1 0 20px)
@@ -311,12 +333,20 @@ button, .button
     padding-right: 50px
     width: 280px
 
+    @media screen and (max-width: $break-small)
+      display: none
+      padding-right: 0
+      width: 100%
+
   .page-content
     max-width: 970px
     padding: 50px 0
     position: relative
     width: calc(100% - 280px)
     z-index: 101
+
+    @media screen and (max-width: $break-small)
+      width: 100%
 
 .custom-page-content, .product-description
   a

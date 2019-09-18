@@ -10,6 +10,10 @@
   position: sticky
   top: 0
 
+  @media screen and (max-width: $break-small)
+    position: relative
+    order: 2
+
 .product-form
   margin-left: auto
   width: 290px
@@ -27,6 +31,9 @@
 
 .product-body
   padding-top: 50px
+
+  @media screen and (max-width: $break-small)
+    order: 1
 
 .product-images
   +flexbox
