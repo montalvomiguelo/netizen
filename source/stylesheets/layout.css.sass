@@ -14,6 +14,12 @@ a
   &:hover
     text-decoration: underline
 
+button
+  +appearance(none)
+  border-width: 0
+  cursor: pointer
+  background: none
+
 h1, h2, h3, h4
   color: $text-color
   margin: 0
@@ -29,7 +35,12 @@ ul
     margin: 0
     padding: 0
 
-input, select
+.custom .content
+  ul, p, div, span,
+    font-size: 14px
+    line-height: 1.5em
+
+input, select, textarea
   +appearance(none)
   background-color: $alt-background-color
   border-radius: 0
@@ -43,6 +54,10 @@ input, select
   &:hover, &:focus
     background-color: $alt-accent-color
     outline: $border
+
+textarea
+  min-height: $marginSize*3
+  max-width: 600px
 
 .grid-container
   display: grid
@@ -86,7 +101,7 @@ input, select
   color: $text-color
   display: block
   height: 55px
-  line-height: 55px
+  line-height: $marginSize
   margin: 0 auto
   text-align: center
   text-decoration: none
@@ -124,16 +139,18 @@ div.wrapper
     font-size: 22px
     overflow: hidden
     position: absolute
-    right: $marginSize*2
+    right: $marginSize
     top: 0
     z-index: 99
+    width: 50px
+    height: 50px
 
     @media screen and (max-width: $break-large)
-      right: $marginSize
+      right: 0
 
     @media screen and (max-width: $break-small)
-      right: 70px
-      top: -70px
+      right: 20px
+      top: 17px
 
     .checkout-container
       height: 100%
@@ -174,7 +191,7 @@ div.wrapper
             font-size: 0
             height: 2px
             margin: 0
-            min-width: 450px
+            min-width: 300px
             padding: 0
             position: absolute
             top: 11px
@@ -255,17 +272,20 @@ div.wrapper
 
   .content-body
     margin-bottom: $marginSize
+    min-height: 600px
 
     @media screen and (max-width: $break-small)
-      margin-top: 88px
+      padding-top: 86px
 
     section.slideshow
       border: $border
       display: block
+      -ms-grid-column: 1 / span 4
       grid-column: 1 / span 4
       margin: 0 auto $marginSize
       overflow: hidden
       position: relative
+      width: 100%
 
       @media screen and (max-width: $break-medium)
         margin-bottom: $marginSize/2
@@ -321,12 +341,15 @@ div.wrapper
         font-size: 16px
         height: 55px
         line-height: 55px
+        margin: 0 auto
         width: 255px
 
     .content
       +clearfix
+      display: -ms-grid
       display: grid
       grid-gap: 0 $marginSize
+      -ms-grid-columns: 225px repeat(2, 1fr) 50px
       grid-template-columns: 225px repeat(2, 1fr) 50px
       padding: 0
       position: relative
@@ -336,13 +359,16 @@ div.wrapper
         grid-gap: 0 $marginSize/2
 
       @media screen and (max-width: $break-small)
+        grid-column: 1 / span 2
         grid-template-columns: repeat(2, 1fr)
         grid-gap: 0 0
 
       .main-content
-        display: contents
+        grid-column: 2 / span 2
+        grid-row: 3
 
         h1.title
+          -ms-grid-column: 2 / span 2
           grid-column: 2 / span 2
           margin: $marginSize 0
 
@@ -351,16 +377,13 @@ div.wrapper
             grid-column: 1 / span 2
 
         .page-content
+          -ms-grid-column: 2 / span 2
           grid-column: 2 / span 2
           max-width: 600px
 
           @media screen and (max-width: $break-small)
             grid-column: 1 / span 2
             padding: 0 $marginSize/2
-
-          ul, p, div, span,
-            font-size: 14px
-            line-height: 1.5em
 
       .navigation
         display: block
@@ -564,9 +587,18 @@ footer
       grid-template-rows: repeat(3, 1fr)
       margin: 0 $marginSize
 
+      @media screen and (max-width: $break-small)
+        grid-auto-flow: row
+        padding: $marginSize/2 0
+
       li
         text-align: right
         padding: 0 10px
+
+        @media screen and (max-width: $break-small)
+          text-align: center
+          height: $marginSize
+          line-height: $marginSize
 
   .footer-social
     background-color: $text-color
