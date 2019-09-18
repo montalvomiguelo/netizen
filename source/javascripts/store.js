@@ -197,20 +197,54 @@ $(document).ready(function() {
       $(this).addClass('filled');
       $(this).parents('.contact-form-group').addClass('focused');
     }
-  })
+  });
   autoExpand($('textarea')[0]);
-  if ($('.all-similar-products').length) {
-    var num_products = $('.all-similar-products > a').length;
-    var elements = $('.all-similar-products').children().toArray();
-    var num_to_display = 3;
-    for (var i=1; i<=num_to_display; i++) {
-      var randomIndex = getRandomIndex(elements);
-      $('.similar-product-list').append($('.all-similar-products').children().eq(randomIndex));
-      elements.splice(randomIndex, 1);
-      $('.similar-product-list .similar-product-list-image').each(function() {
-        $(this).attr("src",$(this).data("src"));
-      })
+});
+document.addEventListener('input', function (event) {
+  if (event.target.tagName.toLowerCase() !== 'textarea') return;
+  autoExpand(event.target);
+}, false);
+
+function autoExpand(textarea) {
+  if (textarea) {
+    if (textarea.value) {
+      textarea.style.height = 'inherit';
+      var height = textarea.scrollHeight;
+      textarea.style.height = height + 'px';
     }
-    $('.all-similar-products').remove();
+  }
+};
+
+$('.category-nav-title').click(function() {
+  $('.category-nav-items').slideToggle('fast');
+})
+
+
+$('.qty-button').click(function() {
+  var $t = $(this)
+  , input = $(this).parent().find('input')
+  , val = parseInt(input.val())
+  , valMin = 1
+  , item_id = $(this).parent().data("cart-id");
+  if (isNaN(val) || val < valMin) {
+    var new_val = valMin;
+  }
+  if ($t.data('func') == 'plus') {
+    var new_val = val + 1;
+  }
+  else {
+    if (val > valMin) {
+      var new_val = val - 1;
+    }
+  }
+  if (new_val > 0) {
+    Cart.updateItem(item_id, new_val, function(cart) {
+      processUpdate(input, item_id, new_val, cart);
+    });
+  }
+  else {
+    Cart.removeItem(item_id, function(cart) {
+      processUpdate(input, item_id, 0, cart);
+    });
   }
 });
