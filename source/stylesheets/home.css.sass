@@ -1,0 +1,158 @@
+@import 'config'
+
+.slideshow
+  +flex-shrink(0)
+  border: $border
+  margin-bottom: 50px
+  max-height: 850px
+  overflow: hidden
+  position: relative
+
+  @media screen and (max-width: $break-large)
+    max-height: 650px
+
+  @media screen and (max-width: $break-medium)
+    margin-bottom: $marginSize/2
+    min-height: 450px
+
+  @media screen and (max-width: $break-small)
+    border-top: 0
+    margin-bottom: 0
+
+  .welcome
+    +transform(translateY(-50%) translateX(-50%))
+    color: $background-color
+    left: 50%
+    position: absolute
+    text-align: center
+    top: 50%
+    z-index: 2
+
+    p.subheader
+      margin: 0 0 $marginSize/2 0
+
+    h2.headline
+      color: $background-color
+      margin: 0 0 $marginSize/2 0
+
+    .button
+      font-size: 16px
+      height: 55px
+      line-height: 55px
+      margin: 0 auto
+      width: 255px
+
+  .pattern
+    height: 100%
+    left: 0
+    position: absolute
+    top: 0
+    width: 100%
+    z-index: 1
+
+    &.diagonal-lines
+      background-image: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='#{"{{ theme.pattern_color | replace: '#', '%23' }}"}' fill-opacity='0.7' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E")
+
+    &.bank-note
+      background-image: url("data:image/svg+xml,%3Csvg width='50' height='10' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21.184 20c.357-.13.72-.264 1.088-.402l1.768-.661C33.64 15.347 39.647 14 50 14c10.271 0 15.362 1.222 24.629 4.928.955.383 1.869.74 2.75 1.072h6.225c-2.51-.73-5.139-1.691-8.233-2.928C65.888 13.278 60.562 12 50 12c-10.626 0-16.855 1.397-26.66 5.063l-1.767.662c-2.475.923-4.66 1.674-6.724 2.275h6.335zm0-20C13.258 2.892 8.077 4 0 4V2c5.744 0 9.951-.574 14.85-2h6.334zM77.38 0C85.239 2.966 90.502 4 100 4V2c-6.842 0-11.386-.542-16.396-2h-6.225zM0 14c8.44 0 13.718-1.21 22.272-4.402l1.768-.661C33.64 5.347 39.647 4 50 4c10.271 0 15.362 1.222 24.629 4.928C84.112 12.722 89.438 14 100 14v-2c-10.271 0-15.362-1.222-24.629-4.928C65.888 3.278 60.562 2 50 2 39.374 2 33.145 3.397 23.34 7.063l-1.767.662C13.223 10.84 8.163 12 0 12v2z' fill='#{"{{ theme.pattern_color | replace: '#', '%23' }}"}' fill-opacity='0.7' fill-rule='evenodd'/%3E%3C/svg%3E")
+
+  img
+    display: block
+    object-fit: cover
+    width: 100%
+
+.featured
+  border: $border
+  display: grid
+  grid-column: 2 / span 2
+  grid-template-columns: repeat(2, 1fr)
+  margin: 0 0 $marginSize
+  padding: 0
+
+  @media screen and (max-width: $break-medium)
+    margin-bottom: $marginSize/2
+
+  @media screen and (max-width: $break-small)
+    grid-column: 1 / span 2
+    border-top: 0
+
+  .featured-details
+    display: block
+    text-align: center
+    padding: 0 $marginSize/2
+
+    .tag
+      background-color: $text-color
+      color: $background-color
+      display: inline-block
+      font-size: 12px
+      height: 33px
+      line-height: 33px
+      padding: 0 $marginSize/2
+
+    .feature-text
+
+      h2
+        margin: $marginSize
+        line-height: 1.5em
+
+      .button
+        font-size: 16px
+        width: 255px
+        margin-bottom: $marginSize
+
+  .featured-img
+    display: block
+    position: relative
+    padding: 0 $marginSize/2
+
+    @media screen and (max-width: $break-medium)
+      top: 50px
+
+    ul
+      display: block
+      height: 308px
+      margin: 0 auto
+      position: relative
+      width: 308px
+
+      @media screen and (max-width: $break-medium)
+        width: 208px
+
+      li
+        display: block
+        width: 308px
+        height: 308px
+        outline: $border
+        overflow: hidden
+        box-sizing: border-box
+
+        @media screen and (max-width: $break-medium)
+          width: 208px
+          height: 208px
+
+        &:nth-child(1)
+          position: absolute
+          top: -20px
+          left: -20px
+          z-index: 89
+
+        &:nth-child(2)
+          position: absolute
+          top: 0
+          left: 0
+          z-index: 88
+
+        &:nth-child(3)
+          position: absolute
+          top: 20px
+          left: 20px
+          z-index: 87
+
+        img
+          display: block
+          margin: 0
+          max-height: 308px
+          object-fit: cover
+          padding: 0
+          width: 100%

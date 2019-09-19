@@ -1,27 +1,11 @@
-{% if theme.image_sets.slideshow_images.size > 0 or theme.welcome_header != blank or theme.welcome_subheader != blank %}
-  <section class="slideshow">
-    <div class="welcome">
-      {% if theme.welcome_subheader %}<p class="subheader">{{ theme.welcome_subheader }}</p>{% endif %}
-      {% if theme.welcome_header %}<h2 class="headline">{{ theme.welcome_header }}</h2>{% endif %}
-      {% if theme.welcome_button_text %}<a href="/products" class="button">{{ theme.welcome_button_text }}</a>{% endif %}
-    </div>
-    <span class="pattern diagonal-lines"></span>
-    {% if theme.image_sets.slideshow_images.size > 0 %}
-      <div class="slideshow-images">
-        {% for image in theme.image_sets.slideshow_images %}
-          <img alt="Slideshow image {{ forloop.index }}" src="{{ image.url | constrain: 1800 }}">
-        {% endfor %}
-      </div>
-    {% endif %}
-  </section>
-{% endif %}
+
 
 <div class="featured gradient">
   <div class="featured-details">
     <div class="tag">Featured</div>
     <div class="feature-text">
       <h2 class="subheader">Shop summer jewelry collection</h2>
-      <a href="" class="button">Shop now</a>
+      <a href="/products" class="button">Shop now</a>
     </div>
   </div>
   <div class="featured-img">
@@ -33,28 +17,23 @@
   </div>
 </div>
 
-<section class="main-content">
-  <h1 class="title">Shop all</h1>
-  {% if theme.featured_items > 0 %}
-    {% get products from products.all limit:theme.featured_items order:theme.featured_order %}
-      {% if products != blank %}
-        <ul class="products-list">
-          {% for product in products %}
-          <li class="{{ product.css_class }}">
-            <a href="{{ product.url }}" class="product-link" title="View {{ product.name | escape }}">
-              <img alt="Image of {{ product.name | escape }}" src="{{ product.image | product_image_url | constrain: '1000' }}">
-              <div class="product-details overlay">
-                <span class="product-name">{{ product.name }}</span>
-                <span class="product-price">{{ product.default_price | money_with_sign }}</span>
-                <!-- {% if product.on_sale %}
-                  <em>On Sale</em>
-                {% endif %} -->
-              </div>
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    {% endget %}
-  {% endif %}
-</section>
+<h1 class="page-title">Featured products</h1>
+{% if theme.featured_items > 0 %}
+  {% get products from products.all limit:theme.featured_items order:theme.featured_order %}
+    {% if products != blank %}
+      <ul class="product-list">
+        {% for product in products %}
+        <li class="{{ product.css_class }}">
+          <a href="{{ product.url }}" class="product-link" title="View {{ product.name | escape }}">
+            <img alt="Image of {{ product.name | escape }}" src="{{ product.image | product_image_url | constrain: '1000' }}">
+            <div class="product-details overlay">
+              <span class="product-name">{{ product.name }}</span>
+              <span class="product-price">{{ product.default_price | money: theme.money_format }}</span>
+            </div>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endget %}
+{% endif %}

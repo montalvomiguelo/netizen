@@ -1,148 +1,131 @@
 @import 'config'
 
-body#home, body#products
+.product-list
+  +flexbox
+  +flex-wrap(wrap)
+  +justify-content(flex-start)
+  list-style: none
+  font-size: 20px
+  margin: 0 -25px
+  padding: 0
 
-  ul.products-list
-    display: -ms-grid
-    display: grid
-    -ms-grid-column: 2 / span 2
-    grid-column: 2 / span 2
-    grid-gap: $marginSize
-    -ms-grid-columns: repeat(2, 1fr)
-    grid-template-columns: repeat(2, 1fr)
-    margin-bottom: $marginSize
-    align-items: center
+  .product
+    padding: 25px
+    width: 50%
 
-    @media screen and (max-width: $break-large)
-      grid-gap: $marginSize/2
-      margin-bottom: $marginSize/2
-
-    @media screen and (max-width: $break-small)
-      margin: 0 $marginSize/2
-      grid-column: 1 / span 2
-
-    @media screen and (max-width: $break-extra-small)
-      grid-template-columns: 1fr
-      grid-column: 1 / span 2
-
-    li
-      display: block
-      overflow: hidden
-      position: relative
-
-      a.product-link
-        border: $border
-        display: block
-        margin: 0
-        padding: 0
-        position: relative
-        width: 100%
-        overflow: hidden
-
-        &:hover
-          text-decoration: none
-
-        &:hover .product-details.overlay
-          +all-transitions
-          opacity: 1
-
-        &:hover img
-          +all-transitions
-          filter: saturate(1000%) blur(50px)
-          transform: scale(2)
-
-        img
-          +all-transitions
-          display: block
-          margin: 0 auto
-          max-height: 100%
-          object-fit: cover
-          position: relative
-          text-align: center
-          transform: scale(1)
-          width: 100%
-
-        .product-details
-          background-color: $alt-background-color
-          border-top: $border
-          color: $text-color
-          display: grid
-          font-size: 22px
-          grid-template-columns: 1fr 40%
-          line-height: 1.5em
-          min-height: 100px
-          padding: $marginSize/2 0
-          position: relative
-          text-transform: capitalize
-          width: 100%
-
-          &.overlay
-            +all-transitions
-            background-color: $text-color
-            color: $alt-background-color
-            position: absolute
-            bottom: 0
-            opacity: 0
-
-          .product-name
-            padding-left: $marginSize/2
-            display: block
-
-          .product-price
-            display: block
-            text-align: right
-            padding-right: $marginSize/2
-
-      a:hover.product-details.overlay
-        opacity: 1
-
-  .pagination
-    display: block
-    font-size: 22px
-    grid-column: 2 / span 2
-    height: $marginSize
-    margin: $marginSize auto
-    text-align: center
-
-    a, span
-      display: block
-      float: left
-      height: $marginSize
-      line-height: $marginSize
-      margin: 0 10px
-      padding: 0
-
-    .current
-      text-decoration: underline
-
-    .previous, .next
+    .product-link
       border: $border
+      display: block
+      margin: 0
+      padding: 0
+      position: relative
+      width: 100%
       overflow: hidden
-      text-indent: -99999px
-      width: $marginSize
-      +all-transitions
 
       &:hover
+        text-decoration: none
+
+      &:hover .product-details.overlay
         +all-transitions
-        background-color: $text-color
+        opacity: 1
 
-        svg
-          fill: $background-color
+      &:hover img
+        +all-transitions
+        filter: saturate(1000%) blur(50px)
+        transform: scale(2)
 
-    .previous
-      background-color: $accent-color
-      background-image: url(#{'{{ "arrow-left-regular.svg" | theme_image_url }}'})
-      background-size: 22px
-      background-position: center
-      background-repeat: no-repeat
-      margin-right: $marginSize/2
-      margin-left: 0
+      img
+        +all-transitions
+        display: block
+        margin: 0 auto
+        max-height: 100%
+        object-fit: cover
+        position: relative
+        text-align: center
+        transform: scale(1)
+        width: 100%
 
-    .next
-      margin-right: 0
-      margin-left: $marginSize/2
-      background-color: $accent-color
-      background-image: url(#{'{{ "arrow-right-regular.svg" | theme_image_url }}'})
-      background-size: 22px
-      background-position: center
-      background-repeat: no-repeat
+      .product-details
+        background-color: $alt-background-color
+        border-top: $border
+        color: $text-color
+        display: grid
+        font-size: 22px
+        grid-template-columns: 1fr 40%
+        line-height: 1.5em
+        min-height: 100px
+        padding: $marginSize/2 0
+        position: relative
+        text-transform: capitalize
+        width: 100%
+
+        &.overlay
+          +all-transitions
+          background-color: $text-color
+          color: $alt-background-color
+          position: absolute
+          bottom: 0
+          opacity: 0
+
+        .product-name
+          padding-left: $marginSize/2
+          display: block
+
+        .product-price
+          display: block
+          text-align: right
+          padding-right: $marginSize/2
+
+    a:hover.product-details.overlay
+      opacity: 1
+
+.pagination
+  display: block
+  font-size: 22px
+  grid-column: 2 / span 2
+  height: $marginSize
+  margin: $marginSize auto
+  text-align: center
+
+  a, span
+    display: block
+    float: left
+    height: $marginSize
+    line-height: $marginSize
+    margin: 0 10px
+    padding: 0
+
+  .current
+    text-decoration: underline
+
+  .previous, .next
+    border: $border
+    overflow: hidden
+    text-indent: -99999px
+    width: $marginSize
+    +all-transitions
+
+    &:hover
+      +all-transitions
+      background-color: $text-color
+
+      svg
+        fill: $background-color
+
+  .previous
+    background-color: $accent-color
+    background-image: url(#{'{{ "arrow-left-regular.svg" | theme_image_url }}'})
+    background-size: 22px
+    background-position: center
+    background-repeat: no-repeat
+    margin-right: $marginSize/2
+    margin-left: 0
+
+  .next
+    margin-right: 0
+    margin-left: $marginSize/2
+    background-color: $accent-color
+    background-image: url(#{'{{ "arrow-right-regular.svg" | theme_image_url }}'})
+    background-size: 22px
+    background-position: center
+    background-repeat: no-repeat

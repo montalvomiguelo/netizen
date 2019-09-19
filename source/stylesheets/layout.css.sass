@@ -7,6 +7,20 @@ html
   height: 100%
   position: relative
 
+body
+  background: $background-color
+  color: $text-color
+  font-family: $text-font
+  font-size: 16px
+  font-weight: normal
+  height: 100%
+  line-height: 1.5em
+  margin: 0
+  position: relative
+
+  @media screen and (max-width: $break-small)
+    padding-top: 75px
+
 a
   text-decoration: none
   color: $text-color
@@ -14,33 +28,14 @@ a
   &:hover
     text-decoration: underline
 
-button
-  +appearance(none)
-  border-width: 0
-  cursor: pointer
-  background: none
-
 h1, h2, h3, h4
-  color: $text-color
   margin: 0
   padding: 0
 
-ul
-  list-style: none
-  margin: 0
-  padding: 0
+h1
+  margin-bottom: $marginSize/2
 
-  li
-    list-style: none
-    margin: 0
-    padding: 0
-
-.custom .content
-  ul, p, div, span,
-    font-size: 14px
-    line-height: 1.5em
-
-input, select, textarea
+input, textarea
   +appearance(none)
   background-color: $alt-background-color
   border-radius: 0
@@ -48,7 +43,7 @@ input, select, textarea
   color: $text-color
   font-size: 16px
   height: 55px
-  text-indent: 10px
+  padding: 10px
   width: 100%
 
   &:hover, &:focus
@@ -59,41 +54,72 @@ textarea
   min-height: $marginSize*3
   max-width: 600px
 
-.grid-container
-  display: grid
-  grid-gap: 50px
-
-.headline
-  font-size: 48px
-  line-height: 48px
-  margin: 0
+.select
+  +all-transitions
+  border: $border
+  color: $text-color
+  font-family: $text-font
+  height: 55px
+  max-width: 100%
   padding: 0
+  position: relative
+  width: 100%
 
-.title
-  font-size: 28px
-  line-height: 28px
-  margin: 0
-  padding: 0
+  select
+    +all-transitions
+    +appearance(none)
+    border: 0
+    border-radius: 0
+    color: $text-color
+    font-family: $text-font
+    font-size: 14px
+    height: 100%
+    letter-spacing: 1px
+    line-height: 58px
+    padding: 0 66px 0 16px
+    position: relative
+    text-transform: uppercase
+    width: 100%
+    z-index: 2
 
-.subheader
-  font-size: 22px
-  line-height: 22px
-  margin: 0
-  padding: 0
+    option
+      background-color: #FFF
+      color: #000
 
-.sm-label
-  font-size: 12px
-  line-height: 12px
-  margin: 0
-  padding: 0
+      &:disabled
+        color: graytext
 
-.label
-  font-size: 16px
-  line-height: 16px
-  margin: 0
-  padding: 0
+    &:focus
+      box-shadow: none
+      outline: none
 
-.button
+    &::-ms-expand
+      display: none
+
+  svg
+    +all-transitions
+    +transform(translateY(-50%))
+    fill: $text-color
+    height: 16px
+    position: absolute
+    right: 20px
+    top: 50%
+    width: 16px
+    z-index: 2
+
+  &:hover, &:active, &:focus, &:focus-within
+    background-color: $alt-accent-color
+    outline: $border
+
+    select
+
+      option:disabled
+        color: graytext
+
+    svg
+      fill: $text-color
+
+button, .button
   +all-transitions
   background-color: $accent-color
   border-radius: 0
@@ -112,518 +138,284 @@ textarea
     color: $alt-background-color
     text-decoration: none
 
-body
-  background: $background-color
-  color: $text-color
-  font-family: $text-font
-  font-size: 16px
-  font-weight: normal
-  height: 100%
-  line-height: 1.5em
-  margin: 0
-  position: relative
-
-div.wrapper
-  min-height: 100vh
+.wrapper
+  +flexbox
+  +flex-direction(column)
+  height: 100vh
   margin: 0 auto
   max-width: 1450px
+  padding: 0 $marginSize
   position: relative
   width: 100%
-  padding: 0 $marginSize
 
-  @media screen and (max-width: $break-large)
-    padding: 0
+  @media screen and (max-width: $break-small)
+    padding: 0 $marginSize/2
 
-  aside.checkout
+.header
+  position: fixed
+  top: 0
+  padding: 0
+  z-index: 100
+
+  @media screen and (max-width: $break-small)
+    background: $background-color
+    border-bottom: $border
+    height: 90px
+    left: 0
+    width: 100%
+
+.header-store-link
+  +flexbox
+  +justify-content(center)
+  +align-items(center)
+  background: $alt-background-color
+  border: $border
+  color: $text-color
+  height: 193px
+  margin-left: 20px
+  margin-top: 20px
+  position: relative
+  text-decoration: none
+  width: 193px
+
+  @media screen and (max-width: $break-small)
+    height: 60px
+    margin: 0 auto
+    width: 60px
+
+  &:before
+    background: $gradient
+    border: $border
+    box-sizing: border-box
+    content: ' '
     display: block
-    font-size: 22px
-    overflow: hidden
+    font-size: 0
+    height: 100%
+    left: -12px
+    margin: 0
+    padding: 0
     position: absolute
-    right: $marginSize
-    top: 0
-    z-index: 99
-    width: 50px
-    height: 50px
+    top: -12px
+    width: 100%
+    z-index: -1
 
-    @media screen and (max-width: $break-large)
-      right: 0
+  &:after
+    background: $gradient
+    border: $border
+    box-sizing: border-box
+    content: ' '
+    display: block
+    font-size: 0
+    height: 100%
+    left: -22px
+    margin: 0
+    padding: 0
+    position: absolute
+    top: -22px
+    width: 100%
+    z-index: -2
+
+.header-cart
+  color: $text-color
+  font-size: 22px
+  position: absolute
+  right: 104px
+  top: 0
+  text-decoration: none
+  z-index: 101
+
+  .header-cart-info
+    color: $text-color
+    display: block
+    position: fixed
+    text-decoration: none
+    width: 55px
 
     @media screen and (max-width: $break-small)
-      right: 20px
-      top: 17px
+      top: 0
 
-    .checkout-container
-      height: 100%
-      max-width: $marginSize
-      position: fixed
+  .header-cart-count
+    +all-transitions
+    background: $accent-color
+    border: $border
+    display: block
+    line-height: 51px
+    text-align: center
 
-      a.cart
-        max-width: $marginSize
-        position: fixed
+    &:hover, &:focus
+      background-color: $text-color
+      color: $alt-background-color
+      text-decoration: none
+
+  .header-cart-total
+    +flexbox
+    +justify-content(center)
+    +align-items(center)
+    +transform(rotate(90deg))
+    text-align: center
+    margin-left: -120px
+    margin-top: 150px
+    font-size: .950em
+    width: 300px
+
+    @media screen and (max-width: $break-small)
+      display: none
+
+    &:after
+      +flex(1 0 20px)
+      content: ''
+      border-top: 3px solid $text-color
+      margin: 0 20px 0 0
+
+    &:after
+      margin: 0 0 0 20px
+
+.side-nav
+  position: sticky
+  top: 250px
+  width: 100%
+
+.side-nav-section
+  margin-bottom: 25px
+
+.category-nav-title
+  background: $accent-color
+  border: $border
+  cursor: pointer
+  line-height: normal
+  text-align: left
+  padding: 12px
+  position: relative
+  width: 100%
+
+  .down-arrow
+    +transform(translateY(-50%))
+    fill: $text-color
+    height: 16px
+    position: absolute
+    right: 12px
+    top: 50%
+    width: 16px
+
+.category-nav-items
+  border: $border
+  border-top: none
+
+  li
+    border-bottom: $border
+
+    a
+      background: $alt-accent-color
+      display: block
+      padding: 12px
+
+      &:hover, &:focus
+        background: $accent-color
         text-decoration: none
 
-        .button
-          height: $marginSize
-          line-height: 44px
-          padding: 0
-          text-decoration: none
-          width: $marginSize
+    &:last-child
+      border-bottom: none
 
-        div.cart-subtotal
-          +rotated
-          min-width: 450px
-          position: absolute
-          right: -200px
-          top: 290px
-          width: 100%
 
-          @media screen and (max-width: $break-small)
-            display: none
+.side-search
+  border: $border
 
-          div.total
-            display: inline-block
-            margin-right: $marginSize/2
+  .search-input
+    +appearance(none)
+    border: none
+    background: $alt-background-color
 
-          div.line
-            background: $text-color
-            content: ' '
-            display: inline-block
-            font-size: 0
-            height: 2px
-            margin: 0
-            min-width: 300px
-            padding: 0
-            position: absolute
-            top: 11px
-            width: 100%
+    &:hover, &:focus
+      background: $alt-accent-color
 
-  header.store-name
-    display: inline-block
-    height: 213px
-    margin: 0 auto
-    padding: 0
-    position: fixed
-    top: 0
-    width: 213px
-    z-index: 98
+.page-nav-items
+  margin-bottom: $marginSize/2
+
+  li
+    margin-bottom: 10px
+
+    a
+      padding: 4px 0
+.main
+  +flexbox
+  +flex-grow(1)
+
+  .sidebar
+    padding-right: 50px
+    width: 280px
 
     @media screen and (max-width: $break-small)
-      +clearfix
-      background-color: $alt-background-color
-      border: $border
-      display: block
-      height: 86px
+      display: none
+      padding-right: 0
       width: 100%
 
-    a.logo
-      background-color: $alt-background-color
-      border: $border
-      display: block
-      height: 193px
-      left: 20px
-      margin: 0
-      padding: 0
-      position: relative
-      top: 20px
-      width: 193px
-
-      @media screen and (max-width: $break-small)
-        margin: 0 auto
-        left: 0
-        top: 8px
-        width: 90px
-        height: 90px
-
-      &:before
-        background: $gradient
-        border: $border
-        box-sizing: border-box
-        content: ' '
-        display: block
-        font-size: 0
-        height: 100%
-        left: -12px
-        margin: 0
-        padding: 0
-        position: absolute
-        top: -12px
-        width: 100%
-        z-index: -1
-
-      &:after
-        background: $gradient
-        border: $border
-        box-sizing: border-box
-        content: ' '
-        display: block
-        font-size: 0
-        height: 100%
-        left: -22px
-        margin: 0
-        padding: 0
-        position: absolute
-        top: -22px
-        width: 100%
-        z-index: -2
-
-      img
-        +vertical-align
-        width: 100%
-
-  .content-body
-    margin-bottom: $marginSize
-    min-height: 600px
+  .page-content
+    max-width: 970px
+    padding: 50px 0
+    position: relative
+    width: calc(100% - 280px)
+    z-index: 99
 
     @media screen and (max-width: $break-small)
-      padding-top: 86px
-
-    section.slideshow
-      border: $border
-      display: block
-      -ms-grid-column: 1 / span 4
-      grid-column: 1 / span 4
-      margin: 0 auto $marginSize
-      overflow: hidden
-      position: relative
       width: 100%
 
-      @media screen and (max-width: $break-medium)
-        margin-bottom: $marginSize/2
+.custom-page-content, .product-description
+  a
+    text-decoration: underline
 
-      @media screen and (max-width: $break-small)
-        border-top: 0
-        margin-bottom: 0
+  ol, ul
+    padding-left: 1em
 
-      .slideshow-images
-        img
-          display: block
-          margin: 0
-          max-height: 850px
-          object-fit: cover
-          padding: 0
-          width: 100%
-
-          @media screen and (max-width: $break-large)
-            max-height: 650px
-
-          @media screen and (max-width: $break-medium)
-            min-height: 450px
-
-    .pattern
-      height: 100%
-      left: 0
-      overflow: hidden
-      position: absolute
-      top: 0
-      width: 100%
-      z-index: 1
-
-      &.diagonal-lines
-        background-image: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='#{"{{ theme.pattern_color | replace: '#', '%23' }}"}' fill-opacity='0.7' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E")
-
-      &.bank-note
-        background-image: url("data:image/svg+xml,%3Csvg width='50' height='10' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21.184 20c.357-.13.72-.264 1.088-.402l1.768-.661C33.64 15.347 39.647 14 50 14c10.271 0 15.362 1.222 24.629 4.928.955.383 1.869.74 2.75 1.072h6.225c-2.51-.73-5.139-1.691-8.233-2.928C65.888 13.278 60.562 12 50 12c-10.626 0-16.855 1.397-26.66 5.063l-1.767.662c-2.475.923-4.66 1.674-6.724 2.275h6.335zm0-20C13.258 2.892 8.077 4 0 4V2c5.744 0 9.951-.574 14.85-2h6.334zM77.38 0C85.239 2.966 90.502 4 100 4V2c-6.842 0-11.386-.542-16.396-2h-6.225zM0 14c8.44 0 13.718-1.21 22.272-4.402l1.768-.661C33.64 5.347 39.647 4 50 4c10.271 0 15.362 1.222 24.629 4.928C84.112 12.722 89.438 14 100 14v-2c-10.271 0-15.362-1.222-24.629-4.928C65.888 3.278 60.562 2 50 2 39.374 2 33.145 3.397 23.34 7.063l-1.767.662C13.223 10.84 8.163 12 0 12v2z' fill='#{"{{ theme.pattern_color | replace: '#', '%23' }}"}' fill-opacity='0.7' fill-rule='evenodd'/%3E%3C/svg%3E")
-
-    .welcome
-      +centered
-      color: $background-color
-      text-align: center
-      z-index: 2
-
-      p
-        margin: 0 0 $marginSize/2 0
-
-      h2
-        color: $background-color
-        margin: 0 0 $marginSize/2 0
-
-      .button
-        font-size: 16px
-        height: 55px
-        line-height: 55px
-        margin: 0 auto
-        width: 255px
-
-    .content
-      +clearfix
-      display: -ms-grid
-      display: grid
-      grid-gap: 0 $marginSize
-      -ms-grid-columns: 225px repeat(2, 1fr) 50px
-      grid-template-columns: 225px repeat(2, 1fr) 50px
-      padding: 0
-      position: relative
-      height: 100%
-
-      @media screen and (max-width: $break-large)
-        grid-gap: 0 $marginSize/2
-
-      @media screen and (max-width: $break-small)
-        grid-column: 1 / span 2
-        grid-template-columns: repeat(2, 1fr)
-        grid-gap: 0 0
-
-      .main-content
-        grid-column: 2 / span 2
-        grid-row: 3
-
-        h1.title
-          -ms-grid-column: 2 / span 2
-          grid-column: 2 / span 2
-          margin: $marginSize 0
-
-          @media screen and (max-width: $break-small)
-            margin: $marginSize/2
-            grid-column: 1 / span 2
-
-        .page-content
-          -ms-grid-column: 2 / span 2
-          grid-column: 2 / span 2
-          max-width: 600px
-
-          @media screen and (max-width: $break-small)
-            grid-column: 1 / span 2
-            padding: 0 $marginSize/2
-
-      .navigation
-        display: block
-        grid-row: 2 / span 4
-        max-width: 225px
-
-        &.sticky
-          position: fixed
-          top: 263px
-
-          @media screen and (max-width: $break-small)
-            top: 85px
-
-        @media screen and (max-width: $break-large)
-          padding-left: $marginSize/2
-
-        @media screen and (max-width: $break-small)
-          background: $background-color
-          display: none
-          height: 100%
-          margin: 0 auto
-          max-width: 100%
-          padding: 25px
-          position: fixed
-          top: 85px
-          width: 100%
-          z-index: 95
-
-        ul
-          font-size: 14px
-          line-height: 3em
-
-        .shop-menu
-          background: $accent-color url(#{'{{ "arrow-down-regular.svg" | theme_image_url }}'}) no-repeat
-          background-position: center right 16px
-          background-size: 16px
-          font-size: 16px
-          height: 55px
-          margin-bottom: 10px
-          text-align: left
-          text-indent: 16px
-          width: 100%
-
-          &:hover
-            background-color: $alt-accent-color
-            color: $text-color
-            text-decoration: none
-
-          &:focus
-            background-color: $alt-accent-color
-            color: $text-color
-            text-decoration: none
-
-          a:hover
-            text-decoration: none
-
-        .search_form
-          margin-bottom: $marginSize/2
-
-          .search_input
-            background: $alt-background-color url(#{'{{ "search-regular.svg" | theme_image_url }}'}) no-repeat
-            background-size: 16px
-            background-position: center right 16px
-
-            &:focus
-              background-color: $alt-accent-color
-              color: $text-color
-
-      .featured
-        border: $border
-        display: grid
-        grid-column: 2 / span 2
-        grid-template-columns: repeat(2, 1fr)
-        margin: 0
-        padding: 0
-
-        @media screen and (max-width: $break-medium)
-          margin-bottom: $marginSize/2
-
-        @media screen and (max-width: $break-small)
-          grid-column: 1 / span 2
-          border-top: 0
-
-        .featured-details
-          display: block
-          text-align: center
-          padding: 0 $marginSize/2
-
-          .tag
-            background-color: $text-color
-            color: $background-color
-            display: inline-block
-            font-size: 12px
-            height: 33px
-            line-height: 33px
-            padding: 0 $marginSize/2
-
-          .feature-text
-
-            h2
-              margin: $marginSize
-              line-height: 1.5em
-
-            .button
-              font-size: 16px
-              width: 255px
-              margin-bottom: $marginSize
-
-        .featured-img
-          display: block
-          position: relative
-          padding: 0 $marginSize/2
-
-          @media screen and (max-width: $break-medium)
-            top: 50px
-
-          ul
-            display: block
-            height: 308px
-            margin: 0 auto
-            position: relative
-            width: 308px
-
-            @media screen and (max-width: $break-medium)
-              width: 208px
-
-            li
-              display: block
-              width: 308px
-              height: 308px
-              outline: $border
-              overflow: hidden
-              box-sizing: border-box
-
-              @media screen and (max-width: $break-medium)
-                width: 208px
-                height: 208px
-
-              &:nth-child(1)
-                position: absolute
-                top: -20px
-                left: -20px
-                z-index: 89
-
-              &:nth-child(2)
-                position: absolute
-                top: 0
-                left: 0
-                z-index: 88
-
-              &:nth-child(3)
-                position: absolute
-                top: 20px
-                left: 20px
-                z-index: 87
-
-              img
-                display: block
-                margin: 0
-                max-height: 308px
-                object-fit: cover
-                padding: 0
-                width: 100%
-
+  img, iframe
+    max-width: 100%
 
 footer
+  +flexbox
   background-color: $alt-accent-color
   border: $border
-  display: grid
-  grid-template-columns: 30% 1fr 20%
   min-height: $marginSize*3
   padding: 0
   position: relative
   width: 100%
 
-  @media screen and (max-width: $break-medium)
-    grid-template-columns: 1fr
-
-  .footer-store-name
+  .footer-section
     +flexbox
     +justify-content(center)
     +align-items(center)
     border-right: $border
-    font-size: 22px
-    line-height: 22px
-    text-align: center
-    min-height: $marginSize*3
 
-    @media screen and (max-width: $break-medium)
-      border-right: none
-      border-bottom: $border
+    &:last-child
+      border: none
+
+  .footer-store-name
+    width: 30%
 
   .footer-nav
-    text-align: center
-    min-height: $marginSize*3
-
-    ul.footer-links
-      +vertical-align
-      display: grid
-      grid-auto-flow: column
-      grid-template-rows: repeat(3, 1fr)
-      margin: 0 $marginSize
-
-      @media screen and (max-width: $break-small)
-        grid-auto-flow: row
-        padding: $marginSize/2 0
-
-      li
-        text-align: right
-        padding: 0 10px
-
-        @media screen and (max-width: $break-small)
-          text-align: center
-          height: $marginSize
-          line-height: $marginSize
+    width: 50%
 
   .footer-social
-    background-color: $text-color
-    color: $background-color
-    text-align: center
-    min-height: $marginSize*3
+    +flexbox
+    background: $text-color
+    width: 20%
 
-    .social-icons
-      +vertical-align
+    ul
+      +flexbox
 
       li
-        display: inline-block
         margin: 0 5px
 
         a
-          color: $background-color
           display: block
 
           svg
-            display: inline-block
             fill: $background-color
-            height: 28px
-            position: relative
-            top: 3px
-            width: 28px
+            height: 24px
+            width: 24px
 
           &:hover svg
-            opacity: 1
+            fill: $accent-color
+
+ol.unstyled, ul.unstyled
+  list-style: none
+  margin: 0
+  padding: 0

@@ -1,179 +1,76 @@
 @import 'config'
 
-#cart .content-body
-  @media screen and (max-width: $break-small)
-    background: $gradient
-    margin: 0
-    padding: 86px 0 $marginSize 0
-
-    .main-content
-      grid-column: 1 / span 2
-      grid-row: 3
-
-
-#cart .page-content
-  max-width: 100%
-
 .cart-container
-  background: $gradient
   border: $border
-  box-sizing: border-box
-  display: block
-  height: 100%
-  margin: 0 0 0 $marginSize/2
-  padding: 0
+  margin-left: $marginSize
+  padding: $marginSize/2
   position: relative
-  width: 100%
 
-  @media screen and (max-width: $break-small)
-    margin: 0
-    background: none
-    border: none
+.cart-form
+  margin-left: -$marginSize
 
-  form
-    position: relative
+.cart-items
+  list-style: none
+  margin: 0
+  padding: 0
 
-    ul
-      margin-left: -$marginSize/2
-      margin-right: $marginSize/2
-      position: relative
+.cart-item
+  +flexbox
+  +align-items(center)
+  +justify-content(flex-start)
+  border: $border
+  background: $background-color
+  margin-bottom: $marginSize/2
 
-      @media screen and (max-width: $break-small)
-        margin: 0
+  > *
+    margin: $marginSize/2 0
 
-      li.cart-item
-        align-items: center
-        background: $alt-background-color
-        border: $border
-        box-sizing: border-box
-        display: grid
-        grid-template-columns: 150px 1fr 200px 25%
-        justify-items: center
-        margin: $marginSize/2 0
-        min-height: 150px
-        position: relative
+  &:last-child
+    margin-bottom: 0
 
-        @media screen and (max-width: $break-medium)
-          grid-template-columns: 150px 1fr 25%
+.cart-item-image
+  background-size: cover
+  border: $border
+  display: block
+  margin-left: 25px
+  margin-right: 25px
+  height: $marginSize*2
+  width: $marginSize*2
 
-        .cart-item-image
-          background-size: cover
-          border: $border
-          display: block
-          height: $marginSize*2
-          width: $marginSize*2
+.cart-item-details
+  +align-self(flex-start)
 
-          @media screen and (max-width: $break-medium)
-            grid-row: 1 / span 2
+  .cart-item-details-name
+    text-transform: uppercase
 
-        .cart-item-details
-          justify-self: left
-          padding: $marginSize/2 0
+  .cart-item-details-option
+    font-size: 13px
 
-          @media screen and (max-width: $break-medium)
-            grid-column: 2 / span 2
-            grid-row: 1 / span 1
+.cart-item-quantity-holder
+  +flexbox
+  margin-left: auto
+  padding: 0 50px
 
-          .cart-item-details-option
-            font-size: 14px
-            margin-top: 5px
+  .option-quantity
+    text-align: center
+    width: 55px
 
-        .cart-item-quantity-holder
-          display: block
+.cart-item-details-price
+  +flexbox
+  +justify-content(center)
+  +align-items(center)
+  background: $text-color
+  color: $background-color
+  padding: 0
 
-          @media screen and (max-width: $break-medium)
-            grid-column: 2 / span 2
-            grid-row: 2 / span 1
-            justify-self: start
+button.qty-button
+  background: none
+  border: none
+  line-height: normal
+  padding: 0
+  margin: 0 12px
 
-          button
-            +appearance(none)
-            box-sizing: border-box
-            position: relative
-            top: 7px
-
-            svg
-              fill: $text-color
-
-          input
-            background-color: $alt-accent-color
-            height: 40px
-            margin: 0 5px
-            text-align: center
-            text-indent: 0
-            width: 40px
-
-        .cart-item-details-price
-          background-color: $text-color
-          color: $alt-background-color
-          display: block
-          font-size: 22px
-          height: 100%
-          text-align: center
-          width: 100%
-
-          @media screen and (max-width: $break-medium)
-            grid-column: 3 / span 1
-            grid-row: 1 / span 2
-
-          &:before
-            content: ' '
-            display: inline-block
-            height: 100%
-            vertical-align: middle
-
-        .cart-item-remove
-          +all-transitions
-          cursor: pointer
-          height: 25px
-          overflow: hidden
-          position: absolute
-          right: 10px
-          top: 10px
-          width: 25px
-          z-index: 99
-
-          svg
-            fill: $accent-color
-
-          &:hover
-            transform: rotate(360deg)
-
-    .cart-footer
-      margin: $marginSize/2
-      position: relative
-      text-align: right
-      min-height: 150px
-
-      @media screen and (max-width: $break-medium)
-        text-align: center
-
-      .cart-subtotal
-        background-color: $alt-accent-color
-        border: $border
-        display: inline-block
-        font-size: 12px
-        height: 40px
-        margin-bottom: $marginSize/2
-        padding: 0 $marginSize
-        text-align: center
-        line-height: 36px
-
-      .cart-buttons
-        display: block
-
-      .button
-        float: right
-        margin-left: $marginSize/2
-
-        @media screen and (max-width: $break-medium)
-          float: none
-          margin: 0 auto
-
-      .continue-shopping
-        float: left
-        height: 55px
-        line-height: 55px
-
-        @media screen and (max-width: $break-medium)
-          float: none
+.cart-footer
+  +flexbox
+  +flex-direction(column)
+  +align-items(flex-end)
