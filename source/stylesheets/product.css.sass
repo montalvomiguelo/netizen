@@ -32,28 +32,18 @@
 
 .product-body
   padding-top: 50px
-  z-index: 7
+  z-index: 103
 
   @media screen and (max-width: $break-small)
     order: 1
 
 .product-description
+  margin-top: 50px
   max-width: 600px
   width: 100%
 
 .product-images
-  +flexbox
   height: 775px
-
-
-  @media screen and (max-width: $break-small)
-    height: auto
-
-  > div
-    margin-right: 25px
-
-    &:last-child
-      margin-right: 0
 
   img
     border: $border
@@ -63,3 +53,13 @@
     @media screen and (max-width: $break-small)
       height: auto
       width: 100%
+
+.main-carousel
+  width: 150%
+
+.carousel-cell
+  border: $border
+  margin-right: 50px
+
+  img
+    display: block

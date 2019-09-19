@@ -53,9 +53,9 @@
 </div>
 
 <div class="product-body">
-  <div class="product-images">
+  <div class="main-carousel">
     {% for image in product.images %}
-      <div>
+      <div class="carousel-cell">
         <img src="{{ image | product_image_url | constrain: '1000'}}" alt="Image of {{ product.name | escape }}" />
       </div>
     {% endfor %}
