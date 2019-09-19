@@ -19,14 +19,13 @@
         <span class="header-store-name">{{ store.name }}</span>
         {% endif %}
       </a>
-      <div class="header-cart">
-        <a class="header-cart-info" href="/cart" title="View cart">
-          <span class="header-cart-count">{{ cart.item_count }}</span>
-          <span class="header-cart-total">{{ cart.total | money: theme.money_format }}</span>
-        </a>
-      </div>
     </header>
-
+    <div class="header-cart">
+      <a class="header-cart-info" href="/cart" title="View cart">
+        <span class="header-cart-count">{{ cart.item_count }}</span>
+        <span class="header-cart-total">{{ cart.total | money: theme.money_format }}</span>
+      </a>
+    </div>
     {% if page.permalink == 'home' %}
       {% if theme.image_sets.slideshow_images.size > 0 or theme.welcome_header != blank or theme.welcome_subheader != blank %}
         <section class="slideshow">

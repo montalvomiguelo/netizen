@@ -5,8 +5,9 @@
 
 .product-heading
   +flexbox
-  +justify-content(center)
+  +justify-content(flex-start)
   +align-items(center)
+  min-height: 200px
   position: sticky
   top: 0
 
@@ -31,13 +32,22 @@
 
 .product-body
   padding-top: 50px
+  z-index: 7
 
   @media screen and (max-width: $break-small)
     order: 1
 
+.product-description
+  max-width: 600px
+  width: 100%
+
 .product-images
   +flexbox
-  height: 500px
+  height: 775px
+
+
+  @media screen and (max-width: $break-small)
+    height: auto
 
   > div
     margin-right: 25px
@@ -47,4 +57,9 @@
 
   img
     border: $border
-    height: 500px
+    display: block
+    height: 100%
+
+    @media screen and (max-width: $break-small)
+      height: auto
+      width: 100%

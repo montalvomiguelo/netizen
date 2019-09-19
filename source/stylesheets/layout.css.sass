@@ -98,14 +98,14 @@ textarea
 
   svg
     +all-transitions
+    +transform(translateY(-50%))
     fill: $text-color
-    height: 8px
-    margin-top: -2px
+    height: 16px
     position: absolute
     right: 20px
     top: 50%
-    width: 13px
-    z-index: 1
+    width: 16px
+    z-index: 2
 
   &:hover, &:active, &:focus, &:focus-within
     background-color: $alt-accent-color
@@ -154,15 +154,13 @@ button, .button
 .header
   position: fixed
   top: 0
-  max-width: 1350px
   padding: 0
-  width: calc(100% - 50px)
   z-index: 100
 
   @media screen and (max-width: $break-small)
     background: $background-color
     border-bottom: $border
-    height: 65px
+    height: 90px
     left: 0
     width: 100%
 
@@ -173,18 +171,17 @@ button, .button
   background: $alt-background-color
   border: $border
   color: $text-color
-  height: 213px
+  height: 193px
   margin-left: 20px
   margin-top: 20px
   position: relative
   text-decoration: none
-  width: 213px
+  width: 193px
 
   @media screen and (max-width: $break-small)
     height: 60px
     margin: 0 auto
     width: 60px
-
 
   &:before
     background: $gradient
@@ -222,15 +219,20 @@ button, .button
   color: $text-color
   font-size: 22px
   position: absolute
-  right: 0
+  right: 104px
   top: 0
   text-decoration: none
+  z-index: 101
 
   .header-cart-info
     color: $text-color
     display: block
+    position: fixed
     text-decoration: none
     width: 55px
+
+    @media screen and (max-width: $break-small)
+      top: 0
 
   .header-cart-count
     +all-transitions
@@ -269,7 +271,6 @@ button, .button
       margin: 0 0 0 20px
 
 .side-nav
-  margin-top: 250px
   position: sticky
   top: 250px
   width: 100%
@@ -297,7 +298,6 @@ button, .button
     width: 16px
 
 .category-nav-items
-  display: none
   border: $border
   border-top: none
 
@@ -323,8 +323,19 @@ button, .button
   .search-input
     +appearance(none)
     border: none
-    background: none
+    background: $alt-background-color
 
+    &:hover, &:focus
+      background: $alt-accent-color
+
+.page-nav-items
+  margin-bottom: $marginSize/2
+
+  li
+    margin-bottom: 10px
+
+    a
+      padding: 4px 0
 .main
   +flexbox
   +flex-grow(1)
@@ -343,7 +354,7 @@ button, .button
     padding: 50px 0
     position: relative
     width: calc(100% - 280px)
-    z-index: 101
+    z-index: 99
 
     @media screen and (max-width: $break-small)
       width: 100%
