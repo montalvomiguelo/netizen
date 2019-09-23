@@ -56,7 +56,31 @@
             <ul class="unstyled category-nav-items">
               <li class="{% if page.full_url contains '/products' %}selected{% endif %}"><a href="/products">All</a></li>
               {% for category in categories.active %}
-              <li class="{% if page.full_url contains category.url %}selected{% endif %}">{{ category | link_to }}</li>
+                <li class="{% if page.full_url contains category.url %}selected{% endif %}">{{ category | link_to }}</li>
+              {% endfor %}
+              {% for category in categories.active %}
+                <li class="{% if page.full_url contains category.url %}selected{% endif %}">{{ category | link_to }}</li>
+              {% endfor %}
+              {% for category in categories.active %}
+                <li class="{% if page.full_url contains category.url %}selected{% endif %}">{{ category | link_to }}</li>
+              {% endfor %}
+              {% for category in categories.active %}
+                <li class="{% if page.full_url contains category.url %}selected{% endif %}">{{ category | link_to }}</li>
+              {% endfor %}
+              {% for category in categories.active %}
+                <li class="{% if page.full_url contains category.url %}selected{% endif %}">{{ category | link_to }}</li>
+              {% endfor %}
+              {% for category in categories.active %}
+                <li class="{% if page.full_url contains category.url %}selected{% endif %}">{{ category | link_to }}</li>
+              {% endfor %}
+              {% for category in categories.active %}
+                <li class="{% if page.full_url contains category.url %}selected{% endif %}">{{ category | link_to }}</li>
+              {% endfor %}
+              {% for category in categories.active %}
+                <li class="{% if page.full_url contains category.url %}selected{% endif %}">{{ category | link_to }}</li>
+              {% endfor %}
+              {% for category in categories.active %}
+                <li class="{% if page.full_url contains category.url %}selected{% endif %}">{{ category | link_to }}</li>
               {% endfor %}
             </ul>
           </nav>
