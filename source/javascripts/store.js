@@ -219,7 +219,9 @@ $('.category-nav-title').click(function() {
   $('.category-nav-items').slideToggle('fast');
 })
 
-
+$('.open-menu').click(function() {
+  $('.sidebar').toggle('fast');
+})
 
 var processUpdate = function(input, item_id, new_val, cart) {
   var sub_total = Format.money(cart.total, true, true);

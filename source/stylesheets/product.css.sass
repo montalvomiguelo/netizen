@@ -3,6 +3,10 @@
 #product .page-content
   padding-top: 0
 
+  @media screen and (max-width: $break-small)
+    +flexbox
+    +flex-direction(column)
+
 .product-heading
   +flexbox
   +justify-content(flex-start)
@@ -10,10 +14,12 @@
   min-height: 200px
   position: sticky
   top: 0
+  z-index: 100
 
   @media screen and (max-width: $break-small)
     position: relative
     order: 2
+    top: auto
 
 .product-form
   margin-left: auto
@@ -30,20 +36,20 @@
   .add-to-cart-button
     width: 100%
 
-.product-body
-  padding-top: 50px
-  z-index: 103
-
-  @media screen and (max-width: $break-small)
-    order: 1
-
 .product-description
   margin-top: 50px
   max-width: 600px
   width: 100%
 
+  @media screen and (max-width: $break-small)
+    order: 3
+
 .product-images
-  height: 775px
+  padding-top: $marginSize
+  z-index: 103
+
+  @media screen and (max-width: $break-small)
+    order: 1
 
   img
     border: $border
@@ -57,9 +63,9 @@
 .main-carousel
   width: 150%
 
-.carousel-cell
-  border: $border
-  margin-right: 50px
+  .carousel-cell
+    border: $border
+    margin-right: 50px
 
-  img
-    display: block
+    img
+      display: block

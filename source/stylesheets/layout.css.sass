@@ -164,6 +164,19 @@ button, .button
     left: 0
     width: 100%
 
+.open-menu
+  background: $background-color
+  border: none
+  display: none
+  position: absolute
+
+  @media screen and (max-width: $break-small)
+    display: block
+
+  svg
+    height: 28px
+    width: 28px
+
 .header-store-link
   +flexbox
   +justify-content(center)
@@ -275,6 +288,10 @@ button, .button
   top: 250px
   width: 100%
 
+  @media screen and (max-width: $break-small)
+    position: relative
+    top: 0
+
 .side-nav-section
   margin-bottom: 25px
 
@@ -300,6 +317,7 @@ button, .button
 .category-nav-items
   border: $border
   border-top: none
+  display: none
 
   li
     border-bottom: $border
@@ -336,18 +354,10 @@ button, .button
 
     a
       padding: 4px 0
+
 .main
   +flexbox
   +flex-grow(1)
-
-  .sidebar
-    padding-right: 50px
-    width: 280px
-
-    @media screen and (max-width: $break-small)
-      display: none
-      padding-right: 0
-      width: 100%
 
   .page-content
     max-width: 970px
@@ -358,6 +368,23 @@ button, .button
 
     @media screen and (max-width: $break-small)
       width: 100%
+
+.sidebar
+  background: $background-color
+  padding-right: 50px
+  width: 280px
+
+  @media screen and (max-width: $break-small)
+    display: none
+    height: 100vh
+    padding: $marginSize/2
+    position: fixed
+    top: 90px
+    width: 100%
+    z-index: 101
+
+    &.opened
+      display: block
 
 .custom-page-content, .product-description
   a
@@ -378,6 +405,10 @@ footer
   position: relative
   width: 100%
 
+  @media screen and (max-width: $break-small)
+    +flex-direction(column)
+    min-height: 0
+
   .footer-section
     +flexbox
     +justify-content(center)
@@ -390,13 +421,22 @@ footer
   .footer-store-name
     width: 30%
 
+    @media screen and (max-width: $break-small)
+      width: 100%
+
   .footer-nav
     width: 50%
+
+    @media screen and (max-width: $break-small)
+      width: 100%
 
   .footer-social
     +flexbox
     background: $text-color
     width: 20%
+
+    @media screen and (max-width: $break-small)
+      width: 100%
 
     ul
       +flexbox

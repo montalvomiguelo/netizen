@@ -12,6 +12,7 @@
   <div class="wrapper">
 
     <header class="header">
+      <button class="open-menu" type="button"><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg></button>
       <a href="/" title="{{ store.name | escape }}" class="header-store-link">
         {% if theme.logo != blank %}
         <img class="header-store-logo" src="{{ theme.logo.url }}" alt="{{ store.name }}">
@@ -96,7 +97,44 @@
       </div>
 
     </section>
-
+    {% if page.full_url contains '/product/' %}
+      {% if theme.show_similar_products %}
+        {% if product.categories != blank %}
+          {% for category in product.categories %}
+            {% capture product_divs %}
+              {% for category_product in category.products %}
+                {% assign product_status = '' %}
+                {% case category_product.status %}
+                  {% when 'active' %}
+                    {% if category_product.on_sale %}{% assign product_status = 'On sale' %}{% endif %}
+                  {% when 'sold-out' %}
+                    {% assign product_status = 'Sold out' %}
+                  {% when 'coming-soon' %}
+                    {% assign product_status = 'Coming soon' %}
+                {% endcase %}
+                {% if product.id != category_product.id %}
+                  <a class="product-list-item {{ theme.show_overlay }}" href="{{ category_product.url }}" title="View {{ category_product.name | escape }}">
+                    <div class="product-list-item-container">
+                      <figure class="product-list-image-container">
+                        <img alt="Image of {{ category_product.name | escape }}" class="fade-in product-list-image {% if category_product.image.height > category_product.image.width %}image-tall{% elsif category_product.image.height < category_product.image.width %}image-wide{% else %}image-square{% endif %}" src="{{ category_product.image | product_image_url | constrain: 1000, 1000 }}">
+                      </figure>
+                    </div>
+                    <div class="product-list-item-info">
+                      <div class="product-list-item-background"></div>
+                      <div class="product-list-item-info-headers">
+                        {% if product_status != blank %}<div class="product-list-item-status">{{ product_status }}</div>{% endif %}
+                        <div class="product-list-item-name">{{ category_product.name }}</div>
+                        <div class="product-list-item-price">{{ category_product.default_price | money: theme.money_format }}</div>
+                      </div>
+                    </div>
+                  </a>
+                {% endif %}
+              {% endfor %}
+            {% endcapture %}
+          {% endfor %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
     <footer class="footer">
       <div class="footer-section footer-store-name">
         {{ store.name }}

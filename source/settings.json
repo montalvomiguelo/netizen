@@ -175,6 +175,13 @@
       "description": "Sets the display of prices in your shop"
     },
     {
+      "variable": "show_similar_products",
+      "label": "Show related products",
+      "type": "boolean",
+      "default": true,
+      "description": "Displays related products on the Product page"
+    },
+    {
       "variable": "show_sold_out_product_options",
       "label": "Show sold out product options",
       "type": "boolean",
