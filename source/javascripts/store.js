@@ -220,12 +220,49 @@ $('.category-nav-title').click(function() {
 })
 
 
-$('.qty-button').click(function() {
+
+var processUpdate = function(input, item_id, new_val, cart) {
+  var sub_total = Format.money(cart.total, true, true);
+  var item_count = cart.item_count;
+  $('.header-cart-total').html(sub_total);
+  $('.header-cart-count').html(item_count);
+  if (item_count == 0) {
+    $('.cart_form').slideUp('fast',function() {
+      $('.cart_empty_message').fadeIn('fast');
+      $('h1').html('Your bag is empty');
+      $('.cart_value').fadeOut('fast');
+      $('.cart_value').html('0');
+      $("html, body").animate({ scrollTop: 0 }, "fast");
+    });
+  }
+  else {
+    $('.errors').hide();
+    input.val(new_val);
+  }
+  if (new_val > 0) {
+
+  }
+  else {
+    $('.cart-item[data-item-id="'+item_id+'"]').slideUp('fast');
+  }
+  return false;
+}
+$('.option-quantity').blur(function(e) {
+    var item_id = $(this).parent().data("item-id");
+    var new_val = $(this).val();
+    var input = $(this);
+    Cart.updateItem(item_id, new_val, function(cart) {
+      processUpdate(input, item_id, new_val, cart);
+    });
+  });
+
+$('.qty-button').click(function(e) {
+  e.preventDefault();
   var $t = $(this)
   , input = $(this).parent().find('input')
   , val = parseInt(input.val())
   , valMin = 1
-  , item_id = $(this).parent().data("cart-id");
+  , item_id = $(this).parent().data("item-id");
   if (isNaN(val) || val < valMin) {
     var new_val = valMin;
   }
