@@ -233,6 +233,7 @@ var processUpdate = function(input, item_id, new_val, cart) {
   var sub_total = Format.money(cart.total, true, true);
   var item_count = cart.item_count;
   $('.header-cart-total').html(sub_total);
+  $('.cart-subtotal-amount-value').html(sub_total);
   $('.header-cart-count').html(item_count);
   if (item_count == 0) {
     $('.cart_form').slideUp('fast',function() {
@@ -255,6 +256,14 @@ var processUpdate = function(input, item_id, new_val, cart) {
   }
   return false;
 }
+
+$('.cart-close').on('click', function() {
+  $('.mini-cart').fadeToggle();
+})
+$('.header-cart-info').on('click', function(e) {
+  e.preventDefault();
+  $('.mini-cart').fadeToggle();
+})
 $('.option-quantity').blur(function(e) {
     var item_id = $(this).parent().data("item-id");
     var new_val = $(this).val();
