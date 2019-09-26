@@ -109,9 +109,9 @@ textarea
 
   &:hover, &:active, &:focus, &:focus-within
     background-color: $alt-accent-color
-    outline: $border
 
     select
+      background-color: $alt-accent-color
 
       option:disabled
         color: graytext
@@ -152,7 +152,7 @@ button, .button
     padding: 0 $marginSize/2
 
 .header
-  position: fixed
+  position: absolute
   top: 0
   padding: 0
   z-index: 100
@@ -190,6 +190,10 @@ button, .button
   position: relative
   text-decoration: none
   width: 193px
+
+  .header-store-logo
+    display: block
+    max-width: 100%
 
   @media screen and (max-width: $break-small)
     height: 60px
@@ -240,7 +244,7 @@ button, .button
   .header-cart-info
     color: $text-color
     display: block
-    position: fixed
+    position: absolute
     text-decoration: none
     width: 55px
 
@@ -284,8 +288,7 @@ button, .button
       margin: 0 0 0 20px
 
 .side-nav
-  position: sticky
-  top: 250px
+  margin-top: 250px
   width: 100%
 
   @media screen and (max-width: $break-small)
@@ -336,11 +339,11 @@ button, .button
 
 
 .side-search
-  border: $border
+
 
   .search-input
     +appearance(none)
-    border: none
+    border: $border
     background: $alt-background-color
 
     &:hover, &:focus
@@ -378,7 +381,7 @@ button, .button
     display: none
     height: 100vh
     padding: $marginSize/2
-    position: fixed
+    position: absolute
     top: 90px
     width: 100%
     z-index: 101
@@ -419,6 +422,7 @@ footer
       border: none
 
   .footer-store-name
+    font-size: 22px
     width: 30%
 
     @media screen and (max-width: $break-small)
@@ -432,6 +436,7 @@ footer
 
   .footer-social
     +flexbox
+    +flex-direction(column)
     background: $text-color
     width: 20%
 
@@ -454,6 +459,16 @@ footer
 
           &:hover svg
             fill: $accent-color
+
+    .bigcartel-credit a
+      color: $background-color
+      font-size: 12px
+
+      &:hover
+        color: $accent-color
+
+    ul + .bigcartel-credit
+      margin-top: 10px
 
 ol.unstyled, ul.unstyled
   list-style: none

@@ -1,6 +1,6 @@
 {
   "name": "Netizen",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "images": [
     {
       "variable": "logo",
@@ -120,6 +120,17 @@
       ],
       "default": "cool_dots",
       "description": "Style of the overlay that sits on top of your slideshow images"
+    },
+    {
+      "variable": "product_list_layout",
+      "label": "Product List Layout",
+      "type": "select",
+      "options": [
+          ["Masonry", "masonry"],
+          ["Rows", "fitRows"]
+      ],
+      "default": "masonry",
+      "description": "The arrangement of your products on the Home and Products pages"
     },
     {
       "variable": "show_search",

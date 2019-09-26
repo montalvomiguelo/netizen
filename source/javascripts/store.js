@@ -1,3 +1,4 @@
+
 (function( $ ) {
   $.fn.drawGradient = function() {
     this.filter( ".gradient" ).each(function() {
@@ -12,7 +13,6 @@
 }( jQuery ));
 
 $('.gradient').drawGradient();
-
 
 var inPreview = (/\/admin\/design/.test(top.location.pathname));
 

@@ -30,6 +30,14 @@
               <span class="product-name">{{ product.name }}</span>
               <span class="product-price">{{ product.default_price | money: theme.money_format }}</span>
             </div>
+            {% case product.status %}
+              {% when 'active' %}
+                {% if product.on_sale %}<div class="product-status">On Sale</div>{% endif %}
+              {% when 'sold-out' %}
+                <div class="product-status">Sold Out</div>
+              {% when 'coming-soon' %}
+                <div class="product-status">Coming Soon</div>
+            {% endcase %}
           </a>
         </li>
         {% endfor %}

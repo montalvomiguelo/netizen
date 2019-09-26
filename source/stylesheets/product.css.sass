@@ -10,9 +10,8 @@
 .product-heading
   +flexbox
   +justify-content(flex-start)
-  +align-items(center)
-  min-height: 200px
-  position: sticky
+  +align-items(flex-start)
+  position: relative
   top: 0
   z-index: 100
 
@@ -20,6 +19,9 @@
     position: relative
     order: 2
     top: auto
+
+.product-titles
+  +align-self(center)
 
 .product-status
   background: $text-color
