@@ -1,21 +1,44 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{ store.name }} &mdash; {{ page.name }}</title>
-
+    <title>{{ page.name }} | {{ store.name }}</title>
     <meta charset="utf-8">
-    <meta name="description" content="{{ page.meta_description }}">
-    <meta name="keywords" content="{{ page.meta_keywords }}">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="{{ theme | theme_css_url }}" media="screen" rel="stylesheet" type="text/css">
-
+    <link href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap" rel="stylesheet">
     {{ head_content }}
   </head>
-
   <body id="{{ page.permalink }}" class="{{ page.category }}">
-    <div>
-      <h1>We&#8217;re working our site at the moment.</h1>
-      <p>Please check back soon.</p>
-    </div>
+  <div class="wrapper">
+
+    <header class="header">
+      <a href="/" title="{{ store.name | escape }}" class="header-store-link">
+        {% if theme.logo != blank %}
+        <img class="header-store-logo" src="{{ theme.logo.url }}" alt="{{ store.name }}">
+        {% else %}
+        <span class="header-store-name">{{ store.name }}</span>
+        {% endif %}
+      </a>
+    </header>
+    <section class="main">
+      <div class="maintenance-message">
+        <div class="message-content">
+          <h1 class="page-title">We&#8217;re working on our site at the moment.</h1>
+          <p>Check back soon!</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="{{ 'api' | theme_js_url }}"></script>
+  <script>
+    var themeOptions = {
+      pageCategory: '{{ page.category }}',
+      pagePermalink: '{{ page.permalink }}',
+      primaryGradientColor: '{{ theme.primary_gradient_color }}',
+      secondaryGradientColor: '{{ theme.secondary_gradient_color }}'
+    };
+  </script>
+  <script src="{{ theme | theme_js_url }}"></script>
   </body>
 </html>
