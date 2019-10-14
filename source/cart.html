@@ -1,4 +1,4 @@
-<div class="cart-container gradient">
+<div class="cart-container gradient{% if cart.items != blank %}{% else %} empty-cart{% endif %}">
   {% if cart.items != blank %}
     <h1 class="page-title">{{ page.name }}</h1>
     <form method="post" action="/cart" id="cart-form" class="cart-form">

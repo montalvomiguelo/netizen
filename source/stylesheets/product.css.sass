@@ -3,7 +3,7 @@
 #product .page-content
   padding-top: 0
 
-  @media screen and (max-width: $break-small)
+  @media screen and (max-width: $break-medium)
     +flexbox
     +flex-direction(column)
 
@@ -15,21 +15,39 @@
   top: 0
   z-index: 100
 
-  @media screen and (max-width: $break-small)
+  @media screen and (max-width: $break-medium)
+    margin-top: 25px
     position: relative
     order: 2
     top: auto
 
+  @media screen and (max-width: $break-small)
+    +flex-direction(column)
+
 .product-titles
-  +align-self(center)
+  +align-self(flex-start)
+  padding: 25px 0
+
+  @media screen and (max-width: $break-medium)
+    padding-right: 25px
+    padding-top: 0
+
+  h1
+    margin-bottom: 0
 
 .product-status
   background: $text-color
   color: $background-color
+  font-size: 12px
+  padding: 4px 6px
 
 .product-form
   margin-left: auto
-  width: 290px
+  max-width: 290px
+  width: 100%
+
+  @media screen and (max-width: $break-small)
+    max-width: 100%
 
   .select
     border-bottom: 0
@@ -42,38 +60,86 @@
   .add-to-cart-button
     width: 100%
 
+.reset-selection-button-container
+  text-align: center
+  width: 100%
+
+button.reset-selection-button
+  display: none
+  height: auto
+  max-width: 100%
+  line-height: normal
+  margin: 20px auto 0
+  padding: 4px
+  width: auto
+
 .product-description
   margin-top: 50px
   max-width: 600px
   width: 100%
 
-  @media screen and (max-width: $break-small)
+  @media screen and (max-width: $break-medium)
     order: 3
 
 .product-images
   padding-top: $marginSize
   z-index: 103
 
-  @media screen and (max-width: $break-small)
+  @media screen and (max-width: $break-medium)
     order: 1
 
   img
     border: $border
     display: block
-    height: 100%
+    height: auto
+    max-height: 100%
+    max-width: 775px
 
-    @media screen and (max-width: $break-small)
+    @media screen and (max-width: $break-medium)
       height: auto
       width: 100%
 
 .main-carousel
-  width: 150%
+
 
   .carousel-cell
-    border: $border
-    margin-right: 50px
+    margin-right: 25px
     width: 775px
 
     img
       display: block
+      width: 100%
+
+.similar-products
+  border: $border
+  border-bottom: 0
+  margin-bottom: 0
+  padding: 0 80px 10px * 6
+  position: relative
+
+  @media screen and (max-width: $break-medium)
+    padding-bottom: 10px
+
+.similar-products-header
+  position: absolute
+  top: -20px
+
+.similar-products-title
+  background: $background-color
+  border: $border
+  padding: 6px 8px
+
+.similar-product-list
+  +justify-content(flex-start)
+  margin: 70px -25px 0
+
+  .product-list-item
+    padding: 25px
+    width: 33.33%
+
+    @media only screen and (min-width: 768px) and (hover: hover), (-moz-touch-enabled: 0)
+      &.rollover .product-list-item-info
+        width: calc(100% - 50px)
+
+    @media screen and (max-width: $break-medium)
       width: 100%

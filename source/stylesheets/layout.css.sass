@@ -18,9 +18,6 @@ body
   margin: 0
   position: relative
 
-  @media screen and (max-width: $break-small)
-    padding-top: 75px
-
 a
   text-decoration: none
   color: $text-color
@@ -33,7 +30,10 @@ h1, h2, h3, h4
   padding: 0
 
 h1
+  font-size: 28px
+  line-height: 30px
   margin-bottom: $marginSize/2
+  text-transform: uppercase
 
 input, textarea
   +appearance(none)
@@ -48,7 +48,7 @@ input, textarea
 
   &:hover, &:focus
     background-color: $alt-accent-color
-    outline: $border
+    outline: none
 
 textarea
   min-height: $marginSize*3
@@ -75,7 +75,7 @@ textarea
     font-size: 14px
     height: 100%
     letter-spacing: 1px
-    line-height: 58px
+    line-height: 57px
     padding: 0 66px 0 16px
     position: relative
     text-transform: uppercase
@@ -125,6 +125,7 @@ button, .button
   border-radius: 0
   border: $border
   color: $text-color
+  cursor: pointer
   display: block
   height: 55px
   line-height: $marginSize
@@ -137,6 +138,16 @@ button, .button
     background-color: $text-color
     color: $alt-background-color
     text-decoration: none
+
+.header-message
+  margin: 0 auto
+  max-width: 1450px
+  padding: 0 $marginSize
+  position: relative
+  width: 100%
+
+  @media screen and (max-width: $break-small)
+    padding: 0 $marginSize/2
 
 .wrapper
   +flexbox
@@ -151,104 +162,177 @@ button, .button
   @media screen and (max-width: $break-small)
     padding: 0 $marginSize/2
 
-.header
+.errors
+  background-color: #FEA9A9
+  border: $border
+  color: #000000
+  list-style: none
+  padding: 15px
+  text-align: center
+
+.announcement-message
+  display: none
+
+.has-announcement-message .announcement-message
+  +flexbox
+  +align-items(center)
+  +justify-content(center)
+  background-color: $alt-background-color
+  border: $border
+  color: $text-color
+  font-size: 15px
+  left: 0
+  line-height: 26px
+  padding: 15px 20px
+  position: relative
+  top: 0
+  width: 100%
+  z-index: 9
+
+  .announcement-message-text
+    text-align: center
+    width: calc(100% - 100px)
+
+    @media screen and (max-width: $break-small)
+      width: calc(100% - 50px)
+
+  .announcement-message-close
+    +transform(translateY(-50%))
+    cursor: pointer
+    position: absolute
+    right: 20px
+    top: 50%
+
+    svg
+      fill: $text-color
+      height: 11px
+      width: 11px
+
+.mobile-header
+  background: $background-color
+  border: $border
+  display: none
+  height: 90px
+  padding: 25px
   position: absolute
   top: 0
-  padding: 0
-  z-index: 100
+  left: 0
+  width: 100%
+  z-index: 200
 
-  @media screen and (max-width: $break-small)
-    background: $background-color
-    border-bottom: $border
-    height: 90px
-    left: 0
-    width: 100%
+  @media screen and (max-width: $break-medium)
+    +flexbox
+    +justify-content(flex-start)
+    +align-items(center)
 
 .open-menu
   background: $background-color
   border: none
   display: none
+  height: 28px
   position: absolute
+  padding: 0
+  margin: 0
+  width: 28px
 
-  @media screen and (max-width: $break-small)
+  &:hover, &:active, &:focus
+    background: $background-color
+
+
+  @media screen and (max-width: $break-medium)
     display: block
 
   svg
     height: 28px
     width: 28px
 
-.header-store-link
-  +flexbox
-  +justify-content(center)
-  +align-items(center)
+.header-store
   background: $alt-background-color
-  border: $border
   color: $text-color
   height: 193px
+  left: 54px
   margin-left: 20px
   margin-top: 20px
-  position: relative
+  position: absolute
   text-decoration: none
+  top: 4px
   width: 193px
+  z-index: 10
+
+  .header-store-link
+    +flexbox
+    +justify-content(center)
+    +align-items(center)
+    background: $background-color
+    border: $border
+    height: 100%
+    padding: 20px
+    position: relative
+    text-align: center
+    z-index: 1
+    width: 100%
+
+  .gradient
+    border: $border
+    content: " "
+    height: 100%
+    position: absolute
+    width: 100%
+    top: -12px
+    left: -12px
+    z-index: -1
+
+    &:last-child
+      left: -24px
+      top: -24px
+      z-index: -2
 
   .header-store-logo
     display: block
     max-width: 100%
 
-  @media screen and (max-width: $break-small)
+  @media screen and (max-width: $break-medium)
+    +transform(translateY(-50%))
+    left: 50%
     height: 60px
     margin: 0 auto
+    top: 55px
     width: 60px
+    z-index: 201
 
-  &:before
-    background: $gradient
-    border: $border
-    box-sizing: border-box
-    content: ' '
-    display: block
-    font-size: 0
-    height: 100%
-    left: -12px
-    margin: 0
-    padding: 0
-    position: absolute
-    top: -12px
-    width: 100%
-    z-index: -1
+    &.has-text
 
-  &:after
-    background: $gradient
-    border: $border
-    box-sizing: border-box
-    content: ' '
-    display: block
-    font-size: 0
-    height: 100%
-    left: -22px
-    margin: 0
-    padding: 0
-    position: absolute
-    top: -22px
-    width: 100%
-    z-index: -2
+      .header-store-link
+        border: none
+        text-align: center
+        width: auto
+
+      .gradient
+        display: none
+
 
 .header-cart
   color: $text-color
   font-size: 22px
   position: absolute
-  right: 104px
+  right: 50px
   top: 0
   text-decoration: none
   z-index: 101
 
+  @media screen and (max-width: $break-medium)
+    right: 25px
+    top: 17px
+    z-index: 201
+
   .header-cart-info
     color: $text-color
     display: block
-    position: absolute
+    height: 150px
     text-decoration: none
     width: 55px
 
-    @media screen and (max-width: $break-small)
+    @media screen and (max-width: $break-medium)
       top: 0
 
   .header-cart-count
@@ -275,7 +359,7 @@ button, .button
     font-size: .950em
     width: 300px
 
-    @media screen and (max-width: $break-small)
+    @media screen and (max-width: $break-medium)
       display: none
 
     &:after
@@ -291,12 +375,16 @@ button, .button
   margin-top: 250px
   width: 100%
 
-  @media screen and (max-width: $break-small)
+  @media screen and (max-width: $break-medium)
+    margin-top: 0
     position: relative
     top: 0
 
 .side-nav-section
-  margin-bottom: 25px
+  margin-bottom: 10px
+
+  &.pages-nav
+    margin-top: 40px
 
 .category-nav-title
   background: $accent-color
@@ -353,7 +441,7 @@ button, .button
   margin-bottom: $marginSize/2
 
   li
-    margin-bottom: 10px
+    margin-bottom: $marginSize/2
 
     a
       padding: 4px 0
@@ -363,23 +451,25 @@ button, .button
   +flex-grow(1)
 
   .page-content
-    max-width: 970px
-    padding: 50px 0
+    max-width: 1070px
+    padding: 80px $marginSize
     position: relative
     width: calc(100% - 280px)
     z-index: 99
 
-    @media screen and (max-width: $break-small)
+    @media screen and (max-width: $break-medium)
+      padding: 140px 0
       width: 100%
 
 .sidebar
   background: $background-color
-  padding-right: 50px
-  width: 280px
+  width: 230px
 
-  @media screen and (max-width: $break-small)
-    display: none
+  @media screen and (max-width: $break-medium)
+    +all-transitions
     height: 100vh
+    left: -100vw
+    opacity: 0
     padding: $marginSize/2
     position: absolute
     top: 90px
@@ -387,7 +477,8 @@ button, .button
     z-index: 101
 
     &.opened
-      display: block
+      left: 0
+      opacity: 1
 
 .custom-page-content, .product-description
   a
@@ -403,20 +494,22 @@ footer
   +flexbox
   background-color: $alt-accent-color
   border: $border
-  min-height: $marginSize*3
   padding: 0
   position: relative
   width: 100%
 
-  @media screen and (max-width: $break-small)
+  @media screen and (max-width: $break-medium)
     +flex-direction(column)
-    min-height: 0
 
   .footer-section
     +flexbox
     +justify-content(center)
     +align-items(center)
     border-right: $border
+    padding: 50px
+
+    @media screen and (max-width: $break-medium)
+      border-bottom: $border
 
     &:last-child
       border: none
@@ -425,22 +518,25 @@ footer
     font-size: 22px
     width: 30%
 
-    @media screen and (max-width: $break-small)
+    @media screen and (max-width: $break-medium)
       width: 100%
 
   .footer-nav
     width: 50%
 
-    @media screen and (max-width: $break-small)
+    @media screen and (max-width: $break-medium)
       width: 100%
+
+    li
+      display: inline-block
 
   .footer-social
     +flexbox
     +flex-direction(column)
     background: $text-color
-    width: 20%
+    width: 25%
 
-    @media screen and (max-width: $break-small)
+    @media screen and (max-width: $break-medium)
       width: 100%
 
     ul
@@ -474,3 +570,19 @@ ol.unstyled, ul.unstyled
   list-style: none
   margin: 0
   padding: 0
+
+
+.flickity-page-dots
+  bottom: -10px
+  width: 775px
+
+  .dot
+    background: $background-color
+    border: $border
+    border-radius: 0
+    height: 20px
+    opacity: 1
+    width: 20px
+
+    &.is-selected
+      background: $accent-color

@@ -1,6 +1,6 @@
 {
   "name": "Netizen",
-  "version": "0.0.4",
+  "version": "0.0.92",
   "images": [
     {
       "variable": "logo",
@@ -17,10 +17,7 @@
     {
       "variable": "slideshow_images",
       "label": "Slideshow",
-      "description": "Adds a slideshow to the Home page",
-      "defaults": [
-        "slide-1.jpg"
-      ]
+      "description": "Adds a slideshow to the Home page"
     },
     {
       "variable": "lookbook_images",
@@ -32,12 +29,12 @@
     {
       "variable": "header_font",
       "label": "Header Font",
-      "default": "Lexend Deca"
+      "default": "Lexend Exa"
     },
     {
       "variable": "text_font",
       "label": "Text Font",
-      "default": "Lexend Deca"
+      "default": "Lexend Exa"
     }
   ],
   "colors": [
@@ -45,11 +42,6 @@
       "variable": "background_color",
       "label": "Background",
       "default": "#F8F8F9"
-    },
-    {
-      "variable": "alt_background_color",
-      "label": "Alternate Background",
-      "default": "#ffffff"
     },
     {
       "variable": "text_color",
@@ -65,6 +57,11 @@
       "variable": "alt_accent_color",
       "label": "Alternate Accent Color",
       "default": "#FBFFE2"
+    },
+    {
+      "variable": "alt_background_color",
+      "label": "Alternate Background",
+      "default": "#ffffff"
     },
     {
       "variable": "pattern_color",
@@ -88,7 +85,14 @@
     }
   ],
   "options": [
-      {
+    {
+      "variable": "announcement_message_text",
+      "label": "Announcement text",
+      "type": "text",
+      "description": "Displays an announcement message on the top of every page",
+      "default": "heya this is really cool"
+    },
+    {
       "variable": "welcome_header",
       "label": "Welcome header",
       "type": "text",
@@ -133,14 +137,31 @@
       "description": "The arrangement of your products on the Home and Products pages"
     },
     {
-      "variable": "show_search",
-      "label": "Show search",
-      "type": "boolean",
-      "default": true,
-      "description": "Shows a search field"
+      "variable": "max_products_per_row",
+      "label": "Maximum products per row",
+      "type": "select",
+      "options": "1..4",
+      "default": 2,
+      "description": "The number of products displayed per row"
     },
     {
-      "variable": "featured_items",
+      "variable": "max_products_per_row_mobile",
+      "label": "Maximum products per row (mobile)",
+      "type": "select",
+      "options": "1..2",
+      "default": 2,
+      "description": "The number of products displayed per row on smaller screens"
+    },
+    {
+      "variable": "featured_categories",
+      "label": "Featured categories",
+      "type": "select",
+      "options": "0..2",
+      "default": 1,
+      "description": "The number of categories featured on the Home page"
+    },
+    {
+      "variable": "featured_products",
       "label": "Featured products",
       "type": "select",
       "options": "0..100",
@@ -184,6 +205,13 @@
       ],
       "default": "sign",
       "description": "Sets the display of prices in your shop"
+    },
+{
+      "variable": "show_search",
+      "label": "Show search",
+      "type": "boolean",
+      "default": true,
+      "description": "Shows a search field"
     },
     {
       "variable": "show_similar_products",

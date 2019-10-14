@@ -5,14 +5,36 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="{{ theme | theme_css_url }}" media="screen" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap" rel="stylesheet">
     {{ head_content }}
   </head>
   <body id="{{ page.permalink }}" class="{{ page.category }}">
-  <div class="wrapper">
+  {% if theme.announcement_message_text != blank %}
+    <div class="header-message">
+      <div class="announcement-message">
+        <div class="announcement-message-text">{{ theme.announcement_message_text }}</div>
+        <div class="announcement-message-close" title="Close announcement message">
+          <svg width="11" height="11" xmlns="http://www.w3.org/2000/svg"><g fill-rule="evenodd"><path d="M10.11 1.596l-8.484 8.485-.707-.707L9.404.89z"/><path d="M1.626.89l8.485 8.484-.707.707L.919 1.596z"/></g></svg>
+        </div>
+      </div>
+    </div>
+  {% endif %}
 
-    <header class="header">
+  {% if errors != blank %}
+    <div class="header-message">
+      <div class="errors {{ page.permalink }}-errors">
+        <div class="error-list">
+          {% for error in errors %}
+            <div class="error-item">{{ error }}</div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  <div class="wrapper">
+    <div class="mobile-header">
       <button class="open-menu" type="button"><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg></button>
+    </div>
+    <div class="header-store{% if theme.logo != blank %} has-logo{% else %} has-text{% endif %}">
       <a href="/" title="{{ store.name | escape }}" class="header-store-link">
         {% if theme.logo != blank %}
         <img class="header-store-logo" src="{{ theme.logo.url }}" alt="{{ store.name }}">
@@ -20,7 +42,11 @@
         <span class="header-store-name">{{ store.name }}</span>
         {% endif %}
       </a>
-    </header>
+      <div class="gradient"></div>
+      <div class="gradient"></div>
+    </div>
+
+
     <div class="header-cart">
       <a class="header-cart-info" href="/cart" title="View cart">
         <span class="header-cart-count">{{ cart.item_count }}</span>
@@ -29,7 +55,7 @@
     </div>
     {% if page.permalink == 'home' %}
       {% if theme.image_sets.slideshow_images.size > 0 or theme.welcome_header != blank or theme.welcome_subheader != blank %}
-        <section class="slideshow">
+        <section class="slideshow" style="display: none">
           <div class="welcome">
             {% if theme.welcome_subheader %}<p class="subheader">{{ theme.welcome_subheader }}</p>{% endif %}
             {% if theme.welcome_header %}<h2 class="headline">{{ theme.welcome_header }}</h2>{% endif %}
@@ -48,7 +74,6 @@
     {% endif %}
 
     <section class="main">
-
       <aside class="sidebar">
         <div class="side-nav">
           <nav class="side-nav-section category-nav">
@@ -97,6 +122,7 @@
       </div>
 
     </section>
+
     {% if page.full_url contains '/product/' %}
       {% if theme.show_similar_products %}
         {% if product.categories != blank %}
@@ -116,15 +142,14 @@
                   <a class="product-list-item {{ theme.show_overlay }}" href="{{ category_product.url }}" title="View {{ category_product.name | escape }}">
                     <div class="product-list-item-container">
                       <figure class="product-list-image-container">
-                        <img alt="Image of {{ category_product.name | escape }}" class="fade-in product-list-image {% if category_product.image.height > category_product.image.width %}image-tall{% elsif category_product.image.height < category_product.image.width %}image-wide{% else %}image-square{% endif %}" src="{{ category_product.image | product_image_url | constrain: 1000, 1000 }}">
+                        <img alt="Image of {{ category_product.name | escape }}" class="product-list-image" src="{{ category_product.image | product_image_url | constrain: 1000, 1000 }}">
+                        {% if product_status != blank %}<div class="product-list-item-status">{{ product_status }}</div>{% endif %}
                       </figure>
                     </div>
                     <div class="product-list-item-info">
-                      <div class="product-list-item-background"></div>
                       <div class="product-list-item-info-headers">
-                        {% if product_status != blank %}<div class="product-list-item-status">{{ product_status }}</div>{% endif %}
-                        <div class="product-list-item-name">{{ category_product.name }}</div>
-                        <div class="product-list-item-price">{{ category_product.default_price | money: theme.money_format }}</div>
+                        <div class="product-list-item-name">{{ product.name }}</div>
+                        <div class="product-list-item-price">{{ product.default_price | money: theme.money_format }}</div>
                       </div>
                     </div>
                   </a>
@@ -135,6 +160,19 @@
         {% endif %}
       {% endif %}
     {% endif %}
+
+
+    {% if product_divs != blank %}
+      <div class="all-similar-products">{{ product_divs }}</div>
+      <div class="similar-products gradient">
+        <div class="similar-products-header">
+          <div class="similar-products-title">Related products</div>
+        </div>
+        <div class="product-list similar-product-list"></div>
+      </div>
+    {% endif %}
+
+
     <footer class="footer">
       <div class="footer-section footer-store-name">
         {{ store.name }}
@@ -178,7 +216,6 @@
   {% if page.permalink != 'cart' %}
     <div class="mini-cart{% if cart.item_count == 0 %} empty{% endif %}">
       <div class="mini-cart-container cart-container gradient">
-
         <div class="mini-cart-header">Cart</div>
         <button class="cart-close">X</button>
         {% if cart.items != blank %}
@@ -207,7 +244,6 @@
             <div class="cart-subtotal">
               Subtotal <span>{{ cart.total | money: theme.money_format }}</span>
             </div>
-            <a class="button view_bag" href="/cart">View full cart</a>
           </div>
         {% else %}
           <div>
