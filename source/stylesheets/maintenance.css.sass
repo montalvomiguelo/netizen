@@ -1,0 +1,46 @@
+@import 'config'
+
+#maintenance
+  padding: 0
+
+  @media screen and (max-width: $break-small)
+    padding: 0
+
+#maintenance header
+  position: relative
+  top: 100px
+  width: 100%
+
+  @media screen and (max-width: $break-small)
+    background: none
+    border: none
+    height: auto
+    left: auto
+
+  a
+    margin: 0 auto
+
+#maintenance .maintenance-message
+  padding-top: 0
+  width: 100%
+
+  @media screen and (max-width: $break-small)
+    +flex-direction(column)
+    +flexbox
+
+  .message-content
+    border: $border
+    margin: 0 auto
+    max-width: 970px
+    padding: 150px 50px 50px
+    text-align: center
+    width: 100%
+
+    @media screen and (max-width: $break-small)
+      padding: 150px 25px 25px
+
+    h1
+      line-height: 1em
+
+    p
+      font-size: 1.5em
