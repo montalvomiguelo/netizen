@@ -9,6 +9,7 @@
 {% endcase %}
 <div class="product-heading">
 
+
   <div class="product-titles">
     <h1 class="page-title product-title">{{ product.name }}</h1>
     <div class="product-subtitle">
@@ -31,8 +32,9 @@
           <div class="product_option_groups">
             <input id="option" name="cart[add][id]" type="hidden" value="0">
             {% for option_group in product.option_groups %}
-              <div class="select">
-                <select data-unavailable-text="(Unavailable)" data-sold-text="(Sold out)" data-group-id="{{ option_group.id }}" data-group-name="{{ option_group.name | escape }}" class="product_option_group" name="option_group[{{ option_group.id }}]" aria-label="Select {{ option_group.name | escape }}">
+              <div class="select contact-form-group">
+                <label class="contact-form-label product-option-label" for="option_group_{{ option_group.id }}">{{ option_group.name }}</label>
+                <select data-unavailable-text="(Unavailable)" data-sold-text="(Sold out)" id="option_group_{{ option_group.id }}" data-group-id="{{ option_group.id }}" data-group-name="{{ option_group.name | escape }}" class="product_option_group" name="option_group[{{ option_group.id }}]" aria-label="Select {{ option_group.name | escape }}">
                   <option value="0" disabled="disabled" selected>Select {{ option_group.name }}</option>
                   {% for value in option_group.values %}
                     <option value="{{ value.id }}" data-name="{{ value.name | escape }}">{{ value.name }}</option>
@@ -43,7 +45,8 @@
             {% endfor %}
           </div>
         {% else %}
-          <div class="select">
+          <div class="select contact-form-group">
+            <label class="contact-form-label product-option-label" for="option">Option</label>
             <select class="product_option_select" id="option" name="cart[add][id]" aria-label="Select option">
               <option value="0" disabled="disabled" selected>Select option</option>
               {% for option in product.options %}

@@ -1,12 +1,16 @@
 @import 'config'
 
+#home .content
+  padding-top: 0
+
 .slideshow
-  +flex-shrink(0)
   border: $border
-  margin-bottom: 50px
+  margin: 0 auto 50px
   max-height: 850px
+  max-width: 1350px
   overflow: hidden
   position: relative
+  width: 100%
 
   @media screen and (max-width: $break-large)
     max-height: 650px
@@ -29,10 +33,14 @@
     z-index: 2
 
     p.subheader
+      font-size: 22px
+      line-height: 30px
       margin: 0 0 $marginSize/2 0
 
     h2.headline
       color: $background-color
+      font-size: 48px
+      line-height: 60px
       margin: 0 0 $marginSize/2 0
 
     .button
@@ -61,25 +69,32 @@
     object-fit: cover
     width: 100%
 
+h1.featured-title
+  margin-bottom: 25px
+
 .featured
+  +flexbox
+  +flex-direction(row)
   border: $border
-  display: grid
-  grid-column: 2 / span 2
-  grid-template-columns: repeat(2, 1fr)
-  margin: 0 0 $marginSize
+  height: 304px
+  margin: 0 0 $marginSize * 2
   padding: 0
 
   @media screen and (max-width: $break-medium)
     margin-bottom: $marginSize/2
 
   @media screen and (max-width: $break-small)
-    grid-column: 1 / span 2
-    border-top: 0
+    +flex-direction(column)
 
   .featured-details
     display: block
     text-align: center
     padding: 0 $marginSize/2
+    width: 50%
+
+    @media screen and (max-width: $break-small)
+      order: 2
+      width: 100%
 
     .tag
       background-color: $text-color
@@ -98,61 +113,45 @@
 
       .button
         font-size: 16px
+        margin: 0 auto
         width: 255px
         margin-bottom: $marginSize
 
+  .featured-image-container
+    width: 50%
+
+    @media screen and (max-width: $break-small)
+      order: 1
+      width: 100%
+
   .featured-img
-    display: block
+    margin: 0 auto
+    padding: 0
     position: relative
-    padding: 0 $marginSize/2
+    text-align: center
+    top: -26px
+    z-index: 1
 
-    @media screen and (max-width: $break-medium)
-      top: 50px
-
-    ul
+    img
       display: block
-      height: 308px
-      margin: 0 auto
-      position: relative
-      width: 308px
+      height: 100%
+      object-fit: cover
+      width: 100%
 
-      @media screen and (max-width: $break-medium)
-        width: 208px
+  .gradient
+    border: $border
+    content: " "
+    height: 304px
+    position: absolute
+    width: 304px
+    z-index: 1
 
-      li
-        display: block
-        width: 308px
-        height: 308px
-        outline: $border
-        overflow: hidden
-        box-sizing: border-box
+    &:nth-child(2)
+      left: 24px
+      top: 24px
+      z-index: -1
 
-        @media screen and (max-width: $break-medium)
-          width: 208px
-          height: 208px
-
-        &:nth-child(1)
-          position: absolute
-          top: -20px
-          left: -20px
-          z-index: 89
-
-        &:nth-child(2)
-          position: absolute
-          top: 0
-          left: 0
-          z-index: 88
-
-        &:nth-child(3)
-          position: absolute
-          top: 20px
-          left: 20px
-          z-index: 87
-
-        img
-          display: block
-          margin: 0
-          max-height: 308px
-          object-fit: cover
-          padding: 0
-          width: 100%
+    &:last-child
+      left: 48px
+      top: 48px
+      z-index: -2

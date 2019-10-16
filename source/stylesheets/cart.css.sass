@@ -6,12 +6,44 @@
   top: 0
   right: 49px
   min-height: 100vh
-  height: auto
-  z-index: 102
+  max-height: 100vh
+  overflow-x: scroll
+  height: 100%
+  z-index: 202
   width: 450px
+
+  .mini-cart-header, .cart-close
+    display: block
+
+  h1
+    display: none
+
+  .cart-subtotal
+    background: none
+    border: none
+
+  .continue-shopping
+    display: none
+
+  button.checkout-btn
+    margin-bottom: 0
+    margin-top: 25px
+    width: 100%
+
+  .cart-form
+    margin: 0
+
+  @media screen and (max-width: $break-medium)
+    height: 100vh
+    left: 0
+    width: 100%
+    z-index: 200
 
   .cart-container
     height: 100%
+
+    @media screen and (max-width: $break-medium)
+      margin-left: 0
 
   .mini-cart-header
     font-size: 16px
@@ -23,13 +55,17 @@
     background: $accent-color
     border: $border
     display: block
-    height: 51px
-    width: 51px
+    height: 55px
+    width: 55px
     line-height: 51px
     text-align: center
     position: absolute
     top: -2px
     right: -2px
+
+    @media screen and (max-width: $break-medium)
+      right: 25px
+      top: 19px
 
     &:hover, &:focus
       background-color: $text-color
@@ -39,10 +75,13 @@
   .cart-items
     margin-left: -50px
 
+    @media screen and (max-width: $break-medium)
+      margin-left: 0
+
   .cart-item
     +flex-direction(column)
     +flex-wrap(wrap)
-
+    height: 225px
     margin-bottom: 50px
     padding: 25px
     position: relative
@@ -53,6 +92,7 @@
     width: 120px
 
   .cart-item-details
+    padding-top: 0
     width: calc(100% - 120px)
 
   .cart-item-quantity-holder
@@ -68,6 +108,9 @@
     position: absolute
     right: -2px
     width: auto
+
+h1.cart-title
+  margin-bottom: 25px
 
 .cart-container
   border: $border
@@ -143,6 +186,9 @@ button.qty-button
   margin: 0
   padding: 0
 
+  &:hover, &:active, &:focus
+    background: none
+
 .cart-footer
   +flexbox
   +flex-direction(column)
@@ -152,6 +198,9 @@ button.qty-button
   border: $border
   margin-left: auto
   padding: 4px 8px
+
+.mini-cart-header, .cart-close
+  display: none
 
 .cart-buttons
   +flexbox
@@ -166,8 +215,23 @@ button.checkout-btn
   margin-bottom: -70px
   padding: 0 $marginSize/2
 
+.cart-empty-message
+  display: none
+
 .empty-cart
   +flexbox
   +justify-content(center)
   +align-items(center)
+  padding: 50px
   text-align: center
+
+  .cart-empty-message
+    display: block
+
+  .emoji-container
+    margin-bottom: 25px
+
+  .button
+    margin-top: 25px
+
+

@@ -1,6 +1,6 @@
 @import 'config'
 
-#product .page-content
+#product .content
   padding-top: 0
 
   @media screen and (max-width: $break-medium)
@@ -33,13 +33,22 @@
     padding-top: 0
 
   h1
-    margin-bottom: 0
+    margin-bottom: 10px
 
 .product-status
   background: $text-color
   color: $background-color
   font-size: 12px
   padding: 4px 6px
+
+.product-option-label
+  z-index: 100
+  display: none
+
+.focused label.product-option-label
+  display: block
+  left: 15px
+  top: 17px
 
 .product-form
   margin-left: auto
@@ -52,6 +61,15 @@
   .select
     border-bottom: 0
     line-height: 53px
+    margin-bottom: 0
+    position: relative
+
+    select
+      padding-top: 0
+
+    &.focused, &.filled
+      select
+        padding-top: 6px
 
     &:last-child
       border-bottom: $border
@@ -73,6 +91,7 @@ button.reset-selection-button
   padding: 4px
   width: auto
 
+
 .product-description
   margin-top: 50px
   max-width: 600px
@@ -83,7 +102,7 @@ button.reset-selection-button
 
 .product-images
   padding-top: $marginSize
-  z-index: 103
+  z-index: 99
 
   @media screen and (max-width: $break-medium)
     order: 1
@@ -106,6 +125,9 @@ button.reset-selection-button
     margin-right: 25px
     width: 775px
 
+    @media screen and (max-width: $break-medium)
+      width: 100%
+
     img
       display: block
       width: 100%
@@ -116,9 +138,20 @@ button.reset-selection-button
   margin-bottom: 0
   padding: 0 80px 10px * 6
   position: relative
+  z-index: 203
 
   @media screen and (max-width: $break-medium)
     padding-bottom: 10px
+
+.similar-products
+  border: $border
+  border-bottom: 0
+  margin-bottom: 0
+  padding: 0 80px 60px
+  position: relative
+
+  @media screen and (max-width: $break-medium)
+    padding: 25px
 
 .similar-products-header
   position: absolute
@@ -132,6 +165,9 @@ button.reset-selection-button
 .similar-product-list
   +justify-content(flex-start)
   margin: 70px -25px 0
+
+  @media screen and (max-width: $break-medium)
+    margin-top: 25px
 
   .product-list-item
     padding: 25px

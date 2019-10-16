@@ -1,28 +1,26 @@
 {
   "name": "Netizen",
-  "version": "0.0.92",
+  "version": "0.0.998",
   "images": [
     {
       "variable": "logo",
       "label": "Logo",
       "description": "Adds your logo to the header"
-    },
-    {
-      "variable": "background_image",
-      "label": "Background Image",
-      "description": "Adds a repeating background image"
     }
   ],
   "image_sets": [
     {
       "variable": "slideshow_images",
       "label": "Slideshow",
-      "description": "Adds a slideshow to the Home page"
+      "description": "Adds a slideshow to the Home page",
+      "defaults": [
+        "slide-1.jpg"
+      ]
     },
     {
       "variable": "lookbook_images",
       "label": "Lookbook",
-      "description": "This is a lookbook"
+      "description": "Adds a gallery to the specified Lookbook page"
     }
   ],
   "fonts": [
@@ -90,7 +88,7 @@
       "label": "Announcement text",
       "type": "text",
       "description": "Displays an announcement message on the top of every page",
-      "default": "heya this is really cool"
+      "default": "heya this is really sdfsdfcool"
     },
     {
       "variable": "welcome_header",
@@ -133,7 +131,7 @@
           ["Masonry", "masonry"],
           ["Rows", "fitRows"]
       ],
-      "default": "masonry",
+      "default": "fitRows",
       "description": "The arrangement of your products on the Home and Products pages"
     },
     {
@@ -157,7 +155,7 @@
       "label": "Featured categories",
       "type": "select",
       "options": "0..2",
-      "default": 1,
+      "default": 2,
       "description": "The number of categories featured on the Home page"
     },
     {
@@ -263,5 +261,106 @@
       "description": "Ex: http://pinterest.com/bigcartel",
       "default": "http://pinterest.com/bigcartel"
     }
-  ]
+  ],
+  "checkout": {
+    "optimize_legibility": "optimizeLegibility",
+    "antialias_text": "antialiased",
+    "header_image": "{{ logo }}",
+    "background_color": "{{ background_color }}",
+    "gutter_width": "28px",
+    "title_font": "{{ header_font }}",
+    "title_vertical_padding": "60px",
+    "title_background_color": "transparent",
+    "title_position": "center",
+    "title_font_size": "42px",
+    "title_font_weight": "normal",
+    "title_text_transform": "uppercase",
+    "title_color": "{{ text_color }}",
+    "secondary_font": "{{ text_font }}",
+    "secondary_font_size": "15px",
+    "content_border_radius": "0",
+    "content_width": "530px",
+    "content_header_vertical_padding": "28px",
+    "content_background_color": "{{ background_color }}",
+    "content_banded": "true",
+    "content_header_height": "120px",
+    "content_horizontal_padding": "0",
+    "content_header_background_color": "{{ background_color }}",
+    "content_border_color": "transparent",
+    "content_border_width": "0",
+    "content_primary_font_size": "24px",
+    "content_header_color": "{{ text_color }}",
+    "content_color": "{{ text_color }}",
+    "link_font_size": "13px",
+    "link_color": "{{ text_color }}",
+    "link_hover_color": "{{ text_color }}",
+    "error_border_width": "0",
+    "error_font_size": "13px",
+    "error_background_color": "#ea4859",
+    "error_color": "#ffffff",
+    "error_border_radius": "0",
+    "error_border_color": "#ea4859",
+    "custom_inputs": true,
+    "input_focus_color": "#000000",
+    "input_focus_background_color": "#ffffff",
+    "input_border_radius": "0",
+    "input_focus_border_color": "#bfbfbf",
+    "input_error_border_color": "#ea4859",
+    "input_color": "#000000",
+    "input_error_color": "#000000",
+    "input_border_color": "#bfbfbf",
+    "input_font_size": "13px",
+    "input_font": "{{ text_font }}",
+    "input_horizontal_padding": "8px",
+    "input_border_width": "2px",
+    "input_height": "37px",
+    "input_background_color": "#ffffff",
+    "input_error_background_color": "#ffffff",
+    "label_text_transform": "normal",
+    "label_color": "#999999",
+    "label_font_weight": "normal",
+    "label_font_size": "13px",
+    "in_field_labels": false,
+    "button_border_color": "{{ border_color }}",
+    "button_border_radius": "0",
+    "button_hover_border_color": "{{ border_color }}",
+    "button_height": "47px",
+    "button_border_width": "2px",
+    "button_font_size": "14px",
+    "button_font_weight": "normal",
+    "button_text_transform": "uppercase",
+    "button_background_color": "{{ accent_color }}",
+    "button_color": "{{ text_color }}",
+    "button_hover_color": "{{ text_color }}",
+    "button_position": "center",
+    "button_hover_background_color": "{{ accent_color }}",
+    "step_inactive_header_color": "opacify({{ text_color }}, .25)",
+    "step_border_color": "{{ border_color }}",
+    "step_border_width": "1px",
+    "step_header_text_transform": "uppercase",
+    "step_background_color": "{{ background_color }}",
+    "step_inactive_border_color": "opacify({{ border_color }}, .25)",
+    "step_primary_font_weight": "normal",
+    "step_header_color": "{{ text_color }}",
+    "step_header_position": "center",
+    "step_inactive_background_color": "{{ background_color }}",
+    "step_vertical_padding": "30px",
+    "step_primary_font_size": "24px",
+    "step_border_style": "solid",
+    "step_primary_font": "{{ header_font }}",
+    "summary_inactive_item_border_color": "opacify({{ border_color }}, .25)",
+    "summary_font_size": "13px",
+    "summary_submit_background_color": "{{ background_color }}",
+    "summary_inactive_color": "opacify({{ text_color }}, .25)",
+    "summary_submit_border_color": "opacify({{ border_color }}, .25)",
+    "summary_item_border_width": "1px",
+    "summary_item_border_color": "{{ border_color }}",
+    "summary_secondary_color": "{{ text_color }}",
+    "summary_submit_border_width": "1px",
+    "summary_item_list_border_color": "{{ border_color }}",
+    "summary_inactive_secondary_color": "opacify({{ text_color }}, .25)",
+    "summary_item_list_border_width": "2px",
+    "summary_color": "{{ text_color }}",
+    "summary_inactive_item_list_border_color": "opacify({{ border_color }}, .25)"
+  }
 }

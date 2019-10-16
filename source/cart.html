@@ -1,6 +1,8 @@
 <div class="cart-container gradient{% if cart.items != blank %}{% else %} empty-cart{% endif %}">
+  <div class="mini-cart-header">Cart</div>
+  <button class="cart-close">X</button>
   {% if cart.items != blank %}
-    <h1 class="page-title">{{ page.name }}</h1>
+    <h1 class="page-title cart-title">{{ page.name }}</h1>
     <form method="post" action="/cart" id="cart-form" class="cart-form">
       <ul class="cart-items">
         {% for item in cart.items %}
@@ -34,11 +36,26 @@
         </div>
       </div>
     </form>
-  {% else %}
-    <div class="cart-empty-message">
-      <div>ghost emoji</div>
-      <strong>Your cart is empty!</strong> <a class="button" href="/">Start shopping</a>
-    </div>
   {% endif %}
+  <div class="cart-empty-message">
+    <div class="emoji-container">
+      <?xml version="1.0" encoding="UTF-8"?>
+      <svg width="42px" height="40px" viewBox="0 0 42 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-family="AppleColorEmoji, Apple Color Emoji" font-size="42" font-weight="normal">
+              <g transform="translate(-362.000000, -261.000000)" fill="#212624" id="Group-2">
+                  <g transform="translate(238.000000, 255.000000)">
+                      <g id="Group" transform="translate(63.000000, 0.000000)">
+                          <text id="👻">
+                              <tspan x="61" y="42">👻</tspan>
+                          </text>
+                      </g>
+                  </g>
+              </g>
+          </g>
+      </svg>
+    </div>
+    <strong>Your cart is empty!</strong>
+    <a class="button" href="/">Start shopping</a>
+  </div>
 </div>
 
