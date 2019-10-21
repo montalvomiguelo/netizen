@@ -23,13 +23,10 @@
   {% endfor %}
 {% endif %}
 
-
-
-<h1 class="page-title featured-title">Featured products</h1>
 {% if theme.featured_products > 0 %}
   {% get products from products.all limit:theme.featured_products order:theme.featured_order %}
     {% if products != blank %}
-      <div class="product-list {{ theme.product_list_layout }}" data-per-row="{{ theme.max_products_per_row }}" data-per-row-mobile="{{ theme.max_products_per_row }}">
+      <div class="product-list {{ theme.product_list_layout }}" data-per-row="{{ theme.max_products_per_row }}" data-per-row-mobile="{{ theme.max_products_per_row_mobile }}">
         {% for product in products %}
           {% assign product_status = '' %}
           {% case product.status %}

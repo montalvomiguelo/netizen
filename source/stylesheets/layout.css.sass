@@ -4,6 +4,7 @@
   box-sizing: border-box
 
 html, body
+  height: 100%
   margin: 0
   padding: 0
 
@@ -13,7 +14,6 @@ body
   font-family: $text-font
   font-size: 16px
   font-weight: normal
-  height: 100%
   line-height: 1.5em
   position: relative
 
@@ -156,7 +156,7 @@ textarea
   +flexbox
   +align-items(center)
   +justify-content(center)
-  background-color: $alt-background-color
+  background-color: $alt-accent-color
   border: $border
   color: $text-color
   left: 0
@@ -237,7 +237,7 @@ ol.unstyled, ul.unstyled
 .wrap
   +flexbox
   +flex-direction(column)
-  min-height: 100vh
+  min-height: 100%
   max-width: 1500px
   margin: 0 auto
   position: relative
@@ -344,8 +344,6 @@ ol.unstyled, ul.unstyled
 
       .gradient
         display: none
-
-
 
 .side-nav
   width: 100%
@@ -539,6 +537,7 @@ ol.unstyled, ul.unstyled
     top: auto
 
     &.has-text
+      background: none
       position: relative
       width: 60%
 
@@ -549,9 +548,14 @@ ol.unstyled, ul.unstyled
         width: 100%
 
     &.has-logo
+      background: none
       position: relative
-      top: 20px
-      width: 88px
+      top: 21px
+      width: 60px
+
+      .header-store-link, .gradient
+        height: 78px
+        width: 78px
 
   .header-cart-count
     height: 45px
@@ -567,10 +571,11 @@ ol.unstyled, ul.unstyled
   border: none
   color: $text-color
   display: none
-  height: 40px
+  height: 24px
   padding: 0
   position: relative
   margin: 0
+  margin-top: 4px
 
   &:hover, &:active, &:focus
     background: none !important
@@ -578,7 +583,6 @@ ol.unstyled, ul.unstyled
 
   @media screen and (max-width: $break-medium)
     display: block
-
 
 footer
   +flexbox

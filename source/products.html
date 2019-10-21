@@ -2,7 +2,7 @@
 <h1 class="page-title">{{ page.name }}</h1>
 {% paginate products from products.current by theme.products_per_page %}
   {% if products != blank %}
-    <div class="product-list {{ theme.product_list_layout }}" data-per-row="{{ theme.max_products_per_row }}" data-per-row-mobile="{{ theme.max_products_per_row }}">
+    <div class="product-list {{ theme.product_list_layout }}" data-per-row="{{ theme.max_products_per_row }}" data-per-row-mobile="{{ theme.max_products_per_row_mobile }}">
       {% for product in products %}
         {% assign product_status = '' %}
         {% case product.status %}

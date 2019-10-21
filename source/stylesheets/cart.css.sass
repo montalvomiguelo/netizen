@@ -5,13 +5,13 @@
   font-size: 16px
   position: absolute
   top: 0
-  right: 50px
+  right: 23px
   min-height: 100vh
   max-height: 100vh
   overflow-x: scroll
   height: 100%
   z-index: 202
-  width: 450px
+  width: 475px
 
   .empty-cart
     display: block
@@ -28,16 +28,18 @@
     display: none
 
   .cart-footer
-    bottom: 25px
+    bottom: -2px
     font-size: 16px
-    padding-right: 25px
+    left: -2px
+    padding-right: 0
     position: absolute
     text-align: center
-    width: calc(100% - 25px)
+    width: calc(100% + 4px)
 
   .cart-subtotal
-    background: none
-    border: none
+    background: $alt-accent-color
+    border: $border
+    border-bottom: none
     text-align: center
     margin-left: 0
 
@@ -46,7 +48,7 @@
 
   button.checkout-btn
     margin-bottom: 0
-    margin-top: 25px
+    margin-top: 0
     width: 100%
 
   .cart-form
@@ -60,7 +62,7 @@
 
   .cart-container
     height: 100%
-    padding: 25px 0 25px 25px
+    padding: 0 25px
 
     @media screen and (max-width: $break-medium)
       margin-left: 0
@@ -71,7 +73,7 @@
     +justify-content(flex-start)
     +align-items(center)
     font-size: 16px
-    margin-bottom: 25px
+    height: 51px
     position: relative
 
     @media screen and (max-width: $break-medium)
@@ -89,7 +91,7 @@
     text-align: center
     position: absolute
     top: -2px
-    right: -2px
+    right: 25px
 
     svg
       fill: $text-color
@@ -97,11 +99,11 @@
       width: 16px
 
     @media screen and (max-width: $break-medium)
-      height: 41px
-      width: 41px
-      line-height: 37px
+      height: 45px
+      width: 45px
+      line-height: 45px
       right: 25px
-      top: 16px
+      top: 21px
 
     &:hover, &:focus
       background-color: $text-color
@@ -115,11 +117,10 @@
     margin-left: -50px
     max-height: calc(100vh - 240px)
     overflow-x: scroll
-    padding-right: 25px
+    padding-right: 0
 
     @media screen and (max-width: $break-medium)
       margin-left: 0
-      padding-right: 0
       max-height: calc(100vh - 280px)
 
   .cart-item
@@ -146,6 +147,7 @@
     width: calc(100% - 120px)
 
   .cart-item-details-price
+    font-size: 22px
     bottom: -25px
     height: 50px
     padding: 15px

@@ -7,23 +7,23 @@
   +flexbox
   +flex-wrap(wrap)
   +justify-content(flex-start)
-  margin: 0 -25px
+  margin: 0 #{"{% if theme.max_products_per_row == 3 %} -10px {% else %} -25px {% endif %}"}
 
   @media screen and (max-width: $break-small)
     width: auto
 
   .featured
-    width: calc(100% - 50px)
-    margin: 45px 25px
+    width: #{"{% if theme.max_products_per_row == 3 %} calc(100% - 20px) {% else %} calc(100% - 50px) {% endif %}"}
+    margin: 45px #{"{% if theme.max_products_per_row == 3 %} 10px {% else %} 25px {% endif %}"}
 
 .product-list-item
   display: block
   font-size: 0
-  padding: 25px
-  padding-bottom: 25px
+  padding: #{"{% if theme.max_products_per_row == 3 %} 10px {% else %} 25px {% endif %}"}
+  padding-bottom: #{"{% if theme.max_products_per_row == 3 %} 10px {% else %} 25px {% endif %}"}
   position: relative
   vertical-align: middle
-  width: #{"{% if theme.max_products_per_row == 4 %} 25% {% elsif theme.max_products_per_row == 3 %} 33.33% {% elsif theme.max_products_per_row == 2 %} 50% {% else %} 100% {% endif %}"}
+  width: #{"{% if theme.max_products_per_row == 3 %} 33.33% {% elsif theme.max_products_per_row == 2 %} 50% {% else %} 100% {% endif %}"}
 
   @media only screen and (min-width: 768px) and (hover: hover), (-moz-touch-enabled: 0)
     &.rollover
@@ -33,7 +33,6 @@
         margin-bottom: 20px
 
       .product-list-item-info
-        +all-transitions
         +flexbox
         +align-items(center)
         background: $text-color
@@ -123,94 +122,6 @@
   padding: 6px 10px
   position: absolute
   top: 0
-
-.sproduct-list
-  +flexbox
-  +flex-wrap(wrap)
-  +justify-content(flex-start)
-  list-style: none
-  font-size: 20px
-  margin: 0 -25px
-  padding: 0
-
-  .product
-    padding: 25px
-    width: 50%
-
-    .product-link
-      border: $border
-      display: block
-      margin: 0
-      padding: 0
-      position: relative
-      width: 100%
-      overflow: hidden
-
-      &:hover
-        text-decoration: none
-
-      &:hover .product-details.overlay
-        +all-transitions
-        opacity: 1
-
-      &:hover img
-        +all-transitions
-        filter: blur(10px)
-        transform: scale(1.2)
-
-      img
-        +all-transitions
-        display: block
-        margin: 0 auto
-        max-height: 100%
-        object-fit: cover
-        position: relative
-        text-align: center
-        transform: scale(1)
-        width: 100%
-
-      .product-status
-        position: absolute
-        top: 0
-        left: 0
-        background: $text-color
-        color: $background-color
-        font-size: 14px
-        padding: 2px 8px
-
-      .product-details
-        background-color: $alt-background-color
-        border-top: $border
-        color: $text-color
-        display: grid
-        font-size: 22px
-        grid-template-columns: 1fr 40%
-        line-height: 1.5em
-        min-height: 100px
-        padding: $marginSize/2 0
-        position: relative
-        text-transform: capitalize
-        width: 100%
-
-        &.overlay
-          +all-transitions
-          background-color: $text-color
-          color: $alt-background-color
-          position: absolute
-          bottom: 0
-          opacity: 0
-
-        .product-name
-          padding-left: $marginSize/2
-          display: block
-
-        .product-price
-          display: block
-          text-align: right
-          padding-right: $marginSize/2
-
-    a:hover.product-details.overlay
-      opacity: 1
 
 .pagination
   +flexbox

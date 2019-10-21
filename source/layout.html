@@ -41,7 +41,7 @@
         <div class="header-store{% if theme.logo != blank %} has-logo{% else %} has-text{% endif %}">
           <a href="/" title="{{ store.name | escape }}" class="header-store-link">
             {% if theme.logo != blank %}
-            <img class="header-store-logo" src="{{ theme.logo.url }}" alt="{{ store.name }}">
+            <img class="header-store-logo" alt="{{ store.name }}" src="{{ theme.images.logo.url | constrain: 400, 400 }}">
             {% else %}
             <span class="header-store-name">{{ store.name }}</span>
             {% endif %}
@@ -62,7 +62,7 @@
         <div class="desktop-header header-store{% if theme.logo != blank %} has-logo{% else %} has-text{% endif %}">
           <a href="/" title="{{ store.name | escape }}" class="header-store-link">
             {% if theme.logo != blank %}
-            <img class="header-store-logo" src="{{ theme.logo.url }}" alt="{{ store.name }}">
+            <img class="header-store-logo" src="{{ theme.images.logo.url | constrain: 400, 400 }}" alt="{{ store.name }}">
             {% else %}
             <span class="header-store-name">{{ store.name }}</span>
             {% endif %}
