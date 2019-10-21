@@ -2,9 +2,10 @@
 
 .mini-cart
   display: none
+  font-size: 16px
   position: absolute
   top: 0
-  right: 49px
+  right: 50px
   min-height: 100vh
   max-height: 100vh
   overflow-x: scroll
@@ -12,15 +13,33 @@
   z-index: 202
   width: 450px
 
+  .empty-cart
+    display: block
+    padding: 50px
+    text-align: center
+
+    .cart-empty-message
+      margin-right: 25px
+
   .mini-cart-header, .cart-close
     display: block
 
   h1
     display: none
 
+  .cart-footer
+    bottom: 25px
+    font-size: 16px
+    padding-right: 25px
+    position: absolute
+    text-align: center
+    width: calc(100% - 25px)
+
   .cart-subtotal
     background: none
     border: none
+    text-align: center
+    margin-left: 0
 
   .continue-shopping
     display: none
@@ -41,14 +60,23 @@
 
   .cart-container
     height: 100%
+    padding: 25px 0 25px 25px
 
     @media screen and (max-width: $break-medium)
       margin-left: 0
+      padding: 0 25px
 
   .mini-cart-header
+    +flexbox
+    +justify-content(flex-start)
+    +align-items(center)
     font-size: 16px
     margin-bottom: 25px
     position: relative
+
+    @media screen and (max-width: $break-medium)
+      height: 90px
+      padding: 0
 
   .cart-close
     +all-transitions
@@ -63,20 +91,36 @@
     top: -2px
     right: -2px
 
+    svg
+      fill: $text-color
+      height: 16px
+      width: 16px
+
     @media screen and (max-width: $break-medium)
+      height: 41px
+      width: 41px
+      line-height: 37px
       right: 25px
-      top: 19px
+      top: 16px
 
     &:hover, &:focus
       background-color: $text-color
       color: $alt-background-color
       text-decoration: none
 
+      svg
+        fill: $alt-background-color
+
   .cart-items
     margin-left: -50px
+    max-height: calc(100vh - 240px)
+    overflow-x: scroll
+    padding-right: 25px
 
     @media screen and (max-width: $break-medium)
       margin-left: 0
+      padding-right: 0
+      max-height: calc(100vh - 280px)
 
   .cart-item
     +flex-direction(column)
@@ -166,7 +210,7 @@ h1.cart-title
     height: 42px
     margin: 0 12px
     text-align: center
-    width: 42px
+    width: 52px
 
 .cart-item-details-price
   +flexbox

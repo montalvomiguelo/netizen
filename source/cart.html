@@ -1,4 +1,4 @@
-<div class="cart-container gradient{% if cart.items != blank %}{% else %} empty-cart{% endif %}">
+<div class="cart-container gradient{% if cart.item_count == 0 %} empty-cart{% endif %}">
   <div class="mini-cart-header">Cart</div>
   <button class="cart-close">X</button>
   {% if cart.items != blank %}
@@ -28,7 +28,7 @@
       <div class="cart-footer">
         <div class="cart-subtotal">
           <span class="cart-subtotal-label">Subtotal:</span>
-          <span class="cart-subtotal-amount"><span class="cart-subtotal-amount-value">{{ cart.total | money: theme.money_format }}</span> + tax + shipping</span>
+          <span class="cart-subtotal-amount"><span class="cart-subtotal-amount-value">{{ cart.total | money: theme.money_format }}</span></span>
         </div>
         <div class="cart-buttons">
           <a class="continue-shopping" href="/products">Continue Shopping</a>
