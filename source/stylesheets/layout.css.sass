@@ -61,6 +61,7 @@ textarea
 
 .select
   +all-transitions
+  background-color: $alt-background-color
   border: $border
   color: $text-color
   font-family: $text-font
@@ -73,6 +74,7 @@ textarea
   select
     +all-transitions
     +appearance(none)
+    background-color: $alt-background-color
     border: 0
     border-radius: 0
     color: $text-color
@@ -296,7 +298,7 @@ ol.unstyled, ul.unstyled
     +flexbox
     +justify-content(center)
     +align-items(center)
-    background: $background-color
+    background: $alt-background-color
     border: $border
     height: 196px
     padding: 20px
@@ -541,6 +543,7 @@ ol.unstyled, ul.unstyled
       width: 60%
 
       .header-store-link
+        background: none
         height: 100%
         padding: 0
         width: 100%
