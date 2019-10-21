@@ -1,11 +1,11 @@
 @import 'config'
 
 #product .content
-  padding-top: 0
 
   @media screen and (max-width: $break-medium)
     +flexbox
     +flex-direction(column)
+    padding-top: 0
 
 .product-heading
   +flexbox
@@ -16,7 +16,7 @@
   z-index: 100
 
   @media screen and (max-width: $break-medium)
-    margin-top: 25px
+    margin-top: 50px
     position: relative
     order: 2
     top: auto
@@ -26,19 +26,21 @@
 
 .product-titles
   +align-self(flex-start)
-  padding: 25px 0
 
   @media screen and (max-width: $break-medium)
     padding-right: 25px
-    padding-top: 0
+    padding-bottom: 50px
 
   h1
     margin-bottom: 10px
 
+.product-subtitle
+  font-size: 28px
+  line-height: 36px
+
 .product-status
   background: $text-color
   color: $background-color
-  font-size: 12px
   padding: 4px 6px
 
 .product-option-label
@@ -93,7 +95,7 @@ button.reset-selection-button
 
 
 .product-description
-  margin-top: 50px
+  margin: 50px 0
   max-width: 600px
   width: 100%
 
@@ -102,10 +104,12 @@ button.reset-selection-button
 
 .product-images
   padding-top: $marginSize
+  width: 100%
   z-index: 99
 
   @media screen and (max-width: $break-medium)
     order: 1
+    padding-top: 25px
 
   img
     border: $border
@@ -113,13 +117,12 @@ button.reset-selection-button
     height: auto
     max-height: 100%
     max-width: 775px
+    width: 100%
 
     @media screen and (max-width: $break-medium)
       height: auto
-      width: 100%
 
-.main-carousel
-
+#product .main-carousel
 
   .carousel-cell
     margin-right: 25px
@@ -132,13 +135,20 @@ button.reset-selection-button
       display: block
       width: 100%
 
+  .flickity-page-dots
+    bottom: -10px
+    width: 775px
+
+    @media screen and (max-width: $break-medium)
+      width: 100%
+
 .similar-products
   border: $border
   border-bottom: 0
   margin-bottom: 0
   padding: 0 80px 10px * 6
   position: relative
-  z-index: 203
+  z-index: 199
 
   @media screen and (max-width: $break-medium)
     padding-bottom: 10px
@@ -175,7 +185,7 @@ button.reset-selection-button
 
     @media only screen and (min-width: 768px) and (hover: hover), (-moz-touch-enabled: 0)
       &.rollover .product-list-item-info
-        width: calc(100% - 50px)
+        width: 100%
 
     @media screen and (max-width: $break-medium)
       width: 100%
