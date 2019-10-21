@@ -7,14 +7,14 @@
     <link href="{{ theme | theme_css_url }}" media="screen" rel="stylesheet" type="text/css">
     {{ head_content }}
   </head>
-  <body id="{{ page.permalink }}" class="{{ page.category }}">
+  <body id="{{ page.permalink }}" class="{{ page.category }} {% if page.permalink == 'home' and theme.image_sets.slideshow_images.size > 0 or theme.welcome_header != blank or theme.welcome_subheader != blank %}has-slideshow{% endif %}">
     {% if theme.announcement_message_text != blank %}
       <div class="header-message">
         <div class="announcement-message">
           <div class="announcement-message-text">{{ theme.announcement_message_text }}</div>
-          <div class="announcement-message-close" title="Close announcement message">
-            <svg width="11" height="11" xmlns="http://www.w3.org/2000/svg"><g fill-rule="evenodd"><path d="M10.11 1.596l-8.484 8.485-.707-.707L9.404.89z"/><path d="M1.626.89l8.485 8.484-.707.707L.919 1.596z"/></g></svg>
-          </div>
+          <button class="announcement-message-close" title="Close announcement message">
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
+          </button>
         </div>
       </div>
     {% endif %}
@@ -57,21 +57,97 @@
         <button class="button header-cart-count open-mini-cart">{{ cart.item_count }}</button>
 
       </div>
+
+      <div class="desktop-header-store-name">
+        <div class="desktop-header header-store{% if theme.logo != blank %} has-logo{% else %} has-text{% endif %}">
+          <a href="/" title="{{ store.name | escape }}" class="header-store-link">
+            {% if theme.logo != blank %}
+            <img class="header-store-logo" src="{{ theme.logo.url }}" alt="{{ store.name }}">
+            {% else %}
+            <span class="header-store-name">{{ store.name }}</span>
+            {% endif %}
+          </a>
+          <div class="gradient"></div>
+          <div class="gradient"></div>
+        </div>
+      </div>
+
       <div class="desktop-cart header-cart">
         <a class="header-cart-info open-mini-cart" href="/cart" title="View cart">
           <span class="header-cart-count">{{ cart.item_count }}</span>
           <span class="header-cart-total">{{ cart.total | money: theme.money_format }}</span>
         </a>
+        {% if page.permalink != 'cart' %}
+          <div class="mini-cart">
+            <div class="mini-cart-container cart-container gradient{% if cart.item_count == 0 %} empty-cart{% endif %}">
+              <div class="mini-cart-header">Cart</div>
+              <button class="cart-close"><svg aria-hidden="true" focusable="false" =role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg></button>
+              {% if cart.items != blank %}
+                <ul class="cart-items">
+                  {% for item in cart.items %}
+                    <li class="cart-item" data-item-id="{{ item.id }}">
+                      <div class="cart-item-image-holder">
+                        <a class="cart-item-image" href="{{ item.product.url }}" title="View {{ item.product.name | escape }}" style="background-image:url('{{ item.product.image | product_image_url | constrain: 576, 576 }}');"></a>
+                      </div>
+                      <div class="cart-item-details">
+                        <div class="cart-item-details-name">{{ item.product.name }}</div>
+                        {% unless item.product.has_default_option %}
+                          <div class="cart-item-details-option">{{ item.option.name }}</div>
+                        {% endunless %}
+                      </div>
+                      <div class="cart-item-quantity-holder" data-item-id="{{ item.id }}">
+                        <button class="decrease-qty-button qty-button" data-func="minus" type="button"><svg width="30" height="30" xmlns="http://www.w3.org/2000/svg"><path d="M7.984 16.089a.728.728 0 0 1-.726-.726v-.726c0-.4.327-.726.726-.726h14.032c.4 0 .726.327.726.726v.726c0 .4-.327.726-.726.726H7.984zM30 15c0 8.286-6.714 15-15 15S0 23.286 0 15 6.714 0 15 0s15 6.714 15 15zm-1.935 0c0-7.252-5.886-13.065-13.065-13.065C7.748 1.935 1.935 7.821 1.935 15c0 7.252 5.886 13.065 13.065 13.065 7.252 0 13.065-5.886 13.065-13.065z"/></svg></button>
+                        {{ item | item_quantity_input, 'option-quantity', 'option-quantity' }}
+                        <button class="increase-qty-button qty-button" data-func="plus" type="button"><svg width="30" height="30" xmlns="http://www.w3.org/2000/svg"><path d="M22.742 14.637v.726c0 .4-.327.726-.726.726H16.09v5.927c0 .4-.327.726-.726.726h-.726a.728.728 0 0 1-.726-.726V16.09H7.984a.728.728 0 0 1-.726-.726v-.726c0-.4.327-.726.726-.726h5.927V7.984c0-.4.327-.726.726-.726h.726c.4 0 .726.327.726.726v5.927h5.927c.4 0 .726.327.726.726zM30 15c0 8.286-6.714 15-15 15S0 23.286 0 15 6.714 0 15 0s15 6.714 15 15zm-1.935 0c0-7.252-5.886-13.065-13.065-13.065C7.748 1.935 1.935 7.821 1.935 15c0 7.252 5.886 13.065 13.065 13.065 7.252 0 13.065-5.886 13.065-13.065z"/></svg></button>
+                      </div>
+                      <div class="cart-item-details-price subheader">{{ item.unit_price | money: theme.money_format }}</div>
+                    </li>
+                  {% endfor %}
+                </ul>
+                <div class="cart-footer">
+                  <div class="cart-subtotal">
+                    <span class="cart-subtotal-label">Subtotal:</span>
+                    <span class="cart-subtotal-amount"><span class="cart-subtotal-amount-value">{{ cart.total | money: theme.money_format }}</span></span>
+                  </div>
+                  <div class="cart-buttons">
+                    <a class="continue-shopping" href="/products">Continue Shopping</a>
+                    <button type="submit" name="checkout" title="Checkout" class="button checkout-btn">Checkout</button>
+                  </div>
+                </div>
+              {% endif %}
+              <div class="cart-empty-message">
+                <div class="emoji-container">
+                  <?xml version="1.0" encoding="UTF-8"?>
+                  <svg width="42px" height="40px" viewBox="0 0 42 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-family="AppleColorEmoji, Apple Color Emoji" font-size="42" font-weight="normal">
+                          <g transform="translate(-362.000000, -261.000000)" fill="#212624" id="Group-2">
+                              <g transform="translate(238.000000, 255.000000)">
+                                  <g id="Group" transform="translate(63.000000, 0.000000)">
+                                      <text id="👻">
+                                          <tspan x="61" y="42">👻</tspan>
+                                      </text>
+                                  </g>
+                              </g>
+                          </g>
+                      </g>
+                  </svg>
+                </div>
+                <strong>Your cart is empty!</strong>
+                <a class="button" href="/">Start shopping</a>
+              </div>
+            </div>
+          </div>
+        {% endif %}
       </div>
       {% if page.permalink == 'home' %}
         {% if theme.image_sets.slideshow_images.size > 0 or theme.welcome_header != blank or theme.welcome_subheader != blank %}
-          <section class="slideshow">
+          <section class="home-slideshow slideshow">
             <div class="welcome">
-              {% if theme.welcome_subheader %}<p class="subheader">{{ theme.welcome_subheader }}</p>{% endif %}
-              {% if theme.welcome_header %}<h2 class="headline">{{ theme.welcome_header }}</h2>{% endif %}
-              {% if theme.welcome_button_text %}<a href="/products" class="button">{{ theme.welcome_button_text }}</a>{% endif %}
+              {% if theme.welcome_subheader != blank  %}<p class="subheader">{{ theme.welcome_subheader }}</p>{% endif %}
+              {% if theme.welcome_header != blank  %}<h2 class="headline">{{ theme.welcome_header }}</h2>{% endif %}
+              {% if theme.welcome_button_text != blank %}<a href="/products" class="button">{{ theme.welcome_button_text }}</a>{% endif %}
             </div>
-            <div class="pattern diagonal-lines"></div>
+            <div class="pattern {{ theme.slideshow_overlay }}"></div>
             {% if theme.image_sets.slideshow_images.size > 0 %}
               <div class="slideshow-images">
                 {% for image in theme.image_sets.slideshow_images %}
@@ -84,18 +160,6 @@
       {% endif %}
       <main class="main">
         <div class="sidebar">
-          <div class="header-store{% if theme.logo != blank %} has-logo{% else %} has-text{% endif %}">
-            <a href="/" title="{{ store.name | escape }}" class="header-store-link">
-              {% if theme.logo != blank %}
-              <img class="header-store-logo" src="{{ theme.logo.url }}" alt="{{ store.name }}">
-              {% else %}
-              <span class="header-store-name">{{ store.name }}</span>
-              {% endif %}
-            </a>
-            <div class="gradient"></div>
-            <div class="gradient"></div>
-          </div>
-
           <div class="side-nav">
             <nav class="side-nav-section category-nav">
               <button class="category-nav-title">Products <svg aria-hidden="true" focusable="false" class="down-arrow" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M441.9 250.1l-19.8-19.8c-4.7-4.7-12.3-4.7-17 0L250 385.4V44c0-6.6-5.4-12-12-12h-28c-6.6 0-12 5.4-12 12v341.4L42.9 230.3c-4.7-4.7-12.3-4.7-17 0L6.1 250.1c-4.7 4.7-4.7 12.3 0 17l209.4 209.4c4.7 4.7 12.3 4.7 17 0l209.4-209.4c4.7-4.7 4.7-12.3 0-17z"></path></svg></button>
@@ -178,11 +242,11 @@
                           <img alt="Image of {{ category_product.name | escape }}" class="product-list-image" src="{{ category_product.image | product_image_url | constrain: 1000, 1000 }}">
                           {% if product_status != blank %}<div class="product-list-item-status">{{ product_status }}</div>{% endif %}
                         </figure>
-                      </div>
-                      <div class="product-list-item-info">
-                        <div class="product-list-item-info-headers">
-                          <div class="product-list-item-name">{{ category_product.name }}</div>
-                          <div class="product-list-item-price">{{ category_product.default_price | money: theme.money_format }}</div>
+                        <div class="product-list-item-info">
+                          <div class="product-list-item-info-headers">
+                            <div class="product-list-item-name">{{ category_product.name }}</div>
+                            <div class="product-list-item-price">{{ category_product.default_price | money: theme.money_format }}</div>
+                          </div>
                         </div>
                       </div>
                     </a>
@@ -205,60 +269,15 @@
         </div>
       {% endif %}
 
-
-    {% if page.permalink != 'cart' %}
-      <div class="mini-cart{% if cart.item_count == 0 %} empty{% endif %}">
-        <div class="mini-cart-container cart-container gradient">
-          <div class="mini-cart-header">Cart</div>
-          <button class="cart-close">X</button>
-          {% if cart.items != blank %}
-            <ul class="cart-items">
-              {% for item in cart.items %}
-                <li class="cart-item" data-item-id="{{ item.id }}">
-                  <div class="cart-item-image-holder">
-                    <a class="cart-item-image" href="{{ item.product.url }}" title="View {{ item.product.name | escape }}" style="background-image:url('{{ item.product.image | product_image_url | constrain: 576, 576 }}');"></a>
-                  </div>
-                  <div class="cart-item-details">
-                    <div class="cart-item-details-name">{{ item.product.name }}</div>
-                    {% unless item.product.has_default_option %}
-                      <div class="cart-item-details-option">{{ item.option.name }}</div>
-                    {% endunless %}
-                  </div>
-                  <div class="cart-item-quantity-holder" data-item-id="{{ item.id }}">
-                    <button class="decrease-qty-button qty-button" data-func="minus" type="button"><svg width="30" height="30" xmlns="http://www.w3.org/2000/svg"><path d="M7.984 16.089a.728.728 0 0 1-.726-.726v-.726c0-.4.327-.726.726-.726h14.032c.4 0 .726.327.726.726v.726c0 .4-.327.726-.726.726H7.984zM30 15c0 8.286-6.714 15-15 15S0 23.286 0 15 6.714 0 15 0s15 6.714 15 15zm-1.935 0c0-7.252-5.886-13.065-13.065-13.065C7.748 1.935 1.935 7.821 1.935 15c0 7.252 5.886 13.065 13.065 13.065 7.252 0 13.065-5.886 13.065-13.065z"/></svg></button>
-                    {{ item | item_quantity_input, 'option-quantity', 'option-quantity' }}
-                    <button class="increase-qty-button qty-button" data-func="plus" type="button"><svg width="30" height="30" xmlns="http://www.w3.org/2000/svg"><path d="M22.742 14.637v.726c0 .4-.327.726-.726.726H16.09v5.927c0 .4-.327.726-.726.726h-.726a.728.728 0 0 1-.726-.726V16.09H7.984a.728.728 0 0 1-.726-.726v-.726c0-.4.327-.726.726-.726h5.927V7.984c0-.4.327-.726.726-.726h.726c.4 0 .726.327.726.726v5.927h5.927c.4 0 .726.327.726.726zM30 15c0 8.286-6.714 15-15 15S0 23.286 0 15 6.714 0 15 0s15 6.714 15 15zm-1.935 0c0-7.252-5.886-13.065-13.065-13.065C7.748 1.935 1.935 7.821 1.935 15c0 7.252 5.886 13.065 13.065 13.065 7.252 0 13.065-5.886 13.065-13.065z"/></svg></button>
-                  </div>
-                  <div class="cart-item-details-price subheader">{{ item.unit_price | money: theme.money_format }}</div>
-                </li>
-              {% endfor %}
-            </ul>
-            <div class="cart-footer">
-              <div class="cart-subtotal">
-                <span class="cart-subtotal-label">Subtotal:</span>
-                <span class="cart-subtotal-amount"><span class="cart-subtotal-amount-value">{{ cart.total | money: theme.money_format }}</span> + tax + shipping</span>
-              </div>
-              <div class="cart-buttons">
-                <a class="continue-shopping" href="/products">Continue Shopping</a>
-                <button type="submit" name="checkout" title="Checkout" class="button checkout-btn">Checkout</button>
-              </div>
-            </div>
-          {% else %}
-            <div>
-              Your cart is empty
-            </div>
-            <a class="button view_bag" href="/products">Start shopping</a>
-          {% endif %}
-        </div>
-      </div>
-    {% endif %}
-
     <footer>
       <div class="footer-section footer-store-name">
         {{ store.name }}
       </div>
       <div class="footer-section footer-nav">
         <ul class="unstyled footer-links">
+          <li><a href="/" title="Home">Home</a></li>
+          <li><a href="/products" title="Products">Products</a></li>
+          <li><a href="/cart" title="Home">Cart</a></li>
           {% for page in pages.all %}
             <li>{{ page | link_to }}</li>
           {% endfor %}

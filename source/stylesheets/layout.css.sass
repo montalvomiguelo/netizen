@@ -17,6 +17,9 @@ body
   line-height: 1.5em
   position: relative
 
+  &.no-scroll
+    overflow: hidden
+
 a
   text-decoration: none
   color: $text-color
@@ -78,11 +81,14 @@ textarea
     height: 100%
     letter-spacing: 1px
     line-height: 57px
-    padding: 0 66px 0 16px
+    padding: 0 66px 0 15px
     position: relative
     text-transform: uppercase
     width: 100%
     z-index: 2
+
+    &::-moz-focus-inner
+      padding-left: 0
 
     option
       background-color: #FFF
@@ -152,7 +158,7 @@ textarea
   border: $border
   color: $text-color
   left: 0
-  padding: 15px 20px
+  padding: 15px
   position: relative
   top: 0
   width: 100%
@@ -167,15 +173,20 @@ textarea
 
   .announcement-message-close
     +transform(translateY(-50%))
+    background: none
+    border: none
     cursor: pointer
+    height: auto
+    line-height: 1em
+    padding: 4px
     position: absolute
     right: 20px
     top: 50%
 
     svg
       fill: $text-color
-      height: 11px
-      width: 11px
+      height: 18px
+      width: 18px
 
 button, .button
   +all-transitions
@@ -238,11 +249,12 @@ ol.unstyled, ul.unstyled
 
 .sidebar
   +flex(0 0 277px)
-  background: $background-color
   padding-left: $marginSize
+  padding-top: 250px
 
   @media screen and (max-width: $break-medium)
     +all-transitions
+    background: $background-color
     height: 100vh
     left: -100vw
     opacity: 0
@@ -252,23 +264,33 @@ ol.unstyled, ul.unstyled
     width: 100%
     z-index: 100
 
-    .header-store
-      display: none
-
     &.opened
       left: 0
       opacity: 1
+      padding-top: 25px !important
+      position: fixed
+      height: calc(100vh - 90px)
+      overflow-y: scroll
+      z-index: 201
+
+.has-slideshow .sidebar
+  padding-top: 0
 
 .header-store
   background: $alt-background-color
   color: $text-color
-  height: 193px
-  margin-left: 24px
-  margin-top: 24px
-  position: relative
+  left: 74px
+  position: absolute
   text-decoration: none
-  width: 193px
-  z-index: 10
+  top: 24px
+  z-index: 199
+
+  &.desktop-header
+    font-size: 22px
+    line-height: 30px
+
+    @media screen and (max-width: $break-medium)
+      display: none
 
   .header-store-link
     +flexbox
@@ -276,19 +298,19 @@ ol.unstyled, ul.unstyled
     +align-items(center)
     background: $background-color
     border: $border
-    height: 100%
+    height: 193px
     padding: 20px
-    position: relative
+    position: absolute
     text-align: center
     z-index: 1
-    width: 100%
+    width: 193px
 
   .gradient
     border: $border
     content: " "
-    height: 100%
+    height: 193px
     position: absolute
-    width: 100%
+    width: 193px
     top: -12px
     left: -12px
     z-index: -1
@@ -324,7 +346,6 @@ ol.unstyled, ul.unstyled
 
 
 .side-nav
-  margin-top: 75px
   width: 100%
 
   @media screen and (max-width: $break-medium)
@@ -344,7 +365,7 @@ ol.unstyled, ul.unstyled
   cursor: pointer
   line-height: normal
   text-align: left
-  padding: 12px
+  padding: 0 15px
   position: relative
   width: 100%
 
@@ -353,7 +374,7 @@ ol.unstyled, ul.unstyled
     fill: $text-color
     height: 16px
     position: absolute
-    right: 12px
+    right: 15px
     top: 50%
     width: 16px
 
@@ -386,11 +407,19 @@ ol.unstyled, ul.unstyled
   .search-button
     background: none
     border: none
-    left: 0
+    left: 9px
     opacity: .5
     position: absolute
     top: 0
-    width: 50px
+    width: 40px
+
+    &:hover, &:active, &:focus
+      background: none
+      color: $text-color
+      opacity: 1
+
+      svg
+        fill: $text-color
 
     svg
       fill: $text-color
@@ -403,7 +432,7 @@ ol.unstyled, ul.unstyled
     +appearance(none)
     border: $border
     background: $alt-background-color
-    padding-left: 45px
+    padding-left: 50px
 
     &:hover, &:focus
       background: $alt-accent-color
@@ -420,24 +449,25 @@ ol.unstyled, ul.unstyled
 .header-cart
   color: $text-color
   font-size: 22px
-  position: absolute
-  right: 50px
   top: 0
   text-decoration: none
   z-index: 101
-
-  @media screen and (max-width: $break-medium)
-    display: none
 
   .header-cart-info
     color: $text-color
     display: block
     height: 150px
+    position: absolute
+    margin-left: auto
+    right: 50px
     text-decoration: none
     width: 55px
+    z-index: 200
 
     @media screen and (max-width: $break-medium)
+      display: none
       top: 0
+
 
   .header-cart-count
     +all-transitions
@@ -493,7 +523,7 @@ ol.unstyled, ul.unstyled
   border: $border
   display: none
   height: 90px
-  padding: 25px
+  padding: 0 25px
   position: absolute
   top: 0
   left: 0
@@ -502,36 +532,42 @@ ol.unstyled, ul.unstyled
 
   .header-store
     +transform(none)
+    height: 84px
     left: auto
     top: auto
 
     &.has-text
-      height: auto
+      position: relative
       width: 60%
 
+      .header-store-link
+        height: 100%
+        padding: 0
+        width: 100%
+
     &.has-logo
-      height: 88px
+      position: relative
       top: 20px
       width: 88px
 
-
-
   .header-cart-count
-    width: 50px
+    height: 45px
+    line-height: 41px
+    width: 45px
 
   @media screen and (max-width: $break-medium)
     +flexbox
+    position: fixed
 
 .open-menu
   background: $background-color
   border: none
   color: $text-color
   display: none
-  height: 28px
+  height: 40px
   padding: 0
   position: relative
   margin: 0
-  width: 28px
 
   &:hover, &:active, &:focus
     background: none !important
@@ -546,7 +582,7 @@ footer
   +flex-direction(row)
   +justify-content(space-between)
   border: $border
-  z-index: 203
+  z-index: 199
 
   @media screen and (max-width: $break-medium)
     +flex-direction(column)
@@ -558,17 +594,22 @@ footer
     background-color: $alt-accent-color
     border-right: $border
     padding: 50px
-    width: 33.333%
 
     &.footer-store-name
       font-size: 22px
       text-align: center
+      width: 30%
+
+    &.footer-nav
+      width: 45%
 
     &.footer-social
       +flex-direction(column)
       background-color: $text-color
       color: $background-color
       border: none
+      text-align: center
+      width: 25%
 
       ul
         +flexbox
@@ -600,13 +641,18 @@ footer
     @media screen and (max-width: $break-medium)
       border-bottom: $border
       border-right: none
-      width: 100%
+      width: 100% !important
 
   .footer-links
     column-count: 3
     -webkit-column-count: 3
     -moz-column-count: 3
     font-size: 14px
+
+    @media screen and (max-width: $break-small)
+      column-count: 2
+      -webkit-column-count: 2
+      -moz-column-count: 2
 
     li
       display: inline-block
@@ -631,11 +677,6 @@ footer
   width: 100%
 
 .flickity-page-dots
-  bottom: -10px
-  width: 775px
-
-  @media screen and (max-width: $break-medium)
-    width: 100%
 
   .dot
     background: $background-color
