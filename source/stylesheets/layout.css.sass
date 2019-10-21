@@ -236,7 +236,7 @@ ol.unstyled, ul.unstyled
   +flexbox
   +flex-direction(column)
   min-height: 100vh
-  max-width: 1450px
+  max-width: 1500px
   margin: 0 auto
   position: relative
 
@@ -298,19 +298,19 @@ ol.unstyled, ul.unstyled
     +align-items(center)
     background: $background-color
     border: $border
-    height: 193px
+    height: 196px
     padding: 20px
     position: absolute
     text-align: center
     z-index: 1
-    width: 193px
+    width: 196px
 
   .gradient
     border: $border
     content: " "
-    height: 193px
+    height: 196px
     position: absolute
-    width: 193px
+    width: 196px
     top: -12px
     left: -12px
     z-index: -1
@@ -582,7 +582,10 @@ footer
   +flex-direction(row)
   +justify-content(space-between)
   border: $border
+  max-width: 1400px
+  margin: 0 auto
   z-index: 199
+  width: 100%
 
   @media screen and (max-width: $break-medium)
     +flex-direction(column)
@@ -596,6 +599,7 @@ footer
     padding: 50px
 
     &.footer-store-name
+      +flex(1)
       font-size: 22px
       text-align: center
       width: 30%

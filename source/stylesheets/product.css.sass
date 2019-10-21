@@ -35,13 +35,15 @@
     margin-bottom: 10px
 
 .product-subtitle
-  font-size: 28px
+  font-size: 22px
   line-height: 36px
 
 .product-status
   background: $text-color
   color: $background-color
-  padding: 4px 6px
+  font-size: 10px
+  padding: 6px 10px
+  vertical-align: middle
 
 .product-option-label
   z-index: 100
@@ -54,10 +56,12 @@
 
 .product-form
   margin-left: auto
-  max-width: 290px
+  margin-top: -80px
+  max-width: 296px
   width: 100%
 
   @media screen and (max-width: $break-small)
+    margin-top: 0
     max-width: 100%
 
   .select
@@ -103,13 +107,13 @@ button.reset-selection-button
     order: 3
 
 .product-images
-  padding-top: $marginSize
+  padding-top: 80px
   width: 100%
   z-index: 99
 
   @media screen and (max-width: $break-medium)
     order: 1
-    padding-top: 25px
+    padding-top: 10px
 
   img
     border: $border
@@ -149,6 +153,9 @@ button.reset-selection-button
   padding: 0 80px 10px * 6
   position: relative
   z-index: 199
+  max-width: 1400px
+  margin: 0 auto
+  with: 100%
 
   @media screen and (max-width: $break-medium)
     padding-bottom: 10px

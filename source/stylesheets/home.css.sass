@@ -5,12 +5,19 @@
 
 .slideshow
   border: $border
+  height: 100%
   margin: 0 auto 50px
   max-width: 1350px
   min-height: 850px
+  max-height: 850px
   overflow: hidden
   position: relative
   width: 100%
+
+  img
+    height: 850px
+    object-fit: cover
+    width: 100%
 
   @media screen and (max-width: $break-medium)
     margin-bottom: $marginSize/2
