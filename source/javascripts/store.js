@@ -276,13 +276,7 @@ $('.open-menu').click(function() {
   $('body').toggleClass('no-scroll');
 })
 
-$(function() {
-  if ($('.featured:nth-child(2)').length) {
-    if ($('.product-list-item').length > 3) {
-      $('.featured:nth-child(2)').insertAfter('.product-list-item:nth-child(4)');
-    }
-  }
-});
+
 
 
 var processUpdate = function(input, item_id, new_val, cart) {
@@ -316,15 +310,70 @@ var processUpdate = function(input, item_id, new_val, cart) {
   return false;
 }
 
+$(function() {
+  grid = document.querySelector('.masonry');
 
-grid = document.querySelector('.masonry');
+  var $grid = $('.masonry').masonry({
+    transitionDuration: '0.4s',
+    percentPosition: true
+  });
 
-var $grid = $('.masonry').masonry({
-  transitionDuration: '0.4s'
+  /*
+  For desktop layouts:
+  - First banner lives right below the top splash img and above the product grid
+  - second banner lives:
+  -if 3-col layout: below the third row (if applicable)
+  - if 2-col layout: below the second row (if applicable)
+  - if 1 col layout: below the first image / row
+
+  For mobile layouts:
+  -if 1 col: banner lives below first 2 imgs (2 rows)
+  -if 2 col: banner lives below first 4 imgs (2 rows)
+
+  if there is only one or two rows (for the 2 & 3 col layouts), the banner can go below those.
+  */
+  //var $stamp = $grid.find('.featured');
+  //$grid.masonry( 'stamp', $stamp );
+  $grid.imagesLoaded().progress( function() {
+    $grid.masonry('layout');
+  });
+
+  $(window).on('load resize', function(){
+    var win = $(this); //this = window
+    $('.mini-cart').height(window.innerHeight+'px')
+    if ($('.featured').length) {
+      num_insert_after = 0;
+      if (win.width() <= 768) {
+        num_products_per_row = $('.product-list').attr("data-per-row-mobile")
+        if (num_products_per_row == 2) { num_insert_after = 4; }
+        if (num_products_per_row == 1) { num_insert_after = 2; }
+      }
+      else {
+        num_products_per_row = $('.product-list').attr("data-per-row");
+        if (num_products_per_row == 3) { num_insert_after = 9; }
+        if (num_products_per_row == 2) { num_insert_after = 4; }
+        if (num_products_per_row == 1) { num_insert_after = 1; }
+      }
+
+      featured_element = $('.featured:nth-child(2)');
+      if (featured_element.length) {
+        if (num_insert_after > 0) {
+          if ($('.product-list-item:nth-child('+num_insert_after+')').length) {
+            featured_element.insertAfter('.product-list-item:nth-child('+num_insert_after+')');
+            $grid.masonry('reloadItems')
+          }
+        }
+      }
+
+    }
+  });
+
+
+
+
 });
-$grid.imagesLoaded().progress( function() {
-  $grid.masonry('layout');
-});
+
+
 
 $('body')
   .on( 'click','.cart-close', function(e) {
