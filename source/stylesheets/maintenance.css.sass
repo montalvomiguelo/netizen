@@ -1,10 +1,30 @@
 @import 'config'
 
 #maintenance
-  padding: 0
 
-  @media screen and (max-width: $break-small)
-    padding: 0
+  .main
+    padding-top: 0
+
+  .wrap
+    max-width: 920px
+    padding: 25px
+
+  .header-store
+    +transform(translateX(-50%))
+    left: 50%
+    margin: 0
+    width: 193px
+    height: 193px
+    position: relative
+    top: -50%
+    font-size: 22px
+    line-height: 30px
+
+    .gradient
+      display: block !important
+
+    .header-store-link
+      border: $border !important
 
 #maintenance header
   position: relative
@@ -16,6 +36,7 @@
     border: none
     height: auto
     left: auto
+    top: 0
 
   a
     margin: 0 auto
@@ -37,10 +58,14 @@
     width: 100%
 
     @media screen and (max-width: $break-small)
-      padding: 150px 25px 25px
+      padding: 75px 25px 25px
 
     h1
       line-height: 1em
+      margin-bottom: 20px
+
+      @media screen and (max-width: $break-small)
+        line-height: 1em
 
     p
       font-size: 1.5em
