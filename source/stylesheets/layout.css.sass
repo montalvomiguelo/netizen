@@ -278,13 +278,15 @@ ol.unstyled, ul.unstyled
 .has-slideshow .sidebar
   padding-top: 0
 
+.desktop-header-store-name
+  top: 0
+
 .header-store
   background: $alt-background-color
   color: $text-color
   left: 74px
   position: absolute
   text-decoration: none
-  top: 24px
   z-index: 199
 
   &.desktop-header
@@ -304,6 +306,7 @@ ol.unstyled, ul.unstyled
     padding: 20px
     position: absolute
     text-align: center
+    top: 24px
     z-index: 1
     width: 196px
 
@@ -313,13 +316,13 @@ ol.unstyled, ul.unstyled
     height: 196px
     position: absolute
     width: 196px
-    top: -12px
+    top: 12px
     left: -12px
     z-index: -1
 
     &:last-child
       left: -24px
-      top: -24px
+      top: 0
       z-index: -2
 
   .header-store-logo
@@ -545,6 +548,7 @@ ol.unstyled, ul.unstyled
         background: none
         height: 100%
         padding: 0
+        top: 0
         width: 100%
 
     &.has-logo
