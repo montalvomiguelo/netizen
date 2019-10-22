@@ -264,6 +264,7 @@ $(document).ready(function(){
     wrapperClassName: 'sticky-store-name',
     responsiveWidth: true
   });
+
 });
 
 $('.category-nav-title').click(function() {
