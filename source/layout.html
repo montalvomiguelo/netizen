@@ -8,6 +8,8 @@
     {{ head_content }}
   </head>
   <body id="{{ page.permalink }}" class="{{ page.category }} {% if page.permalink == 'home' and theme.image_sets.slideshow_images.size > 0 or theme.welcome_header != blank or theme.welcome_subheader != blank %}has-slideshow{% endif %}">
+
+    <div class="wrap">
     {% if theme.announcement_message_text != blank %}
       <div class="header-message">
         <div class="announcement-message">
@@ -30,14 +32,12 @@
         </div>
       </div>
     {% endif %}
-    <div class="wrap">
       <div class="mobile-header">
         <button class="open-menu hamburger hamburger--squeeze" type="button">
           <span class="hamburger-box">
             <span class="hamburger-inner"></span>
           </span>
         </button>
-
         <div class="header-store{% if theme.logo != blank %} has-logo{% else %} has-text{% endif %}">
           <a href="/" title="{{ store.name | escape }}" class="header-store-link">
             {% if theme.logo != blank %}
@@ -51,11 +51,7 @@
             <div class="gradient"></div>
           {% endif %}
         </div>
-
-
-
         <button class="button header-cart-count open-mini-cart">{{ cart.item_count }}</button>
-
       </div>
 
       <div class="desktop-header-store-name">
