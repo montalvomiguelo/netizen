@@ -37,7 +37,7 @@ h1
   margin-bottom: 80px
 
   @media screen and (max-width: $break-medium)
-    margin-bottom: 40px
+    margin-bottom: 50px
 
 input, textarea
   +appearance(none)
@@ -140,8 +140,6 @@ textarea
 
   @media screen and (max-width: $break-medium)
     display: none
-
-  @media screen and (max-width: $break-small)
     padding: 0
 
   &.mobile-header-message
@@ -260,25 +258,24 @@ ol.unstyled, ul.unstyled
   padding: 250px 0 $marginSize $marginSize
 
   @media screen and (max-width: $break-medium)
-    +all-transitions
+    +transition(left .25s ease-in-out)
     background: $background-color
     height: 100vh
     left: -100vw
-    opacity: 0
-    padding: $marginSize/2
-    position: absolute
+    padding: 75px 225px !important
+    position: fixed
+    height: calc(100vh - 90px)
     top: 90px
     width: 100%
     z-index: 100
 
     &.opened
       left: 0
-      opacity: 1
-      padding-top: 25px !important
-      position: fixed
-      height: calc(100vh - 90px)
       overflow-y: scroll
       z-index: 201
+
+  @media screen and (max-width: $break-extra-small)
+    padding: 25px 50px !important
 
 .has-slideshow .sidebar
   padding-top: 0
@@ -359,7 +356,11 @@ ol.unstyled, ul.unstyled
   @media screen and (max-width: $break-medium)
     margin-top: 0
     position: relative
+    text-align: center
     top: 0
+
+  @media screen and (max-width: $break-extra-small)
+    text-align: left
 
 .side-nav-section
   margin-bottom: 10px
@@ -515,11 +516,11 @@ ol.unstyled, ul.unstyled
 
 .content
   +flex(1)
-  padding: 80px $marginSize
+  padding: 70px $marginSize
   margin-right: $marginSize * 2
 
   @media screen and (max-width: $break-medium)
-    padding: 25px
+    padding: 50px 25px
     margin-right: 0
 
 .mobile-header

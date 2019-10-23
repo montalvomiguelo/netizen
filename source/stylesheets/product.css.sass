@@ -16,20 +16,22 @@
   z-index: 100
 
   @media screen and (max-width: $break-medium)
-    margin-top: 50px
+    margin-bottom: 50px
     position: relative
     order: 2
     top: auto
 
-  @media screen and (max-width: $break-small)
+  @media screen and (max-width: $break-extra-small)
     +flex-direction(column)
+    margin-bottom: 0
 
 .product-titles
   +align-self(flex-start)
+  padding-right: 25px
 
   @media screen and (max-width: $break-medium)
-    padding-right: 25px
     padding-bottom: 0
+    margin-bottom: 50px
 
   h1
     margin-bottom: 10px
@@ -56,12 +58,16 @@
 
 .product-form
   margin-left: auto
-  margin-top: -80px
+  margin-top: -70px
   max-width: 296px
   width: 100%
 
   @media screen and (max-width: $break-small)
-    margin-top: 25px
+    margin-top: 0
+
+  @media screen and (max-width: $break-extra-small)
+    margin: 0
+    margin-bottom: 50px
     max-width: 100%
 
   .select
@@ -105,15 +111,18 @@ button.reset-selection-button
 
   @media screen and (max-width: $break-medium)
     order: 3
+    margin-top: 0
+    max-width: 100%
 
 .product-images
-  padding-top: 80px
+  padding-top: 70px
   width: 100%
   z-index: 99
 
   @media screen and (max-width: $break-medium)
     order: 1
-    padding-top: 20px
+    padding-top: 25px
+    margin-bottom: 50px
 
   img
     border: $border
