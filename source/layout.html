@@ -10,28 +10,27 @@
   <body id="{{ page.permalink }}" class="{{ page.category }} {% if page.permalink == 'home' and theme.image_sets.slideshow_images.size > 0 or theme.welcome_header != blank or theme.welcome_subheader != blank %}has-slideshow{% endif %}">
 
     <div class="wrap">
-    {% if theme.announcement_message_text != blank %}
-      <div class="header-message">
-        <div class="announcement-message">
-          <div class="announcement-message-text">{{ theme.announcement_message_text }}</div>
-          <button class="announcement-message-close" title="Close announcement message">
-            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
-          </button>
-        </div>
-      </div>
-    {% endif %}
-
-    {% if errors != blank %}
-      <div class="header-message">
-        <div class="errors {{ page.permalink }}-errors">
-          <div class="error-list">
-            {% for error in errors %}
-              <div class="error-item">{{ error }}</div>
-            {% endfor %}
+      {% if errors != blank %}
+        <div class="header-message">
+          <div class="errors {{ page.permalink }}-errors">
+            <div class="error-list">
+              {% for error in errors %}
+                <div class="error-item">{{ error }}</div>
+              {% endfor %}
+            </div>
           </div>
         </div>
-      </div>
-    {% endif %}
+      {% endif %}
+      {% if theme.announcement_message_text != blank %}
+        <div class="header-message">
+          <div class="announcement-message">
+            <div class="announcement-message-text">{{ theme.announcement_message_text }}</div>
+            <button class="announcement-message-close" title="Close announcement message">
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
+            </button>
+          </div>
+        </div>
+      {% endif %}
       <div class="mobile-header">
         <button class="open-menu hamburger hamburger--squeeze" type="button">
           <span class="hamburger-box">
@@ -135,9 +134,30 @@
           </div>
         {% endif %}
       </div>
+      {% if errors != blank %}
+        <div class="header-message mobile-header-message">
+          <div class="errors {{ page.permalink }}-errors">
+            <div class="error-list">
+              {% for error in errors %}
+                <div class="error-item">{{ error }}</div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      {% if theme.announcement_message_text != blank %}
+        <div class="header-message mobile-header-message">
+          <div class="announcement-message">
+            <div class="announcement-message-text">{{ theme.announcement_message_text }}</div>
+            <button class="announcement-message-close" title="Close announcement message">
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
+            </button>
+          </div>
+        </div>
+      {% endif %}
       {% if page.permalink == 'home' %}
         {% if theme.image_sets.slideshow_images.size > 0 or theme.welcome_header != blank or theme.welcome_subheader != blank %}
-          <section class="home-slideshow slideshow">
+          <section class="home-slideshow slideshow gradient">
             <div class="welcome">
               {% if theme.welcome_subheader != blank  %}<p class="subheader">{{ theme.welcome_subheader }}</p>{% endif %}
               {% if theme.welcome_header != blank  %}<h2 class="headline">{{ theme.welcome_header }}</h2>{% endif %}
@@ -154,7 +174,7 @@
           </section>
         {% endif %}
       {% endif %}
-      <main class="main">
+      <div class="main">
         <div class="sidebar">
           <div class="side-nav">
             <nav class="side-nav-section category-nav">
@@ -180,7 +200,7 @@
 
             <nav class="side-nav-section pages-nav">
               <ul class="unstyled page-nav-items">
-              <li><a href="/cart" title="Cart">Cart</a></li>
+              <li class="hide-mobile"><a href="/cart" title="Cart">Cart</a></li>
               {% for page in pages.all %}
                 <li>{{ page | link_to }}</li>
               {% endfor %}
@@ -192,7 +212,7 @@
             </nav>
           </div>
         </div>
-        <div class="content">
+        <div class="content" role="main">
           {% if page.category == 'custom' %}
             <div class="custom-page">
               <h1 class="page-title">{{ page.name }}</h1>
@@ -214,7 +234,7 @@
             {{ page_content }}
           {% endif %}
         </div>
-      </main>
+      </div>
 
       {% if page.full_url contains '/product/' %}
         {% if theme.show_similar_products %}
@@ -273,7 +293,7 @@
         <ul class="unstyled footer-links">
           <li><a href="/" title="Home">Home</a></li>
           <li><a href="/products" title="Products">Products</a></li>
-          <li><a href="/cart" title="Home">Cart</a></li>
+          <li class="hide-mobile"><a href="/cart" title="Home">Cart</a></li>
           {% for page in pages.all %}
             <li>{{ page | link_to }}</li>
           {% endfor %}
@@ -307,6 +327,9 @@
         <div class="bigcartel-credit">{{ bigcartel_credit }}</div>
       </div>
       </footer>
+    </div>
+    <div class="cursor gradient">
+      <svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M218.101 38.101L198.302 57.9c-4.686 4.686-4.686 12.284 0 16.971L353.432 230H12c-6.627 0-12 5.373-12 12v28c0 6.627 5.373 12 12 12h341.432l-155.13 155.13c-4.686 4.686-4.686 12.284 0 16.971l19.799 19.799c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L235.071 38.101c-4.686-4.687-12.284-4.687-16.97 0z"></path></svg>
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{{ 'api' | theme_js_url }}"></script>
