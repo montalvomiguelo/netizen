@@ -8,7 +8,7 @@
   right: 23px
   overflow-x: scroll
   height: 100%
-  z-index: 202
+  z-index: 204
   width: 475px
 
   .empty-cart
@@ -31,12 +31,27 @@
     text-align: center
     width: calc(100% + 4px)
 
+    @media screen and (max-width: $break-medium)
+      position: relative
+
+    @media screen and (max-width: $break-extra-small)
+      position: absolute
+
   .cart-subtotal
     background: $alt-accent-color
     border: $border
     border-bottom: none
     text-align: center
     margin-left: 0
+
+    @media screen and (max-width: $break-medium)
+      border: $border
+      margin-left: auto
+      padding: 8px 20px
+
+    @media screen and (max-width: $break-extra-small)
+      border-bottom: none
+      margin-left: 0
 
   .continue-shopping
     display: none
@@ -45,6 +60,14 @@
     margin-bottom: 0
     margin-top: 0
     width: 100%
+
+    @media screen and (max-width: $break-medium)
+      margin-top: 20px
+      max-width: 300px
+
+    @media screen and (max-width: $break-extra-small)
+      margin-top: 0
+      max-width: 100%
 
   .cart-form
     margin: 0
@@ -86,18 +109,26 @@
     position: relative
 
     @media screen and (max-width: $break-medium)
+      font-size: 22px
       height: 90px
       padding: 0
 
+    @media screen and (max-width: $break-extra-small)
+      font-size: 16px
+
   .cart-close
     +all-transitions
+    +flexbox
+    +align-items(center)
+    +justify-content(center)
     background: $accent-color
     border: $border
     display: block
     height: 55px
     width: 55px
-    line-height: 51px
+    line-height: 1em
     text-align: center
+    padding: 0
     position: absolute
     top: -2px
     right: 25px
@@ -110,7 +141,6 @@
     @media screen and (max-width: $break-medium)
       height: 45px
       width: 45px
-      line-height: 49px
       padding: 0
       right: 25px
       top: 21px
@@ -141,20 +171,50 @@
     padding: 25px
     position: relative
 
+    @media screen and (max-width: $break-medium)
+      +flex-direction(row)
+      height: 156px
+
+    @media screen and (max-width: $break-extra-small)
+      +flex-direction(column)
+      height: 225px
+
   .cart-item-image-holder
     +flex-basis(100%)
     margin-left: 0
     width: 120px
 
+    @media screen and (max-width: $break-medium)
+      +flex-basis(0)
+
+    @media screen and (max-width: $break-extra-small)
+      +flex-basis(100%)
+
   .cart-item-details
     padding-top: 0
     width: calc(100% - 120px)
+
+    @media screen and (max-width: $break-medium)
+      width: auto
+
+    @media screen and (max-width: $break-extra-small)
+      width: calc(100% - 120px)
 
   .cart-item-quantity-holder
     margin-left: 0
     margin-top: 12px
     padding: 0
     width: calc(100% - 120px)
+
+    @media screen and (max-width: $break-medium)
+      margin-left: auto
+      margin-top: 0
+      width: auto
+
+    @media screen and (max-width: $break-extra-small)
+      margin-left: 0
+      margin-top: 12px
+      width: calc(100% - 120px)
 
   .cart-item-details-price
     font-size: 16px
@@ -174,8 +234,14 @@ h1.cart-title
   padding: $marginSize/2
   position: relative
 
+  @media screen and (max-width: $break-medium)
+    margin-left: 0
+
 .cart-form
   margin-left: -$marginSize
+
+  @media screen and (max-width: $break-medium)
+    margin-left: 0
 
 .cart-items
   list-style: none
@@ -267,12 +333,14 @@ button.qty-button
 .continue-shopping
   margin-left: $marginSize
 
+  @media screen and (max-width: $break-medium)
+    margin-left: 0
+
   svg
     height: 18px
     position: relative
     top: 2px
     width: 18px
-
 
 button.checkout-btn
   margin: 0 0 0 auto
@@ -297,5 +365,8 @@ button.checkout-btn
 
   .button
     margin-top: 25px
+
+.content > .empty-cart
+  margin-left: 0
 
 

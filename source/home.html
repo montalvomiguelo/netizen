@@ -1,3 +1,4 @@
+
 {% if theme.featured_categories > 0 %}
   {% for category in categories.active limit:theme.featured_categories %}
     <div class="featured gradient">
@@ -9,9 +10,9 @@
         </div>
       </div>
       <div class="featured-image-container">
-        <div class="featured-img">
+        <div class="featured-images">
           {% for i in (0..2) %}
-            <div class="featured-category-product {% if forloop.length == 1 %}single-featured-product{% endif %} gradient">
+            <div class="featured-image gradient">
               {% if category.products[i] != blank %}
                 <img alt="Image of {{ category.products[i].name | escape }}" class="featured-category-product-image" src="{{ category.products[i].image | product_image_url | constrain: 400 }}">
               {% endif %}

@@ -57,11 +57,10 @@ input, textarea
 
 textarea
   min-height: $marginSize*3
-  max-width: 600px
 
 .select
   +all-transitions
-  background-color: $alt-background-color
+  background: $alt-background-color
   border: $border
   color: $text-color
   font-family: $text-font
@@ -71,10 +70,13 @@ textarea
   position: relative
   width: 100%
 
+  &:hover, &:active, &:focus, &:focus-within
+    background: $alt-accent-color
+
   select
     +all-transitions
     +appearance(none)
-    background-color: $alt-background-color
+    background: none
     border: 0
     border-radius: 0
     color: $text-color
@@ -88,9 +90,6 @@ textarea
     text-transform: uppercase
     width: 100%
     z-index: 2
-
-    &::-moz-focus-inner
-      padding-left: 0
 
     option
       background-color: #FFF
@@ -115,19 +114,7 @@ textarea
     right: 20px
     top: 50%
     width: 16px
-    z-index: 2
-
-  &:hover, &:active, &:focus, &:focus-within
-    background-color: $alt-accent-color
-
-    select
-      background-color: $alt-accent-color
-
-      option:disabled
-        color: graytext
-
-    svg
-      fill: $text-color
+    z-index: 1
 
 .header-message
   font-size: 15px
@@ -147,6 +134,13 @@ textarea
 
     @media screen and (max-width: $break-medium)
       display: block
+      margin-top: -2px
+
+.header-message + .header-message > div
+  border-top: none
+
+  @media screen and (max-width: $break-medium)
+    border-top: $border
 
 .errors
   background-color: $error-background
@@ -253,6 +247,10 @@ ol.unstyled, ul.unstyled
   +flexbox
   +flex(1)
 
+.has-welcome .sidebar
+  @media screen and (min-width: $break-medium+1)
+    padding-top: 50px
+
 .sidebar
   +flex(0 0 277px)
   padding: 250px 0 $marginSize $marginSize
@@ -272,16 +270,18 @@ ol.unstyled, ul.unstyled
     &.opened
       left: 0
       overflow-y: scroll
-      z-index: 199
+      z-index: 200
 
   @media screen and (max-width: $break-extra-small)
     padding: 25px 50px !important
 
-.has-slideshow .sidebar
-  padding-top: 0
 
-.desktop-header-store-name
+.has-header-message .desktop-header-store-name
   top: 0
+  margin-top: -2px
+
+.has-header-message .is-sticky .desktop-header-store-name
+  margin-top: 0
 
 .header-store
   background: $alt-background-color
@@ -289,7 +289,7 @@ ol.unstyled, ul.unstyled
   left: 74px
   position: absolute
   text-decoration: none
-  z-index: 199
+  z-index: 202
 
   &.desktop-header
     font-size: 22px
@@ -338,7 +338,7 @@ ol.unstyled, ul.unstyled
     margin: 0 auto
     top: 55px
     width: 60px
-    z-index: 201
+    z-index: 202
 
     &.has-text
 
@@ -354,7 +354,8 @@ ol.unstyled, ul.unstyled
   width: 100%
 
   @media screen and (max-width: $break-medium)
-    margin-top: 0
+    margin: 0 auto
+    max-width: 320px
     position: relative
     text-align: center
     top: 0
@@ -414,12 +415,17 @@ ol.unstyled, ul.unstyled
     position: relative
 
   .search-button
+    +flexbox
+    +align-items(center)
+    +justify-content(center)
     background: none
     border: none
-    left: 9px
+    height: 51px
+    left: 5px
     opacity: .5
+    padding: 0
     position: absolute
-    top: 0
+    top: 2px
     width: 40px
 
     &:hover, &:active, &:focus
@@ -432,16 +438,17 @@ ol.unstyled, ul.unstyled
 
     svg
       fill: $text-color
-      height: 22px
+      height: 16px
       position: relative
-      top: 7px
-      width: 22px
+      top: 0px
+      width: 16px
 
   .search-input
     +appearance(none)
     border: $border
     background: $alt-background-color
-    padding-left: 50px
+    line-height: normal
+    padding-left: 40px
 
     &:hover, &:focus
       background: $alt-accent-color
@@ -455,10 +462,16 @@ ol.unstyled, ul.unstyled
     a
       padding: 4px 0
 
+.has-header-message .header-cart
+  top: 0
+  margin-top: -2px
+
+.has-header-message .is-sticky .header-cart
+  margin-top: 0
+
 .header-cart
   color: $text-color
   font-size: 22px
-  top: 0
   text-decoration: none
   z-index: 101
 
@@ -535,7 +548,7 @@ ol.unstyled, ul.unstyled
   padding: 0 25px
   position: absolute
   width: 100% !important
-  z-index: 200
+  z-index: 202
 
   .header-store
     +transform(none)
@@ -569,6 +582,7 @@ ol.unstyled, ul.unstyled
   .header-cart-count
     height: 45px
     line-height: 41px
+    padding: 0
     width: 45px
 
   @media screen and (max-width: $break-medium)
@@ -595,7 +609,6 @@ ol.unstyled, ul.unstyled
 footer
   +flexbox
   +flex-direction(row)
-  +justify-content(space-between)
   border: $border
   max-width: 1400px
   margin: 0 auto
@@ -617,10 +630,37 @@ footer
       +flex(1)
       font-size: 22px
       text-align: center
-      width: 30%
 
     &.footer-nav
-      width: 45%
+
+      ul.footer-links
+        column-count: 3
+        -webkit-column-count: 3
+        -moz-column-count: 3
+        -webkit-column-width: 150px
+        -moz-column-width: 150px
+        column-width: 150px
+        font-size: 14px
+        max-width: 500px
+        width: 100%
+
+        @media screen and (max-width: $break-small)
+          column-count: 2
+          -webkit-column-count: 2
+          -moz-column-count: 2
+          margin: 0 auto
+          width: 100%
+
+        li
+          display: inline-block
+          text-align: right
+          width: 100%
+
+          @media screen and (max-width: $break-medium)
+            text-align: left
+
+          a
+            display: block
 
     &.footer-social
       +flex-direction(column)
@@ -628,7 +668,6 @@ footer
       color: $background-color
       border: none
       text-align: center
-      width: 25%
 
       ul
         +flexbox
@@ -647,12 +686,15 @@ footer
             &:hover svg
               fill: $accent-color
 
-      .bigcartel-credit a
-        color: $background-color
-        font-size: 12px
+      .bigcartel-credit
+        white-space: nowrap
 
-        &:hover
-          color: $accent-color
+        a
+          color: $background-color
+          font-size: 12px
+
+          &:hover
+            color: $accent-color
 
       ul + .bigcartel-credit
         margin-top: 10px
@@ -661,25 +703,6 @@ footer
       border-bottom: $border
       border-right: none
       width: 100% !important
-
-  .footer-links
-    column-count: 3
-    -webkit-column-count: 3
-    -moz-column-count: 3
-    font-size: 14px
-
-    @media screen and (max-width: $break-small)
-      column-count: 2
-      -webkit-column-count: 2
-      -moz-column-count: 2
-
-    li
-      display: inline-block
-      text-align: right
-      width: 100%
-
-      a
-        display: block
 
 .custom-page-content, .product-description
   a
@@ -738,7 +761,7 @@ footer
     height: 20px
     width: 20px
 
-.show-cursor
+.pointer-device.show-cursor
   cursor: none !important
 
   *

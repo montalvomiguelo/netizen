@@ -7,7 +7,7 @@
     <link href="{{ theme | theme_css_url }}" media="screen" rel="stylesheet" type="text/css">
     {{ head_content }}
   </head>
-  <body id="{{ page.permalink }}" class="{{ page.category }} {% if page.permalink == 'home' and theme.image_sets.slideshow_images.size > 0 or theme.welcome_header != blank or theme.welcome_subheader != blank %}has-slideshow{% endif %}">
+  <body id="{{ page.permalink }}" class="{% if errors != blank %}has-header-message{% endif %} {{ page.category }} {% if page.permalink == 'home' and theme.welcome_image != blank or theme.welcome_header != blank or theme.welcome_subheader != blank %}has-welcome{% endif %}">
 
     <div class="wrap">
       {% if errors != blank %}
@@ -73,10 +73,11 @@
           <span class="header-cart-total">{{ cart.total | money: theme.money_format }}</span>
         </a>
         {% if page.permalink != 'cart' %}
+          <form method="post" action="/cart" id="cart-form" class="cart-form">
           <div class="mini-cart">
             <div class="mini-cart-container cart-container gradient{% if cart.item_count == 0 %} empty-cart{% endif %}">
               <div class="mini-cart-header">Cart</div>
-              <button class="cart-close"><svg aria-hidden="true" focusable="false" =role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg></button>
+              <button class="cart-close" type="button"><svg aria-hidden="true" focusable="false" =role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg></button>
               {% if cart.items != blank %}
                 <ul class="cart-items">
                   {% for item in cart.items %}
@@ -132,6 +133,7 @@
               </div>
             </div>
           </div>
+        </form>
         {% endif %}
       </div>
       {% if errors != blank %}
@@ -156,19 +158,17 @@
         </div>
       {% endif %}
       {% if page.permalink == 'home' %}
-        {% if theme.image_sets.slideshow_images.size > 0 or theme.welcome_header != blank or theme.welcome_subheader != blank %}
-          <section class="home-slideshow slideshow gradient">
-            <div class="welcome">
+        {% if theme.welcome_image != blank or theme.welcome_header != blank or theme.welcome_subheader != blank %}
+          <section class="home-welcome welcome gradient">
+            <div class="welcome-messaging">
               {% if theme.welcome_subheader != blank  %}<p class="subheader">{{ theme.welcome_subheader }}</p>{% endif %}
               {% if theme.welcome_header != blank  %}<h2 class="headline">{{ theme.welcome_header }}</h2>{% endif %}
               {% if theme.welcome_button_text != blank %}<a href="/products" class="button">{{ theme.welcome_button_text }}</a>{% endif %}
             </div>
-            <div class="pattern {{ theme.slideshow_overlay }}"></div>
-            {% if theme.image_sets.slideshow_images.size > 0 %}
-              <div class="slideshow-images">
-                {% for image in theme.image_sets.slideshow_images %}
-                  <img alt="Slideshow image {{ forloop.index }}" src="{{ image.url | constrain: 1800 }}">
-                {% endfor %}
+            <div class="pattern {{ theme.welcome_overlay }}"></div>
+            {% if theme.welcome_image != blank %}
+              <div class="welcome-image">
+                <img alt="Welcome image" src="{{ theme.welcome_image.url | constrain: 1800 }}">
               </div>
             {% endif %}
           </section>
@@ -183,6 +183,9 @@
                 <li class="{% if page.full_url contains '/products' %}selected{% endif %}"><a href="/products">All</a></li>
                 {% for category in categories.active %}
                   <li class="{% if page.full_url contains category.url %}selected{% endif %}">{{ category | link_to }}</li>
+                {% endfor %}
+                {% for artist in artists.active %}
+                  <li class="{% if page.full_url contains artist.url %}selected{% endif %}">{{ artist | link_to }}</li>
                 {% endfor %}
               </ul>
             </nav>
