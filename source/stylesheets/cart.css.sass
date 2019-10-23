@@ -63,6 +63,20 @@
       margin-left: 0
       padding: 0 25px
 
+      &.empty-cart
+        +flexbox
+        +justify-content(center)
+        +align-items(center)
+
+        .cart-empty-message
+          max-width: 300px
+          width: 100%
+
+        .mini-cart-header
+          position: absolute
+          top: 0
+          left: 25px
+
   .mini-cart-header
     +flexbox
     +justify-content(flex-start)
@@ -96,7 +110,8 @@
     @media screen and (max-width: $break-medium)
       height: 45px
       width: 45px
-      line-height: 45px
+      line-height: 49px
+      padding: 0
       right: 25px
       top: 21px
 
