@@ -138,13 +138,22 @@ textarea
   position: relative
   width: 100%
 
+  @media screen and (max-width: $break-medium)
+    display: none
+
   @media screen and (max-width: $break-small)
     padding: 0
 
+  &.mobile-header-message
+    display: none
+
+    @media screen and (max-width: $break-medium)
+      display: block
+
 .errors
-  background-color: #FEA9A9
+  background-color: $error-background
   border: $border
-  color: #000000
+  color: $text-color
   list-style: none
   padding: 15px
   text-align: center
@@ -246,13 +255,9 @@ ol.unstyled, ul.unstyled
   +flexbox
   +flex(1)
 
-  @media screen and (max-width: $break-medium)
-    padding-top: 110px
-
 .sidebar
   +flex(0 0 277px)
-  padding-left: $marginSize
-  padding-top: 250px
+  padding: 250px 0 $marginSize $marginSize
 
   @media screen and (max-width: $break-medium)
     +all-transitions
@@ -528,9 +533,7 @@ ol.unstyled, ul.unstyled
   height: 90px
   padding: 0 25px
   position: absolute
-  top: 0
-  left: 0
-  width: 100%
+  width: 100% !important
   z-index: 200
 
   .header-store
@@ -554,11 +557,12 @@ ol.unstyled, ul.unstyled
     &.has-logo
       background: none
       position: relative
-      top: 21px
+      top: -3px
       width: 60px
 
       .header-store-link, .gradient
         height: 78px
+        padding: 0
         width: 78px
 
   .header-cart-count
@@ -568,7 +572,6 @@ ol.unstyled, ul.unstyled
 
   @media screen and (max-width: $break-medium)
     +flexbox
-    position: fixed
 
 .open-menu
   background: $background-color
@@ -716,3 +719,42 @@ footer
 
     &.is-selected
       background: $accent-color
+
+.cursor
+  +flexbox
+  +align-items(center)
+  +justify-content(center)
+  border: $border
+  height: 51px
+  line-height: 51px
+  opacity: 0
+  position: fixed
+  width: 51px
+  z-index: 202
+  visibility: hidden
+
+  svg
+    height: 20px
+    width: 20px
+
+.show-cursor
+  cursor: none !important
+
+  *
+    cursor: none !important
+
+  .cursor
+    opacity: 1
+    pointer-events: none
+    visibility: visible
+
+.sticky-mobile-header
+  display: none
+  width: 100% !important
+
+  @media screen and (max-width: $break-medium)
+    display: block
+
+@media screen and (max-width: $break-medium)
+  .hide-mobile
+    display: none !important

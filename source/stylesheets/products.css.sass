@@ -52,6 +52,9 @@
           +all-transitions
           opacity: .8
 
+  @media screen and (max-width: $break-large)
+    width: 50%
+
   @media screen and (max-width: $break-small)
     padding: 0 10px 50px 10px
     width: #{"{% if theme.max_products_per_row_mobile == 2 %} 50% {% else %} 100% {% endif %}"}

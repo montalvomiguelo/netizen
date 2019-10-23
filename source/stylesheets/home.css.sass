@@ -20,8 +20,6 @@
     width: 100%
 
   @media screen and (max-width: $break-medium)
-    margin-bottom: $marginSize/2
-    margin-top: 88px
     min-height: 650px
 
     img
@@ -29,7 +27,7 @@
 
   @media screen and (max-width: $break-small)
     border-top: 0
-    margin-bottom: 0
+    margin-bottom: 25px
 
   .flickity-page-dots
     bottom: 20px
@@ -37,7 +35,7 @@
 
   .welcome
     +transform(translateY(-50%) translateX(-50%))
-    color: $background-color
+    color: $welcome-text-color
     left: 50%
     position: absolute
     text-align: center
@@ -55,7 +53,6 @@
         line-height: 22px
 
     h2.headline
-      color: $background-color
       font-size: 48px
       line-height: 60px
       margin: 0 0 $marginSize/2 0
@@ -101,48 +98,61 @@ h1.featured-title
   +flexbox
   +flex-direction(row)
   border: $border
-  height: 304px
-  margin: 0 0 50px
-  padding: 0
+  margin: 0 0 40px
+  position: relative
 
   @media screen and (max-width: $break-medium)
     margin-bottom: $marginSize/2
 
   @media screen and (max-width: $break-small)
     +flex-direction(column)
+    height: 600px
 
   .featured-details
-    display: block
+    +flexbox
+    +justify-content(center)
+    +align-items(center)
+    padding: 100px 50px
     text-align: center
-    padding: 0 $marginSize/2
+    position: relative
     width: 50%
 
+    @media screen and (max-width: 1500px)
+      padding: 75px 50px
+
+    @media screen and (max-width: $break-large)
+      padding: 50px 25px
+
     @media screen and (max-width: $break-small)
+      padding-top: 450px
       order: 2
+      position: absolute
       width: 100%
 
     .tag
+      +transform(translateX(-50%))
       background-color: $text-color
       color: $background-color
-      display: inline-block
       font-size: 12px
-      height: 33px
-      line-height: 33px
-      padding: 0 $marginSize/2
+      left: 50%
+      padding: 6px 20px
+      position: absolute
+      top: 0
 
     .feature-text
+      width: 100%
 
       h2
-        margin: $marginSize
+        margin-bottom: 25px
         line-height: 1.5em
 
       .button
-        font-size: 16px
         margin: 0 auto
-        width: 255px
-        margin-bottom: $marginSize
+        max-width: 255px
+        width: 100%
 
   .featured-image-container
+    position: relative
     width: 50%
 
     @media screen and (max-width: $break-small)
@@ -150,16 +160,18 @@ h1.featured-title
       width: 100%
 
   .featured-img
+    +transform(translateX(-50%))
+    left: 50%
     margin: 0 auto
     padding: 0
-    position: relative
+    position: absolute
     text-align: center
     top: -26px
     z-index: 1
     width: 75%
 
     @media screen and (max-width: $break-medium)
-
+      top: 50px
 
     img
       display: block
@@ -170,14 +182,10 @@ h1.featured-title
   .gradient
     border: $border
     content: " "
-    height: 304px
     position: absolute
-    width: 304px
     z-index: 1
 
     @media screen and (max-width: $break-medium)
-      height: 150px
-      width: 150px
 
     &:nth-child(2)
       left: 24px

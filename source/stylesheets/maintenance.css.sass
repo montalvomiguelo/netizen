@@ -11,32 +11,34 @@
 
   .header-store
     +transform(translateX(-50%))
-    left: 50%
-    margin: 0
-    width: 193px
-    height: 193px
-    position: relative
-    top: -50%
+    background: none
     font-size: 22px
+    height: 196px
+    width: 196px
     line-height: 30px
+    left: 50%
+    top: 100px
+
+    @media screen and (max-width: $break-small)
+      top: 0
 
     .gradient
       display: block !important
 
     .header-store-link
       border: $border !important
+      width: 100%
 
 #maintenance header
+  +flexbox
+  +align-items(center)
+  height: 218px
   position: relative
-  top: 100px
+  top: 0
   width: 100%
 
   @media screen and (max-width: $break-small)
-    background: none
-    border: none
-    height: auto
-    left: auto
-    top: 0
+    height: 118px
 
   a
     margin: 0 auto
@@ -44,10 +46,6 @@
 #maintenance .maintenance-message
   padding-top: 0
   width: 100%
-
-  @media screen and (max-width: $break-small)
-    +flex-direction(column)
-    +flexbox
 
   .message-content
     border: $border
@@ -58,14 +56,7 @@
     width: 100%
 
     @media screen and (max-width: $break-small)
-      padding: 75px 25px 25px
-
-    h1
-      line-height: 1em
-      margin-bottom: 20px
-
-      @media screen and (max-width: $break-small)
-        line-height: 1em
+      padding: 150px 25px 25px
 
     p
       font-size: 1.5em
