@@ -1,22 +1,21 @@
 {
   "name": "Netizen",
-  "version": "0.0.998",
+  "version": "0.1.11",
   "images": [
     {
       "variable": "logo",
-      "label": "Logo",
-      "description": "Adds your logo to the header"
+      "label": "Header logo",
+      "description": "200x200px image recommended"
+    },
+    {
+      "variable": "welcome_image",
+      "label": "Home page welcome image",
+      "description": "1400x850px image recommended",
+      "default": "slide-1.jpg"
+
     }
   ],
   "image_sets": [
-    {
-      "variable": "slideshow_images",
-      "label": "Slideshow",
-      "description": "Adds a slideshow to the Home page",
-      "defaults": [
-        "slide-1.jpg"
-      ]
-    },
     {
       "variable": "lookbook_images",
       "label": "Lookbook",
@@ -43,43 +42,53 @@
     },
     {
       "variable": "text_color",
-      "label": "Text Color",
+      "label": "Text",
       "default": "#000000"
     },
     {
+      "variable": "welcome_text_color",
+      "label": "Welcome Text",
+      "default": "#FFFFFF"
+    },
+    {
       "variable": "accent_color",
-      "label": "Accent Color",
+      "label": "Button background",
       "default": "#EEFF8A"
     },
     {
+      "variable": "alt_background_color",
+      "label": "Secondary Background",
+      "default": "#ffffff"
+    },
+        {
       "variable": "alt_accent_color",
-      "label": "Alternate Accent Color",
+      "label": "Accent background",
       "default": "#FBFFE2"
     },
     {
-      "variable": "alt_background_color",
-      "label": "Alternate Background",
-      "default": "#ffffff"
-    },
-    {
       "variable": "pattern_color",
-      "label": "Pattern color",
+      "label": "Home welcome pattern",
       "default": "#000000"
     },
     {
       "variable": "primary_gradient_color",
-      "label": "Primary gradient color",
+      "label": "Left gradient",
       "default": "#d1fbff"
     },
     {
       "variable": "secondary_gradient_color",
-      "label": "Secondary gradient color",
+      "label": "Right gradient",
       "default": "#ffa5e8"
     },
     {
       "variable": "border_color",
-      "label": "Border color",
+      "label": "Borders",
       "default": "#000000"
+    },
+    {
+      "variable": "error_background_color",
+      "label": "Error message background",
+      "default": "#FEA9A9"
     }
   ],
   "options": [
@@ -87,22 +96,19 @@
       "variable": "announcement_message_text",
       "label": "Announcement text",
       "type": "text",
-      "description": "Displays an announcement message on the top of every page",
-      "default": "heya this is really sdfsdfcool"
-    },
-    {
-      "variable": "welcome_header",
-      "label": "Welcome header",
-      "type": "text",
-      "description": "Welcome header for homepage",
-      "default": "Welcome header for homepage"
+      "description": "Displays an announcement message on the top of every page"
     },
     {
       "variable": "welcome_subheader",
       "label": "Welcome subheader",
       "type": "text",
-      "description": "Welcome subheader for homepage",
-      "default": "Welcome subheader for homepage"
+      "description": "Welcome subheader for homepage"
+    },
+    {
+      "variable": "welcome_header",
+      "label": "Welcome header",
+      "type": "text",
+      "description": "Welcome header for homepage"
     },
     {
       "variable": "welcome_button_text",
@@ -112,16 +118,25 @@
       "default": "Shop now"
     },
     {
-      "variable": "slideshow_overlay",
-      "label": "Slideshow overlay",
+      "variable": "lookbook_page_name",
+      "label": "Lookbook Page Name",
+      "type": "text",
+      "description": "Create a custom page for your lookbook, then enter the page name in this field"
+    },
+    {
+      "variable": "welcome_overlay",
+      "label": "Welcome image overlay",
       "type": "select",
       "options": [
         ["None", ""],
-        ["Pattern color", "pattern_color"],
-        ["Cool dots", "cool_dots"]
+        ["Diagonal lines", "diagonal-lines"],
+        ["Bank note", "bank-note"],
+        ["Hideout", "hideout"],
+        ["Polka dots", "polka-dots"],
+        ["Texture", "texture"]
       ],
-      "default": "cool_dots",
-      "description": "Style of the overlay that sits on top of your slideshow images"
+      "default": "diagonal-lines",
+      "description": "Style of the overlay that sits on top of your welcome image"
     },
     {
       "variable": "product_list_layout",
@@ -138,8 +153,8 @@
       "variable": "max_products_per_row",
       "label": "Maximum products per row",
       "type": "select",
-      "options": "1..4",
-      "default": 2,
+      "options": "1..3",
+      "default": 3,
       "description": "The number of products displayed per row"
     },
     {
@@ -155,7 +170,7 @@
       "label": "Featured categories",
       "type": "select",
       "options": "0..2",
-      "default": 2,
+      "default": 1,
       "description": "The number of categories featured on the Home page"
     },
     {
@@ -268,7 +283,10 @@
     "header_image": "{{ logo }}",
     "background_color": "{{ background_color }}",
     "gutter_width": "28px",
-    "title_font": "{{ header_font }}",
+    "body_font": "{{ text_font }}",
+    "step_header_font": "{{ text_font }}",
+    "step_header_font_size": "16px",
+    "title_font": "{{ text_font }}",
     "title_vertical_padding": "60px",
     "title_background_color": "transparent",
     "title_position": "center",
@@ -277,7 +295,7 @@
     "title_text_transform": "uppercase",
     "title_color": "{{ text_color }}",
     "secondary_font": "{{ text_font }}",
-    "secondary_font_size": "15px",
+    "secondary_font_size": "16px",
     "content_border_radius": "0",
     "content_width": "530px",
     "content_header_vertical_padding": "28px",
@@ -326,14 +344,15 @@
     "button_hover_border_color": "{{ border_color }}",
     "button_height": "47px",
     "button_border_width": "2px",
+    "button_font": "{{ text_font }}",
     "button_font_size": "14px",
     "button_font_weight": "normal",
     "button_text_transform": "uppercase",
     "button_background_color": "{{ accent_color }}",
     "button_color": "{{ text_color }}",
-    "button_hover_color": "{{ text_color }}",
+    "button_hover_color": "{{ alt_background_color }}",
     "button_position": "center",
-    "button_hover_background_color": "{{ accent_color }}",
+    "button_hover_background_color": "{{ text_color }}",
     "step_inactive_header_color": "opacify({{ text_color }}, .25)",
     "step_border_color": "{{ border_color }}",
     "step_border_width": "1px",
@@ -347,7 +366,7 @@
     "step_vertical_padding": "30px",
     "step_primary_font_size": "24px",
     "step_border_style": "solid",
-    "step_primary_font": "{{ header_font }}",
+    "step_primary_font": "{{ text_font }}",
     "summary_inactive_item_border_color": "opacify({{ border_color }}, .25)",
     "summary_font_size": "13px",
     "summary_submit_background_color": "{{ background_color }}",
