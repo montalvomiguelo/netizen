@@ -669,10 +669,12 @@ footer
           width: 100%
 
           @media screen and (max-width: $break-medium)
+            font-size: 15px
             text-align: left
 
           a
             display: block
+            padding: 4px
 
     &.footer-social
       +flex-direction(column)
@@ -686,6 +688,9 @@ footer
 
         li
           margin: 0 5px
+
+          @media screen and (max-width: $break-medium)
+            margin: 0 8px
 
           a
             display: block
