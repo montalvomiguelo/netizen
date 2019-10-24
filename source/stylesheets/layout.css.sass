@@ -476,9 +476,14 @@ ol.unstyled, ul.unstyled
   z-index: 101
 
   .header-cart-info
+    background: none
+    border: none
     color: $text-color
     display: block
+    font-size: 22px
     height: 150px
+    line-height: normal
+    padding: 0
     position: absolute
     margin-left: auto
     right: 50px
@@ -486,10 +491,14 @@ ol.unstyled, ul.unstyled
     width: 55px
     z-index: 200
 
+    &:hover, &:active, &:focus
+      background: none
+      color: $text-color
+      outline: none
+
     @media screen and (max-width: $break-medium)
       display: none
       top: 0
-
 
   .header-cart-count
     +all-transitions
