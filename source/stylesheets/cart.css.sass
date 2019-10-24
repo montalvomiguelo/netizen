@@ -6,7 +6,6 @@
   position: absolute
   top: 0
   right: 23px
-  overflow-x: scroll
   height: 100%
   z-index: 204
   width: 475px
@@ -75,8 +74,8 @@
   @media screen and (max-width: $break-medium)
     height: 100vh
     left: 0
+    position: fixed
     width: 100%
-    z-index: 200
 
   .cart-container
     height: 100%
@@ -156,7 +155,7 @@
   .cart-items
     margin-left: -50px
     max-height: calc(100vh - 240px)
-    overflow-x: scroll
+    overflow-y: auto
     padding-right: 0
 
     @media screen and (max-width: $break-medium)
