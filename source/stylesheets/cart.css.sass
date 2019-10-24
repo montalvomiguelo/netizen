@@ -31,8 +31,9 @@
 
     @media screen and (max-width: $break-medium)
       left: 0
-      overflow: scroll
-      padding-bottom: 50px
+      overflow-x: scroll
+      padding-bottom: 150px
+      position: fixed
       right: 0
       width: 100%
 
@@ -102,6 +103,9 @@
           +flex-direction(column)
           height: 225px
           padding-top: 25px
+
+          &:last-child
+            margin-bottom: 175px !important
 
         .cart-item-image-holder
           +flex-basis(100%)

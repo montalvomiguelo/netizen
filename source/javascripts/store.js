@@ -358,11 +358,19 @@ function toggleMiniCart(hideOrShow) {
 $(window).on('load', function() {
   setSidebarPosition();
   setFeaturedCategoryImageSize();
+  $('.mini-cart-container').height(window.innerHeight+'px');
 })
 $(window).on('resize', function() {
   setSidebarPosition();
   setFeaturedCategoryImageSize();
+  $('.mini-cart-container').height(window.innerHeight+'px');
 });
+
+window.addEventListener("orientationchange", function() {
+  setSidebarPosition();
+  setFeaturedCategoryImageSize();
+  $('.mini-cart-container').height(window.innerHeight+'px');
+}, false);
 
 
 
