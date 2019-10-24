@@ -1,4 +1,3 @@
-
 {% if theme.featured_categories > 0 %}
   {% for category in categories.active limit:theme.featured_categories %}
     <div class="featured gradient">
@@ -23,7 +22,6 @@
     </div>
   {% endfor %}
 {% endif %}
-
 
 {% if theme.featured_products > 0 %}
   {% get products from products.all limit:theme.featured_products order:theme.featured_order %}
