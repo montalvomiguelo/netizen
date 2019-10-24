@@ -589,13 +589,12 @@ $('.product-form').submit(function(e) {
       addMethod.addClass('adding');
       addMethod.blur();
       Cart.addItem(itemID, quantity, function(cart) {
-        updateCart(cart);
-        $('.mini-cart-container').removeClass('empty-cart');
         setTimeout(function() {
           updateElement.html(addingText);
           setTimeout(function() {
             updateElement.html(addedText);
-            $('.header-cart-count').html(cart.item_count);
+            updateCart(cart);
+            $('.mini-cart-container').removeClass('empty-cart');
             addMethod.removeClass('adding');
             setTimeout(function() {
               updateElement.html(addText);
