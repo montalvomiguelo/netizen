@@ -344,25 +344,23 @@ function toggleMiniCart(hideOrShow) {
     if (window_width <= 1024) {
       $('body').removeClass('no-scroll');
     }
-    $('.mini-cart').fadeOut('fast');
+    $('.mini-cart-container').fadeOut('fast');
   }
   if (hideOrShow == 'show') {
     if (window_width <= 1024) {
       $('body').addClass('no-scroll');
     }
-    $('.mini-cart').fadeIn('fast');
+    $('.mini-cart-container').fadeIn('fast');
   }
 }
 
 
 $(window).on('load', function() {
   setSidebarPosition();
-  $('.mini-cart').height(window.innerHeight+'px');
   setFeaturedCategoryImageSize();
 })
 $(window).on('resize', function() {
   setSidebarPosition();
-  $('.mini-cart').height(window.innerHeight+'px');
   setFeaturedCategoryImageSize();
 });
 
