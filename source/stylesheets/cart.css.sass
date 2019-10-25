@@ -12,9 +12,9 @@
     display: none
 
   &.mini-cart-container
-    display: none
     font-size: 16px
     max-height: 100vh
+    opacity: 0
     position: absolute
     top: 0
     right: 23px
@@ -22,6 +22,11 @@
     padding-top: 0
     z-index: 204
     width: 450px
+    visibility: hidden
+
+    &.opened
+      opacity: 1
+      visibility: visible
 
     .cart-form
       margin: 0
@@ -60,6 +65,7 @@
       +justify-content(center)
       height: 55px
       line-height: normal
+      padding: 0
       position: absolute
       right: 25px
       top: -2px
@@ -119,7 +125,8 @@
 
         .cart-item-details
           padding-top: 0
-          width: calc(100% - 170px)
+          padding-right: 25px
+          width: calc(100% - 150px)
 
           @media screen and (max-width: $break-medium)
             padding-top: 25px
@@ -127,7 +134,7 @@
 
           @media screen and (max-width: $break-extra-small)
             padding-top: 0
-            width: calc(100% - 170px)
+            width: calc(100% - 150px)
 
         .cart-item-quantity-holder
           +align-self(flex-start)
@@ -368,12 +375,14 @@
 .empty-cart
   +flexbox
   +align-items(center)
-  +justify-content(center)
   +flex-direction(column)
+
+  @media screen and (max-width: $break-medium)
+    +justify-content(center)
 
   .cart-empty-message
     display: block
-    padding: 100px
+    padding: 100px 25px
     text-align: center
 
     .emoji-container

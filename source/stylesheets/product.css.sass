@@ -90,7 +90,7 @@
       select
         padding-top: 6px
 
-    &:last-child
+    &:last-of-type
       border-bottom: $border
       margin-bottom: 10px
 
@@ -125,37 +125,35 @@ button.reset-selection-button
   width: 100%
   z-index: 99
 
+  &.single-image
+    width: 75%
+
   @media screen and (max-width: $break-medium)
     order: 1
     padding-top: 25px
     margin-bottom: 50px
+    width: 100% !important
 
   img
-    border: $border
     display: block
-    height: auto
-    max-height: 100%
-    max-width: 775px
+    border: $border
+    max-width: 100%
     width: 100%
-
-    @media screen and (max-width: $break-medium)
-      max-width: 100%
-      height: auto
 
 #product .main-carousel
 
   .carousel-cell
     margin-right: 25px
+    width: 75%
+    max-width: 75%
+    text-align: center
 
-    img
-      display: block
+    @media screen and (max-width: $break-medium)
+      max-width: 100%
       width: 100%
 
   .flickity-page-dots
     bottom: -10px
-
-    @media screen and (max-width: $break-medium)
-      width: 100%
 
 .similar-products
   border: $border

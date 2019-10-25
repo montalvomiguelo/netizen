@@ -64,7 +64,7 @@
     h2.headline
       font-size: 48px
       line-height: 60px
-      margin: 0 0 $marginSize/2 0
+      margin: 0 0 55px 0
 
       @media screen and (max-width: $break-small)
         font-size: 32px
@@ -112,6 +112,7 @@ h1.featured-title
 
   @media screen and (max-width: $break-small)
     +flex-direction(column)
+    margin: 25px 0 0
 
   .featured-details
     +flexbox
@@ -132,6 +133,7 @@ h1.featured-title
       padding: 75px 50px
 
     @media screen and (max-width: $break-small)
+      padding: 25px 25px 50px 25px
       width: 100%
 
     .tag
@@ -147,6 +149,9 @@ h1.featured-title
     .feature-text
       width: 100%
 
+      @media screen and (max-width: $break-small)
+        margin-top: 300px
+
       h2
         margin-bottom: 25px
         line-height: 1.5em
@@ -156,6 +161,9 @@ h1.featured-title
         max-width: 255px
         width: 100%
 
+        @media screen and (max-width: $break-small)
+          max-width: 100%
+
   .featured-image-container
     +flexbox
     +align-items(center)
@@ -164,7 +172,10 @@ h1.featured-title
     width: 50%
 
     @media screen and (max-width: $break-small)
+      position: absolute
+      top: 90px
       width: 100%
+
 
     .featured-images
       +transform(translateY(-50%) translateX(-50%))
@@ -173,6 +184,9 @@ h1.featured-title
       position: absolute
       top: calc(50% - 2px)
       width: 75%
+
+      @media screen and (max-width: $break-small)
+        width: calc(100% - 100px)
 
   .featured-image
     height: calc(100% + 4px)
@@ -192,6 +206,14 @@ h1.featured-title
     top: -24px
     z-index: 1
 
+    @media screen and (max-width: $break-large)
+      left: -12px
+      top: -12px
+
+    @media screen and (max-width: $break-medium)
+      left: -24px
+      top: -24px
+
     &:nth-child(2)
       left: 0
       z-index: -1
@@ -201,3 +223,11 @@ h1.featured-title
       left: 24px
       top: 24px
       z-index: -2
+
+      @media screen and (max-width: $break-large)
+        left: 12px
+        top: 12px
+
+      @media screen and (max-width: $break-medium)
+        left: 24px
+        top: 24px

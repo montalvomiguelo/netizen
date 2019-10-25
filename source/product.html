@@ -68,7 +68,7 @@
 
 </div>
 
-<div class="product-images {% if product.images.size > 1 %}main-carousel{% endif %}">
+<div class="product-images {% if product.images.size > 1 %}main-carousel{% else %} single-image{% endif %}">
   {% for image in product.images %}
     <div class="carousel-cell">
       <img src="{{ image | product_image_url | constrain: '1000'}}" alt="Image of {{ product.name | escape }}" />

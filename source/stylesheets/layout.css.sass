@@ -148,7 +148,7 @@ textarea
   border: $border
   color: $text-color
   list-style: none
-  padding: 15px
+  padding: 14px
   text-align: center
 
 .announcement-message
@@ -162,7 +162,7 @@ textarea
   border: $border
   color: $text-color
   left: 0
-  padding: 15px
+  padding: 14px
   position: relative
   top: 0
   width: 100%
@@ -182,15 +182,15 @@ textarea
     cursor: pointer
     height: auto
     line-height: 1em
-    padding: 4px
+    padding: 6px
     position: absolute
     right: 13px
     top: 50%
 
     svg
       fill: $text-color
-      height: 18px
-      width: 18px
+      height: 14px
+      width: 14px
 
 button, .button
   +all-transitions
@@ -498,6 +498,10 @@ ol.unstyled, ul.unstyled
       background: none
       color: $text-color
       outline: none
+
+      .header-cart-count
+        background-color: $text-color
+        color: $alt-background-color
 
     @media screen and (max-width: $break-medium)
       display: none

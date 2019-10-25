@@ -3,6 +3,15 @@
 #home .product-list
   margin-top: 50px
 
+  @media screen and (max-width: $break-small)
+    margin-top: 25px
+
+#home .featured + .product-list
+  margin-top: 40px
+
+  @media screen and (max-width: $break-small)
+    margin-top: 30px
+
 #products h1
   margin-bottom: 65px
 
@@ -21,6 +30,9 @@
   .featured
     width: #{"{% if theme.max_products_per_row == 3 %} calc(100% - 20px) {% else %} calc(100% - 50px) {% endif %}"}
     margin: 45px #{"{% if theme.max_products_per_row == 3 %} 10px {% else %} 25px {% endif %}"}
+
+    @media screen and (max-width: $break-small)
+      margin: 0px 10px 40px
 
 .product-list-item
   display: block
@@ -57,6 +69,9 @@
         img
           +all-transitions
           opacity: .8
+
+  @media screen and (max-width: $break-large)
+    width: 50%
 
   @media screen and (max-width: $break-small)
     width: 50%
