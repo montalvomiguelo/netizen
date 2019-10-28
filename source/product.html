@@ -9,10 +9,11 @@
 {% endcase %}
 <div class="product-heading">
 
+
   <div class="product-titles">
     <h1 class="page-title product-title">{{ product.name }}</h1>
     <div class="product-subtitle">
-      <span class="product-status">{{ product_status }}</span>
+      {% if product_status != blank %}<span class="product-status">{{ product_status }}</span>{% endif %}
       {% if product.variable_pricing %}
         {{ product.min_price | money: theme.money_format }} - {{ product.max_price | money: theme.money_format }}
       {% else %}
@@ -31,8 +32,9 @@
           <div class="product_option_groups">
             <input id="option" name="cart[add][id]" type="hidden" value="0">
             {% for option_group in product.option_groups %}
-              <div class="select">
-                <select data-unavailable-text="(Unavailable)" data-sold-text="(Sold out)" data-group-id="{{ option_group.id }}" data-group-name="{{ option_group.name | escape }}" class="product_option_group" name="option_group[{{ option_group.id }}]" aria-label="Select {{ option_group.name | escape }}">
+              <div class="select form-group">
+                <label class="form-label product-option-label" for="option_group_{{ option_group.id }}">{{ option_group.name }}</label>
+                <select data-unavailable-text="(Unavailable)" data-sold-text="(Sold out)" id="option_group_{{ option_group.id }}" data-group-id="{{ option_group.id }}" data-group-name="{{ option_group.name | escape }}" class="product_option_group shrink-label" name="option_group[{{ option_group.id }}]" aria-label="Select {{ option_group.name | escape }}">
                   <option value="0" disabled="disabled" selected>Select {{ option_group.name }}</option>
                   {% for value in option_group.values %}
                     <option value="{{ value.id }}" data-name="{{ value.name | escape }}">{{ value.name }}</option>
@@ -43,8 +45,9 @@
             {% endfor %}
           </div>
         {% else %}
-          <div class="select">
-            <select class="product_option_select" id="option" name="cart[add][id]" aria-label="Select option">
+          <div class="select form-group">
+            <label class="form-label product-option-label" for="option">Option</label>
+            <select class="product_option_select shrink-label" id="option" name="cart[add][id]" aria-label="Select option">
               <option value="0" disabled="disabled" selected>Select option</option>
               {% for option in product.options %}
                 <option value="{{ option.id }}" data-price="{{ option.price }}"{% if option.sold_out %} disabled="disabled" disabled-type="sold-out"{% endif %}>{{ option.name }} {% if option.sold_out %} (Sold out){% endif %}</option>
@@ -54,13 +57,18 @@
           </div>
         {% endif %}
       {% endif %}
-      <button class="button add-to-cart-button" name="submit" type="submit" title="Add to Cart" data-add-title="Add to Cart" data-sold-title="Sold out">Add to Cart</button>
+      <button class="button add-to-cart-button" name="submit" type="submit" title="Add to Cart" data-adding-text="Adding..." data-added-text="Added!" data-add-title="Add to Cart" data-sold-title="Sold out"{% if product.has_default_option %}{% else %}disabled="disabled"{% endif %}>Add to Cart</button>
+      {% if product.has_option_groups %}
+        <div class="reset-selection-button-container">
+          <button class="button minimal-button reset-selection-button" title="Reset selection" type="reset">Reset selection</button>
+        </div>
+      {% endif %}
     </form>
   {% endif %}
 
 </div>
 
-<div class="product-images {% if product.images.size > 1 %}main-carousel{% endif %}">
+<div class="product-images {% if product.images.size > 1 %}main-carousel{% else %} single-image{% endif %}">
   {% for image in product.images %}
     <div class="carousel-cell">
       <img src="{{ image | product_image_url | constrain: '1000'}}" alt="Image of {{ product.name | escape }}" />

@@ -1,162 +1,398 @@
 @import 'config'
 
-.mini-cart
-  display: none
-  position: absolute
-  top: 0
-  right: 49px
-  max-height: 100vh
-  height: 100vh
-  z-index: 102
-  width: 450px
-
-  .cart-container
-    height: 100%
-
-  .mini-cart-header
-    font-size: 16px
-    margin-bottom: 25px
-    position: relative
-
-  .cart-close
-    +all-transitions
-    background: $accent-color
-    border: $border
-    display: block
-    height: 51px
-    width: 51px
-    line-height: 51px
-    text-align: center
-    position: absolute
-    top: -2px
-    right: -2px
-
-    &:hover, &:focus
-      background-color: $text-color
-      color: $alt-background-color
-      text-decoration: none
-
-  .cart-items
-    margin-left: -50px
-
-  .cart-item
-    +flex-direction(column)
-    +flex-wrap(wrap)
-
-    margin-bottom: 50px
-    padding: 25px
-    position: relative
-
-  .cart-item-image-holder
-    +flex-basis(100%)
-    width: 120px
-
-  .cart-item-details
-    width: calc(100% - 120px)
-
-  .cart-item-quantity-holder
-    margin-left: 0
-    margin-top: 12px
-    padding: 0
-    width: calc(100% - 120px)
-
-  .cart-item-details-price
-    bottom: -25px
-    height: 50px
-    position: absolute
-    right: -2px
-
 .cart-container
   border: $border
-  margin-left: $marginSize
   padding: $marginSize/2
   position: relative
 
-.cart-form
-  margin-left: -$marginSize
+  .cart-close
+    display: none
 
-.cart-items
-  list-style: none
-  margin: 0 0 $marginSize/2 0
-  padding: 0
+  .cart-empty-message
+    display: none
 
-.cart-item
+  &.mini-cart-container
+    font-size: 16px
+    max-height: 100vh
+    opacity: 0
+    position: absolute
+    top: 0
+    right: 23px
+    height: 100vh
+    padding-top: 0
+    z-index: 204
+    width: 450px
+    visibility: hidden
+
+    &.opened
+      opacity: 1
+      visibility: visible
+
+    .cart-form
+      margin: 0
+      padding: 0
+
+      @media screen and (max-width: $break-medium)
+        padding-top: 50px
+
+    @media screen and (max-width: $break-medium)
+      left: 0
+      overflow-x: scroll
+      padding-bottom: 150px
+      position: fixed
+      right: 0
+      width: 100%
+
+    @media screen and (max-width: $break-extra-small)
+      padding-bottom: 0
+
+    h1.cart-title, div.cart-title
+      font-size: 16px
+      line-height: 50px
+      margin-bottom: 0
+      position: absolute
+
+      @media screen and (max-width: $break-medium)
+        font-size: 22px
+        line-height: 86px
+
+      @media screen and (max-width: $break-extra-small)
+        font-size: 16px
+
+    .cart-close
+      +flexbox
+      +align-items(center)
+      +justify-content(center)
+      height: 55px
+      line-height: normal
+      padding: 0
+      position: absolute
+      right: 25px
+      top: -2px
+      width: 55px
+
+      svg
+        height: 18px
+        width: 18px
+
+      @media screen and (max-width: $break-medium)
+        height: 45px
+        top: 21px
+        width: 45px
+
+    .cart-items
+      height: 100vh
+      margin-left: -27px
+      margin-top: 50px
+      overflow: scroll
+      padding-bottom: 175px
+
+      @media screen and (max-width: $break-medium)
+        height: auto
+        margin-left: 0
+        padding-bottom: 0
+
+      @media screen and (max-width: $break-extra-small)
+        height: 100vh
+        padding-bottom: 175px
+
+      .cart-item
+        +flex-direction(column)
+        +flex-wrap(wrap)
+        padding-top: 25px
+        margin-bottom: 50px
+
+        @media screen and (max-width: $break-medium)
+          +flex-direction(row)
+          padding-top: 0
+
+        @media screen and (max-width: $break-extra-small)
+          +flex-direction(column)
+          height: 225px
+          padding-top: 25px
+
+          &:last-child
+            margin-bottom: 175px !important
+
+        .cart-item-image-holder
+          +flex-basis(100%)
+
+          @media screen and (max-width: $break-medium)
+            +flex-basis(0)
+
+          @media screen and (max-width: $break-extra-small)
+            +flex-basis(100%)
+
+        .cart-item-details
+          padding-top: 0
+          padding-right: 25px
+          width: calc(100% - 150px)
+
+          @media screen and (max-width: $break-medium)
+            padding-top: 25px
+            width: auto
+
+          @media screen and (max-width: $break-extra-small)
+            padding-top: 0
+            width: calc(100% - 150px)
+
+        .cart-item-quantity-holder
+          +align-self(flex-start)
+          margin-left: 0
+          margin-top: 10px
+          padding: 0
+
+          @media screen and (max-width: $break-medium)
+            margin-left: auto
+            padding: 50px
+
+          @media screen and (max-width: $break-extra-small)
+            margin-left: 0
+            padding: 0
+
+        .cart-item-details-price
+          font-size: 16px
+          bottom: -25px
+          height: 50px
+          padding: 15px
+          position: absolute
+          right: -2px
+          width: auto
+
+    .cart-footer
+      bottom: -2px
+      left: -2px
+      position: absolute
+      width: calc(100% + 4px)
+
+      @media screen and (max-width: $break-medium)
+        position: relative
+        width: auto
+
+      @media screen and (max-width: $break-extra-small)
+        position: absolute
+        width: calc(100% + 4px)
+
+      .continue-shopping
+        display: none
+
+      .cart-subtotal
+        border-bottom: 0
+        margin-left: 0
+        text-align: center
+
+        @media screen and (max-width: $break-medium)
+          border-bottom: $border
+          margin-bottom: 25px
+          margin-left: auto
+          padding-left: 50px
+          padding-right: 50px
+
+        @media screen and (max-width: $break-extra-small)
+          border-bottom: 0
+          margin-bottom: 0
+          margin-left: 0
+
+      button.checkout-btn
+        margin: 0
+        max-width: 100%
+        width: 100%
+
+        @media screen and (max-width: $break-medium)
+          margin-left: auto
+          width: 300px
+
+        @media screen and (max-width: $break-extra-small)
+          margin: 0
+          max-width: 100%
+          width: 100%
+
+  h1.cart-title
+    margin-bottom: 25px
+
+  .cart-items
+    list-style: none
+    margin: 0 0 $marginSize/2 0
+    margin-left: -50px
+    padding: 0
+
+    @media screen and (max-width: $break-medium)
+      margin-left: 0
+
+    .cart-item
+      +flexbox
+      +align-items(center)
+      +justify-content(flex-start)
+      border: $border
+      background: $background-color
+      height: 169px
+      margin-bottom: $marginSize/2
+      position: relative
+
+      .cart-item-image-holder
+        margin-left: 25px
+
+      .cart-item-image
+        background-size: cover
+        border: $border
+        display: block
+        margin-right: 25px
+        height: $marginSize*2
+        width: $marginSize*2
+
+      .cart-item-details
+        +align-self(flex-start)
+        padding-top: 25px
+
+        .cart-item-details-name
+          text-transform: uppercase
+
+        .cart-item-details-option
+          font-size: 13px
+
+      .cart-item-quantity-holder
+        +flexbox
+        +align-items(center)
+        margin-left: auto
+        padding: 0 25px
+
+        .option-quantity
+          height: 42px
+          margin: 0 12px
+          text-align: center
+          width: 52px
+
+      .cart-item-details-price
+        +flexbox
+        +justify-content(center)
+        +align-items(center)
+        background: $text-color
+        color: $background-color
+        font-size: 22px
+        height: 100%
+        padding: 0
+        width: 187px
+
+      button.qty-button
+        background: none
+        border: none
+        height: 30px
+        line-height: normal
+        margin: 0
+        padding: 0
+
+        &:hover, &:active, &:focus
+          background: none
+          color: $text-color
+
+          svg
+            fill: $text-color
+
+  .cart-footer
+    +flexbox
+    +flex-direction(column)
+
+  .cart-subtotal
+    background: $alt-accent-color
+    border: $border
+    margin-left: auto
+    padding: 4px 20px
+
+  .cart-buttons
+    +flexbox
+    +align-items(center)
+    +justify-content(flex-start)
+
+  .continue-shopping
+    margin-left: 0
+
+    svg
+      height: 18px
+      position: relative
+      top: 2px
+      width: 18px
+
+  button.checkout-btn
+    margin: 0 0 0 auto
+    margin-bottom: -70px
+    padding: 0 $marginSize/2
+    max-width: 300px
+    width: 100%
+
+@media screen and (max-width: $break-medium)
+  #cart .content
+    padding-top: 25px
+
+@media screen and (max-width: $break-small)
+  #cart .content
+    padding: 0
+
+    .cart-container
+      border-bottom: 0
+      border-top: 0
+
+    .cart-item
+      +flex-direction(column)
+      +flex-wrap(wrap)
+      height: 225px
+      padding-top: 25px
+      margin-bottom: 50px
+
+      .cart-item-image-holder
+        +flex-basis(100%)
+
+      .cart-item-details
+        padding-top: 0
+        width: calc(100% - 170px)
+
+      .cart-item-quantity-holder
+        +align-self(flex-start)
+        margin-left: 0
+        margin-top: 10px
+        padding: 0
+
+      .cart-item-details-price
+        font-size: 16px
+        bottom: -25px
+        height: 50px
+        padding: 15px
+        position: absolute
+        right: -2px
+        width: auto
+
+    .continue-shopping
+      display: none
+
+    .cart-subtotal
+      margin: 0 0 25px 0
+      text-align: center
+
+    button.checkout-btn
+      margin: 0
+      max-width: 100%
+      width: 100%
+
+.empty-cart
   +flexbox
   +align-items(center)
-  +justify-content(flex-start)
-  border: $border
-  background: $background-color
-  height: 169px
-  margin-bottom: $marginSize/2
-
-.cart-item-image-holder
-
-.cart-item-image
-  background-size: cover
-  border: $border
-  display: block
-  margin-right: 25px
-  height: $marginSize*2
-  width: $marginSize*2
-
-.cart-item-details
-  +align-self(flex-start)
-
-  .cart-item-details-name
-    text-transform: uppercase
-
-  .cart-item-details-option
-    font-size: 13px
-
-.cart-item-quantity-holder
-  +flexbox
-  +align-items(center)
-  margin-left: auto
-  padding: 0 50px
-
-  .option-quantity
-    height: 42px
-    margin: 0 12px
-    text-align: center
-    width: 42px
-
-.cart-item-details-price
-  +flexbox
-  +justify-content(center)
-  +align-items(center)
-  background: $text-color
-  color: $background-color
-  height: 100%
-  padding: 0
-  width: 187px
-
-button.qty-button
-  background: none
-  border: none
-  height: 30px
-  line-height: normal
-  margin: 0
-  padding: 0
-
-.cart-footer
-  +flexbox
   +flex-direction(column)
 
-.cart-subtotal
-  background: $alt-accent-color
-  border: $border
-  margin-left: auto
-  padding: 4px 8px
+  @media screen and (max-width: $break-medium)
+    +justify-content(center)
 
-.cart-buttons
-  +flexbox
-  +align-items(center)
-  +justify-content(flex-start)
+  .cart-empty-message
+    display: block
+    padding: 100px 25px
+    text-align: center
 
-.continue-shopping
-  margin-left: $marginSize
+    .emoji-container
+      margin-bottom: 25px
 
-button.checkout-btn
-  margin: 0 0 0 auto
-  margin-bottom: -70px
-  padding: 0 $marginSize/2
+    a.button
+      display: inline-block
+      margin-top: 25px
+      max-width: 300px
+      width: 100%
+
+  h1, .cart-title
+    display: none

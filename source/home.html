@@ -1,47 +1,58 @@
-
-
-<div class="featured gradient">
-  <div class="featured-details">
-    <div class="tag">Featured</div>
-    <div class="feature-text">
-      <h2 class="subheader">Shop summer jewelry collection</h2>
-      <a href="/products" class="button">Shop now</a>
-    </div>
-  </div>
-  <div class="featured-img">
-    <ul>
-      <li><img src="https://assets.bigcartel.com/product_images/232183991/belt+bag_+crop-07.jpg?auto=format&fit=max&w=1200"></li>
-      <li><img src="https://assets.bigcartel.com/product_images/232183991/belt+bag_+crop-07.jpg?auto=format&fit=max&w=1200"></li>
-      <li><img src="https://assets.bigcartel.com/product_images/232183991/belt+bag_+crop-07.jpg?auto=format&fit=max&w=1200"></li>
-    </ul>
-  </div>
-</div>
-
-<h1 class="page-title">Featured products</h1>
-{% if theme.featured_items > 0 %}
-  {% get products from products.all limit:theme.featured_items order:theme.featured_order %}
-    {% if products != blank %}
-      <ul class="product-list">
-        {% for product in products %}
-        <li class="{{ product.css_class }}">
-          <a href="{{ product.url }}" class="product-link" title="View {{ product.name | escape }}">
-            <img alt="Image of {{ product.name | escape }}" src="{{ product.image | product_image_url | constrain: '1000' }}">
-            <div class="product-details overlay">
-              <span class="product-name">{{ product.name }}</span>
-              <span class="product-price">{{ product.default_price | money: theme.money_format }}</span>
+{% if theme.featured_categories > 0 %}
+  {% for category in categories.active limit:theme.featured_categories %}
+    <div class="featured gradient featured-item-{{ forloop.index }}">
+      <div class="featured-details">
+        <div class="tag">Featured</div>
+        <div class="feature-text">
+          <h2 class="subheader">{{ category.name }}</h2>
+          <a href="{{ category.url }}" title="View {{ category.name | escape }}" class="button">Shop now</a>
+        </div>
+      </div>
+      <div class="featured-image-container">
+        <div class="featured-images">
+          {% for i in (0..2) %}
+            <div class="featured-image gradient">
+              {% if category.products[i] != blank %}
+                <img alt="Image of {{ category.products[i].name | escape }}" class="featured-category-product-image" src="{{ category.products[i].image | product_image_url | constrain: 400 }}">
+              {% endif %}
             </div>
-            {% case product.status %}
-              {% when 'active' %}
-                {% if product.on_sale %}<div class="product-status">On Sale</div>{% endif %}
-              {% when 'sold-out' %}
-                <div class="product-status">Sold Out</div>
-              {% when 'coming-soon' %}
-                <div class="product-status">Coming Soon</div>
-            {% endcase %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endif %}
+
+{% if theme.featured_products > 0 %}
+  {% get products from products.all limit:theme.featured_products order:theme.featured_order %}
+    {% if products != blank %}
+      <div class="product-list {{ theme.product_list_layout }}" data-per-row="{{ theme.max_products_per_row }}" data-per-row-mobile="{{ theme.max_products_per_row_mobile }}">
+        {% for product in products %}
+          {% assign product_status = '' %}
+          {% case product.status %}
+            {% when 'active' %}
+              {% if product.on_sale %}{% assign product_status = 'On sale' %}{% endif %}
+            {% when 'sold-out' %}
+              {% assign product_status = 'Sold out' %}
+            {% when 'coming-soon' %}
+              {% assign product_status = 'Coming soon' %}
+          {% endcase %}
+          <a class="product-list-item product-list-item-{{ forloop.index }} {{ theme.show_overlay }}" href="{{ product.url }}" title="View {{ product.name | escape }}">
+            <div class="product-list-item-container">
+              <figure class="product-list-image-container">
+                <img alt="Image of {{ product.name | escape }}" class="product-list-image" src="{{ product.image | product_image_url | constrain: 1000, 1000 }}">
+                {% if product_status != blank %}<div class="product-list-item-status">{{ product_status }}</div>{% endif %}
+              </figure>
+              <div class="product-list-item-info">
+                <div class="product-list-item-info-headers">
+                  <div class="product-list-item-name">{{ product.name }}</div>
+                  <div class="product-list-item-price">{{ product.default_price | money: theme.money_format }}</div>
+                </div>
+              </div>
+            </div>
           </a>
-        </li>
         {% endfor %}
-      </ul>
+      </div>
     {% endif %}
   {% endget %}
 {% endif %}

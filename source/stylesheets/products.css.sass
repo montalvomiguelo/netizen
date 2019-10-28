@@ -1,92 +1,155 @@
 @import 'config'
 
+#home .product-list
+  margin-top: 50px
+
+  @media screen and (max-width: $break-small)
+    margin-top: 25px
+
+#home .featured + .product-list
+  margin-top: 40px
+
+  @media screen and (max-width: $break-small)
+    margin-top: 30px
+
+#products h1
+  margin-bottom: 65px
+
+  @media screen and (max-width: $break-medium)
+    margin-bottom: 50px
+
 .product-list
   +flexbox
   +flex-wrap(wrap)
   +justify-content(flex-start)
-  list-style: none
-  font-size: 20px
-  margin: 0 -25px
-  padding: 0
+  margin: 0 #{"{% if theme.max_products_per_row == 3 %} -10px {% else %} -25px {% endif %}"}
 
-  .product
-    padding: 25px
+  @media screen and (max-width: $break-medium)
+    width: auto
+
+  .featured
+    width: #{"{% if theme.max_products_per_row == 3 %} calc(100% - 20px) {% else %} calc(100% - 50px) {% endif %}"}
+    margin: 45px #{"{% if theme.max_products_per_row == 3 %} 10px {% else %} 25px {% endif %}"}
+
+    @media screen and (max-width: $break-small)
+      margin: 0px 10px 40px
+
+.product-list-item
+  display: block
+  font-size: 0
+  padding: #{"{% if theme.max_products_per_row == 3 %} 10px {% else %} 25px {% endif %}"}
+  padding-bottom: #{"{% if theme.max_products_per_row == 3 %} 10px {% else %} 25px {% endif %}"}
+  position: relative
+  vertical-align: middle
+  width: #{"{% if theme.max_products_per_row == 3 %} 33.33% {% elsif theme.max_products_per_row == 2 %} 50% {% else %} 100% {% endif %}"}
+
+  @media only screen and (min-width: $break-medium) and (hover: hover), (-moz-touch-enabled: 0)
+    &.rollover
+      margin-bottom: 0px
+
+      @media screen and (max-width: $break-medium)
+        margin-bottom: 20px
+
+      .product-list-item-info
+        +flexbox
+        +align-items(center)
+        background: $text-color
+        bottom: 0
+        position: absolute
+        width: 100%
+        opacity: 0
+
+        *
+          color: $background-color
+
+      &:hover, &:active, &:focus
+        .product-list-item-info
+          opacity: 1
+
+        img
+          +all-transitions
+          opacity: .8
+
+  @media screen and (max-width: $break-large)
     width: 50%
 
-    .product-link
-      border: $border
-      display: block
-      margin: 0
-      padding: 0
-      position: relative
-      width: 100%
-      overflow: hidden
+  @media screen and (max-width: $break-small)
+    width: 50%
 
-      &:hover
-        text-decoration: none
+  @media screen and (max-width: $break-extra-small)
+    padding: 0 10px 50px 10px
+    width: #{"{% if theme.max_products_per_row_mobile == 2 %} 50% {% else %} 100% {% endif %}"}
 
-      &:hover .product-details.overlay
-        +all-transitions
-        opacity: 1
+.product-list-item-container
+  cursor: default
+  position: relative
+  width: 100%
 
-      &:hover img
-        +all-transitions
-        filter: saturate(1000%) blur(50px)
-        transform: scale(2)
+.product-list-image-container
+  border: $border
+  font-size: 0
+  margin: 0
+  overflow: hidden
+  width: 100%
 
-      img
-        +all-transitions
-        display: block
-        margin: 0 auto
-        max-height: 100%
-        object-fit: cover
-        position: relative
-        text-align: center
-        transform: scale(1)
-        width: 100%
+.product-list-image
+  cursor: pointer
+  display: block
+  width: 100%
 
-      .product-status
-        position: absolute
-        top: 0
-        left: 0
-        background: $text-color
-        color: $background-color
-        font-size: 14px
-        padding: 2px 8px
+.product-list-item-info
+  border: $border
+  border-top: 0
+  padding: 20px 0
 
-      .product-details
-        background-color: $alt-background-color
-        border-top: $border
-        color: $text-color
-        display: grid
-        font-size: 22px
-        grid-template-columns: 1fr 40%
-        line-height: 1.5em
-        min-height: 100px
-        padding: $marginSize/2 0
-        position: relative
-        text-transform: capitalize
-        width: 100%
+  @media screen and (max-width: $break-medium)
+    padding: 0
 
-        &.overlay
-          +all-transitions
-          background-color: $text-color
-          color: $alt-background-color
-          position: absolute
-          bottom: 0
-          opacity: 0
+.product-list-item-info-headers
+  +all-transitions
+  +transition(all .3s ease-out)
+  +flexbox
+  +justify-content(flex-start)
+  font-size: #{"{% if theme.max_products_per_row == 3 %} 16px {% else %} 22px {% endif %}"}
+  line-height: #{"{% if theme.max_products_per_row == 3 %} 22px {% else %} 30px {% endif %}"}
+  padding: 0 20px
+  position: relative
+  width: 100%
+  z-index: 1
 
-        .product-name
-          padding-left: $marginSize/2
-          display: block
+  @media screen and (max-width: $break-small)
+    font-size: 16px
+    line-height: 22px
 
-        .product-price
-          display: block
-          text-align: right
-          padding-right: $marginSize/2
+  @media screen and (max-width: $break-medium)
+    background: $background-color
+    +flex-direction(column)
+    padding: 20px
 
-    a:hover.product-details.overlay
-      opacity: 1
+.product-list-item-name
+  padding-right: 20px
+  position: relative
+  text-transform: uppercase
+  overflow-wrap: break-word
+
+  @media screen and (max-width: $break-medium)
+    padding-right: 0
+
+.product-list-item-price
+  margin-left: auto
+
+  @media screen and (max-width: $break-medium)
+    margin-left: 0
+    margin-top: 20px
+
+.product-list-item-status
+  background: $text-color
+  color: $background-color
+  font-size: 12px
+  left: 0
+  padding: 6px 10px
+  position: absolute
+  top: 0
 
 .pagination
   +flexbox
