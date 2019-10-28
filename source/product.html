@@ -8,8 +8,6 @@
     {% assign product_status = 'Coming soon' %}
 {% endcase %}
 <div class="product-heading">
-
-
   <div class="product-titles">
     <h1 class="page-title product-title">{{ product.name }}</h1>
     <div class="product-subtitle">
@@ -21,7 +19,6 @@
       {% endif %}
     </div>
   </div>
-
   {% if product.status == 'active' %}
     <form method="post" class="product-form {% if theme.show_sold_out_product_options %}show-sold-out{% else %}hide-sold-out{% endif %}" action="/cart" accept-charset="utf8">
       <input type="hidden" name="utf8" value='✓'>
@@ -67,7 +64,6 @@
   {% endif %}
 
 </div>
-
 <div class="product-images {% if product.images.size > 1 %}main-carousel{% else %} single-image{% endif %}">
   {% for image in product.images %}
     <div class="carousel-cell">
@@ -80,14 +76,3 @@
     {{ product.description | paragraphs }}
   </div>
 {% endif %}
-
-
-
-
-
-
-
-
-
-
-
