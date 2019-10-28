@@ -29,6 +29,7 @@ a
     text-decoration: underline
 
 h1, h2, h3, h4
+  font-family: $header-font
   margin: 0
   padding: 0
 
@@ -307,6 +308,7 @@ ol.unstyled, ul.unstyled
     +align-items(center)
     background: $alt-background-color
     border: $border
+    font-family: $header-font
     height: 196px
     padding: 20px
     position: absolute
@@ -314,6 +316,9 @@ ol.unstyled, ul.unstyled
     top: 24px
     z-index: 1
     width: 196px
+
+  &.has-logo .header-store-link
+    padding: 0
 
   .gradient
     border: $border
@@ -332,6 +337,7 @@ ol.unstyled, ul.unstyled
 
   .header-store-logo
     display: block
+    max-height: 100%
     max-width: 100%
 
   @media screen and (max-width: $break-medium)

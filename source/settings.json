@@ -1,6 +1,6 @@
 {
   "name": "Netizen",
-  "version": "0.1.25",
+  "version": "0.1.35",
   "images": [
     {
       "variable": "logo",
@@ -10,8 +10,7 @@
     {
       "variable": "welcome_image",
       "label": "Home page welcome image",
-      "description": "1400x850px image recommended",
-      "default": "slide-1.jpg"
+      "description": "1400x850px image recommended"
 
     }
   ],
