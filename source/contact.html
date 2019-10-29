@@ -5,24 +5,24 @@
   <h1 class="page-title">{{ page.name }}</h1>
   <form method="post" action="/contact" class="contact-form">
     <div class="form-group contact-form-group">
-      <label class="form-label contact-form-label contact-name" for="name-input">Name</label>
-      {{ contact | contact_input: 'name' }}
+      <label class="form-label contact-form-label contact-name" for="contact-name">Name</label>
+      {{ contact | contact_input: 'contact-name' }}
     </div>
     <div class="form-group contact-form-group">
-      <label class="form-label contact-form-label contact-email" for="email-input">Email</label>
-      {{ contact | contact_input: 'email' }}
+      <label class="form-label contact-form-label contact-email" for="contact-email">Email</label>
+      {{ contact | contact_input: 'contact-email' }}
     </div>
     <div class="form-group contact-form-group">
-      <label class="form-label contact-form-label contact-subject" for="subject-input">Subject</label>
-      {{ contact | contact_input: 'subject' }}
+      <label class="form-label contact-form-label contact-subject" for="contact-subject">Subject</label>
+      {{ contact | contact_input: 'contact-subject' }}
     </div>
     <div class="form-group contact-form-group">
-      <label class="form-label contact-form-label contact-message" for="message-textarea">Message</label>
-      {{ contact | contact_input: 'message' }}
+      <label class="form-label contact-form-label contact-message" for="contact-message">Message</label>
+      {{ contact | contact_input: 'contact-message' }}
     </div>
     <div class="form-group contact-form-group">
-      <label class="form-label contact-form-label contact-captcha">Spam check</label>
-      {{ contact | contact_input: 'captcha' }} {{ contact.captcha }}
+      <label class="form-label contact-form-label contact-captcha" for="contact-captcha">Spam check</label>
+      {{ contact | contact_input: 'contact-captcha' }} {{ contact.captcha }}
       <div class="captcha-instructions">Enter the characters from the image</div>
     </div>
 
