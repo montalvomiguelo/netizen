@@ -3,6 +3,7 @@
 *
   box-sizing: border-box
 
+
 html, body
   height: 100%
   margin: 0
@@ -253,6 +254,9 @@ ol.unstyled, ul.unstyled
 .main
   +flexbox
   +flex(1)
+
+_:-ms-fullscreen, :root .main
+  +flex(1 0 auto)
 
 .has-welcome .sidebar
   @media screen and (min-width: $break-medium+1)
@@ -634,6 +638,7 @@ ol.unstyled, ul.unstyled
 footer
   +flexbox
   +flex-direction(row)
+  flex-shrink: 0
   border: $border
   max-width: 1400px
   margin: 0 auto
