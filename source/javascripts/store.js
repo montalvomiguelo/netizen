@@ -77,15 +77,11 @@ if (!Array.prototype.includes) {
   });
 }
 
-Array.prototype.count = function(filterMethod) {
-  return this.reduce((count, item) => filterMethod(item)? count + 1 : count, 0);
-}
-
-
-
-
-
-
+Array.prototype.count = function (filterMethod) {
+  return this.reduce(function (count, item) {
+    return filterMethod(item) ? count + 1 : count;
+  }, 0);
+};
 
 /* Announcement Message */
 
@@ -544,7 +540,10 @@ $('body')
   })
 
 var updateCart = function(cart) {
+  var sub_total = Format.money(cart.total, true, true);
   var item_count = cart.item_count;
+  $('.header-cart-total').html(sub_total);
+  $('.cart-subtotal-amount-value').html(sub_total);
   $('.header-cart-count').html(item_count);
   $('.cart-container').removeClass('empty-cart');
   var $container = $('.mini-cart-container');
