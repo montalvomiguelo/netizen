@@ -540,7 +540,10 @@ $('body')
   })
 
 var updateCart = function(cart) {
+  var sub_total = Format.money(cart.total, true, true);
   var item_count = cart.item_count;
+  $('.header-cart-total').html(sub_total);
+  $('.cart-subtotal-amount-value').html(sub_total);
   $('.header-cart-count').html(item_count);
   $('.cart-container').removeClass('empty-cart');
   var $container = $('.mini-cart-container');
